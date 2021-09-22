@@ -39,7 +39,6 @@ implementation
         ADOCOn.Provider:= 'Microsoft.Jet.OLEDB.4.0';
         ADOCOn.ConnectionString:='Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Курсовая\Database2.mdb;Persist Security Info=False;';
 
-
       end;
 
      function TMain_Class.sql_select(select,from,where:string;distinct:boolean):TADOQuery;
@@ -78,19 +77,16 @@ implementation
                  var cel,ost:integer;
                      cel:=count_in_bd div on_page;
                      ost:= count_in_bd mod on_page;
-
                  var Lab:TLabel;
                  Lab:=TLAbel.Create(nil);
                  if (cel>=4) then
                  begin
                         PanelNav.Controls[0].Visible:=false;
                          PanelNav.Controls[1].Visible:=true;
-
                         (PanelNav.Controls[1] As TLabel).Caption:='1';
                         (PanelNav.Controls[2] As TLabel).Caption:='2';
                         (PanelNav.Controls[3] As TLabel).Caption:='3';
                         (PanelNav.Controls[4] As TLabel).Caption:='4';
-
                          PanelNav.Controls[2].Visible:=true;
                          PanelNav.Controls[3].Visible:=true;
                          PanelNav.Controls[4].Visible:=true;
@@ -109,7 +105,6 @@ implementation
                          PanelNav.Controls[1].Visible:=true;
                            (PanelNav.Controls[2] As TLabel).Caption:='2';
                             PanelNav.Controls[2].Visible:=true;
-
                             PanelNav.Controls[3].Visible:=false;
                             PanelNav.Controls[4].Visible:=false;
                          end;
@@ -121,7 +116,6 @@ implementation
                           PanelNav.Controls[2].Visible:=true;
                           (PanelNav.Controls[3] As TLabel).Caption:='3';
                            PanelNav.Controls[3].Visible:=true;
-
                                PanelNav.Controls[4].Visible:=false;
                          end;
                          PanelNav.Controls[0].Visible:=false;
@@ -150,10 +144,7 @@ implementation
                          (PanelNav.Controls[4] As TLabel).Caption:='4';
                          end;
                     end;
-
                  end;
-
-
 
                 end;
 
@@ -175,12 +166,11 @@ implementation
                  PanelNav.Controls[3].Visible:=true;
                  PanelNav.Controls[4].Visible:=true;
                  PanelNav.Controls[5].Visible:=true;
-                  (PanelNav.Controls[1] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;
+                  (PanelNav.Controls[1] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;   //эти без черты
                   (PanelNav.Controls[2] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;
                   (PanelNav.Controls[3] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;
-                  (PanelNav.Controls[4] As TLabel).Font.Style:=(PanelNav.Controls[7] as TLabel).Font.Style;
+                  (PanelNav.Controls[4] As TLabel).Font.Style:=(PanelNav.Controls[7] as TLabel).Font.Style;  //делаем подчеркнутым крайний права
                   var nx := Strtoint((PanelNav.Controls[4] as TLabel).Caption);
-
                    Result:=nx;
 
        end;
@@ -197,10 +187,7 @@ implementation
                  PanelNav.Controls[4].Visible:=true;
                  PanelNav.Controls[5].Visible:=true;
 
-
-
                 end
-
                 else if (x=n-1) then
                      begin
                          PanelNav.Controls[0].Visible:=true;
@@ -209,8 +196,6 @@ implementation
                            PanelNav.Controls[3].Visible:=true;
                            PanelNav.Controls[4].Visible:=false;
                            PanelNav.Controls[5].Visible:=false;
-
-
 
                      end
                 else if  (x=n-2)  then
@@ -222,7 +207,6 @@ implementation
                            PanelNav.Controls[4].Visible:=false;
                            PanelNav.Controls[5].Visible:=false;
 
-
                 end
                  else if  (x=n-3)   then
                 begin
@@ -233,19 +217,18 @@ implementation
                            PanelNav.Controls[4].Visible:=false;
                            PanelNav.Controls[5].Visible:=false;
 
-
-
                 end;
-
                        (PanelNav.Controls[1] as TLabel).Caption:=(StrToInt((PanelNav.Controls[1] as TLabel).Caption)+n).ToString;
                        (PanelNav.Controls[2] as TLabel).Caption:=(StrToInt((PanelNav.Controls[2] as TLabel).Caption)+n).ToString;
                        (PanelNav.Controls[3] as TLabel).Caption:=(StrToInt((PanelNav.Controls[3] as TLabel).Caption)+n).ToString;
                        (PanelNav.Controls[4] as TLabel).Caption:=(StrToInt((PanelNav.Controls[4] as TLabel).Caption)+n).ToString;
 
-
+                         (PanelNav.Controls[1] As TLabel).Font.Style:=(PanelNav.Controls[7] as TLabel).Font.Style; //делаем подчеркнутым крайний слева
+                  (PanelNav.Controls[2] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;
+                  (PanelNav.Controls[3] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;     //эти без черты
+                  (PanelNav.Controls[4] As TLabel).Font.Style:=(PanelNav.Controls[6] as TLabel).Font.Style;
 
                        var nx := Strtoint((PanelNav.Controls[1] as TLabel).Caption);
-
                    Result:=nx;
           end;
 
@@ -297,7 +280,6 @@ implementation
 
               }
          end;
-
 end.
 
 

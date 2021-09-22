@@ -9,7 +9,7 @@ object Form4: TForm4
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
-  Font.Style = []
+  Font.Style = [fsUnderline]
   OldCreateOrder = False
   PixelsPerInch = 96
   TextHeight = 13
@@ -18,7 +18,7 @@ object Form4: TForm4
     Top = 0
     Width = 633
     Height = 454
-    ActivePage = Agents
+    ActivePage = Productions
     TabOrder = 0
     OnChange = PageControl1Change
     object Agents: TTabSheet
@@ -167,26 +167,26 @@ object Form4: TForm4
       OnMouseEnter = Label6MouseEnter
       OnMouseLeave = Label6MouseLeave
     end
-    object Label7: TLabel
+    object no_line: TLabel
       Left = 160
       Top = 8
-      Width = 31
+      Width = 34
       Height = 13
-      Caption = 'Label7'
+      Caption = 'no_line'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'Tahoma'
-      Font.Style = [fsUnderline]
+      Font.Style = []
       ParentFont = False
       Visible = False
     end
-    object Label8: TLabel
+    object line: TLabel
       Left = 160
       Top = 32
-      Width = 31
+      Width = 16
       Height = 13
-      Caption = 'Label8'
+      Caption = 'line'
       Visible = False
     end
   end

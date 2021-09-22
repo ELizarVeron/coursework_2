@@ -1,12 +1,9 @@
 unit WinMaster;
-
 interface
-
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Data.Win.ADODB, Vcl.ExtCtrls, Main_Class,Agent_Class,
   Vcl.ComCtrls,Supplier_Class,Product_Class;
-
 type
   TForm4 = class(TForm)
     PageControl1: TPageControl;
@@ -25,8 +22,8 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
+    no_line: TLabel;
+    line: TLabel;
     procedure Label6Click(Sender: TObject);
     procedure Label1MouseEnter(Sender: TObject);
     procedure Label1MouseLeave(Sender: TObject);
@@ -46,28 +43,23 @@ type
     procedure Label5Click(Sender: TObject);
     procedure Label1Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
-
   private
     { Private declarations }
   public
    constructor Create (AOwner: TComponent); override;
     { Public declarations }
   end;
-
 var
   Form4: TForm4;
   AgentClass: TAgent_Class;
   ADO_agent:TADOQuery;
   C_agent:integer;
-
   SupClass:TSupplier_Class;
   ADO_sup:TADOQuery;
   C_sup:integer;
-
   ProdClass: TProduct_Class;
   ADO_prod:TADOQuery;
   C_prod:integer;
-
 implementation
      constructor TForm4.Create;
      begin
@@ -98,7 +90,6 @@ implementation
      end;
 {$R *.dfm}
 
-
   procedure TForm4.Label1Click(Sender: TObject);
 begin
           if    (PageControl1.ActivePage=Agents) then
@@ -113,6 +104,10 @@ begin
 
         end;
          if    (PageControl1.ActivePage=Suppliers) then
+        begin
+
+        end;
+          if    (PageControl1.ActivePage=Productions) then
         begin
 
         end;

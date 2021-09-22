@@ -152,6 +152,7 @@ begin              var i:= strtoint(label2.Caption)-1;
         begin
                  AgentClass.load_frames(Panel1,i,AgentClass.array_of_agents.Count) ;
 
+
         end;
          if    (PageControl1.ActivePage=Productions) then
         begin
@@ -161,6 +162,10 @@ begin              var i:= strtoint(label2.Caption)-1;
         begin
                  SupClass.load_frames(Panel3,i,SupClass.array_of_suppliers.Count);
         end;
+        Label2.Font.Style:=[fsUnderline];
+                  Label3.Font.Style:=[];
+                   Label4.Font.Style:=[];
+                    Label5.Font.Style:=[];
 end;
 
 procedure TForm4.Label2MouseEnter(Sender: TObject);
@@ -189,6 +194,10 @@ begin
         begin
                  SupClass.load_frames(Panel3,i,SupClass.array_of_suppliers.Count);
         end;
+        Label2.Font.Style:=[];
+                  Label3.Font.Style:=[fsUnderline];
+                   Label4.Font.Style:=[];
+                    Label5.Font.Style:=[];
 end;
 
 procedure TForm4.Label3MouseEnter(Sender: TObject);
@@ -218,6 +227,10 @@ begin
         begin
                  SupClass.load_frames(Panel3,i,SupClass.array_of_suppliers.Count);
         end;
+        Label2.Font.Style:=[];
+                  Label3.Font.Style:=[];
+                   Label4.Font.Style:=[fsUnderline];
+                    Label5.Font.Style:=[];
 end;
 
 procedure TForm4.Label4MouseEnter(Sender: TObject);
@@ -246,6 +259,10 @@ begin
         begin
                  SupClass.load_frames(Panel3,i,SupClass.array_of_suppliers.Count);
         end;
+        Label2.Font.Style:=[];
+                  Label3.Font.Style:=[];
+                   Label4.Font.Style:=[];
+                    Label5.Font.Style:=[fsUnderline];
 end;
 
 procedure TForm4.Label5MouseEnter(Sender: TObject);

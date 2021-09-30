@@ -2,11 +2,11 @@ object Frame6: TFrame6
   Left = 0
   Top = 0
   Width = 459
-  Height = 91
+  Height = 82
   TabOrder = 0
   object Panel1: TPanel
     Left = 3
-    Top = 6
+    Top = 0
     Width = 449
     Height = 82
     BevelOuter = bvNone
@@ -42,7 +42,7 @@ object Frame6: TFrame6
     end
     object Label4: TLabel
       Left = 24
-      Top = 42
+      Top = 34
       Width = 111
       Height = 11
       Caption = #1052#1080#1085#1080#1084#1072#1083#1100#1085#1072#1103' '#1057#1090#1086#1080#1084#1086#1089#1090#1100
@@ -55,7 +55,7 @@ object Frame6: TFrame6
     end
     object Label5: TLabel
       Left = 24
-      Top = 59
+      Top = 51
       Width = 102
       Height = 11
       Caption = #1042#1088#1077#1084#1103' '#1085#1072' '#1080#1079#1075#1086#1090#1086#1074#1083#1077#1085#1080#1077
@@ -95,14 +95,14 @@ object Frame6: TFrame6
     end
     object Label7: TLabel
       Left = 160
-      Top = 38
+      Top = 30
       Width = 31
-      Height = 15
+      Height = 13
       Caption = 'Label7'
     end
     object Label8: TLabel
       Left = 160
-      Top = 59
+      Top = 51
       Width = 31
       Height = 13
       Caption = 'Label8'

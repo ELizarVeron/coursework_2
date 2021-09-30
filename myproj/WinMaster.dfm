@@ -2,8 +2,8 @@ object Form4: TForm4
   Left = 0
   Top = 0
   Caption = 'Form4'
-  ClientHeight = 513
-  ClientWidth = 633
+  ClientHeight = 572
+  ClientWidth = 516
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,14 @@ object Form4: TForm4
     Left = 8
     Top = 0
     Width = 633
-    Height = 454
+    Height = 506
     ActivePage = Productions
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
     OnChange = PageControl1Change
     object Agents: TTabSheet
@@ -27,18 +33,24 @@ object Form4: TForm4
         Left = 0
         Top = 0
         Width = 606
-        Height = 329
+        Height = 474
         TabOrder = 0
       end
     end
     object Suppliers: TTabSheet
       Caption = #1055#1086#1089#1090#1072#1074#1097#1080#1082#1080
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ImageIndex = 1
+      ParentFont = False
       object Panel3: TPanel
         Left = 0
-        Top = 1
+        Top = 0
         Width = 625
-        Height = 366
+        Height = 474
         TabOrder = 0
       end
     end
@@ -49,7 +61,7 @@ object Form4: TForm4
         Left = 0
         Top = 3
         Width = 625
-        Height = 366
+        Height = 471
         TabOrder = 0
       end
     end
@@ -60,20 +72,20 @@ object Form4: TForm4
         Left = -4
         Top = 0
         Width = 625
-        Height = 382
+        Height = 482
         TabOrder = 0
       end
     end
   end
   object Panel2: TPanel
-    Left = 224
-    Top = 448
+    Left = 152
+    Top = 504
     Width = 193
-    Height = 57
+    Height = 41
     TabOrder = 1
     object Label1: TLabel
       Left = 24
-      Top = 24
+      Top = 8
       Width = 15
       Height = 25
       Caption = '<'
@@ -89,7 +101,7 @@ object Form4: TForm4
     end
     object Label2: TLabel
       Left = 45
-      Top = 24
+      Top = 8
       Width = 11
       Height = 25
       Caption = '1'
@@ -105,7 +117,7 @@ object Form4: TForm4
     end
     object Label3: TLabel
       Left = 70
-      Top = 24
+      Top = 8
       Width = 11
       Height = 25
       Caption = '2'
@@ -121,7 +133,7 @@ object Form4: TForm4
     end
     object Label4: TLabel
       Left = 87
-      Top = 24
+      Top = 8
       Width = 11
       Height = 25
       Caption = '3'
@@ -137,7 +149,7 @@ object Form4: TForm4
     end
     object Label5: TLabel
       Left = 108
-      Top = 24
+      Top = 8
       Width = 11
       Height = 25
       Caption = '4'
@@ -153,7 +165,7 @@ object Form4: TForm4
     end
     object Label6: TLabel
       Left = 125
-      Top = 24
+      Top = 8
       Width = 15
       Height = 25
       Caption = '>'

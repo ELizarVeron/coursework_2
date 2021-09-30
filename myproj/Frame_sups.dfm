@@ -17,8 +17,8 @@ object Frame5: TFrame5
       Tag = 1
       Left = 11
       Top = 8
-      Width = 158
-      Height = 17
+      Width = 153
+      Height = 14
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText

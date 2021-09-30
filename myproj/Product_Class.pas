@@ -56,7 +56,7 @@ type TProduct_Class = class (TMain_Class)
             begin
               Parent:=Panel1;
               Name:='FORM'+beg.ToString;
-              Top:=100*i;
+               Top:=(fr.Height *i)+10;
               Tag:=1;
               TFrame6(fr).Label1.Caption:=array_of_products[beg].Article.ToString;
                    TFrame6(fr).Label2.Caption:=array_of_products[beg].Name_;

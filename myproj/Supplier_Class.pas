@@ -30,7 +30,6 @@ type TSupplier_Class = class (TMain_Class)
                   sup:= TSupplier.Create();
                   sup.ID:= ADO.Fields[0].AsInteger;
                   sup.Title:= ADO.Fields[1].AsString;
-
                  array_of_suppliers.Add(sup);
                  ADO.Next;
           end;
@@ -49,7 +48,6 @@ type TSupplier_Class = class (TMain_Class)
          Item:= Panel1.Controls[0];
          Item.Free;
        end;
-
       while  (beg<=en) and (beg<array_of_suppliers.Count) do
       begin
            fr:= TFrame5.Create(Panel1);
@@ -58,23 +56,17 @@ type TSupplier_Class = class (TMain_Class)
             begin
               Parent:=Panel1;
               Name:='FORM'+beg.ToString;
-              Top:=100*i;
+              Top:=(fr.Height *i)+10;
               Tag:=1;
-
                    TFrame5(fr).Label2.Caption:=array_of_suppliers[beg].Title;
-
                 //   data_.InsertDiscount(beg,discount.ToString);
-
 
                        Show;
                        Inc(beg);
                          Inc(i);
 
-
             end;
-
       end;
-
      for i := 0 to Panel1.ControlCount - 1 do
     if Panel1.Controls[i].Tag = 1 then
       begin

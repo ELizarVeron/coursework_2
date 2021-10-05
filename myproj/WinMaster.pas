@@ -3,7 +3,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Data.Win.ADODB, Vcl.ExtCtrls, Main_Class,Agent_Class,
-  Vcl.ComCtrls,Supplier_Class,Product_Class;
+  Vcl.ComCtrls,Supplier_Class,Product_Class, Nav_Frame;
 type
   TForm4 = class(TForm)
     PageControl1: TPageControl;
@@ -24,6 +24,8 @@ type
     Label6: TLabel;
     no_line: TLabel;
     line: TLabel;
+    Frame71: TFrame7;
+    Frame72: TFrame7;
     procedure Label6Click(Sender: TObject);
     procedure Label1MouseEnter(Sender: TObject);
     procedure Label1MouseLeave(Sender: TObject);
@@ -67,26 +69,31 @@ implementation
              PageControl1.ActivePage:=Agents;
 
             AgentClass:= TAgent_Class.Create;
-            ADO_agent:=AgentClass.sql_select('select * from agent','','',true);
+            ADO_agent:=AgentClass.sql_select('*','agent','','','',false);
             C_agent:=ADO_agent.RecordCount ;
 
             AgentClass.load_frames(Panel1,0,C_agent ) ;
 
             SupClass:=TSupplier_Class.Create;
-            ADO_sup:=SupClass.sql_select('select * from supplier','','',true);
+            ADO_sup:=SupClass.sql_select('*', 'supplier','','','',false);
             C_sup:=ADO_sup.RecordCount ;
          //   SupClass.load_pages(Panel3,C_sup);
             SupClass.load_frames(Panel3,0,C_sup) ;
 
 
              ProdClass:=TProduct_Class.Create;
-              ADO_prod:=ProdClass.sql_select('select * from products','','',true);
+              ADO_prod:=ProdClass.sql_select('*','products','' ,'','',false);
                C_prod:=ADO_prod.RecordCount ;
               ProdClass.load_frames(Panel7,0,C_agent) ;
              PageControl1.ActivePage:=Agents;
 
 
                AgentClass.load_pages(Panel2,C_agent,0 );
+
+               AgentClass.create_sort(Frame72.Sortirovka);
+               AgentClass.create_filter(Frame72.Filtr);
+
+
      end;
 {$R *.dfm}
 

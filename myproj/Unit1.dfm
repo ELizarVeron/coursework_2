@@ -77,10 +77,11 @@ object Form1: TForm1
     Font.Height = -21
     Font.Name = 'Comic Sans MS'
     Font.Style = []
-    ItemIndex = 1
+    ItemIndex = 0
     ParentFont = False
     TabOrder = 0
-    Text = #1052#1072#1089#1090#1077#1088' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1072
+    Text = #1052#1077#1085#1077#1078#1077#1088
+    OnChange = ComboBox1Change
     Items.Strings = (
       #1052#1077#1085#1077#1078#1077#1088
       #1052#1072#1089#1090#1077#1088' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1072)
@@ -97,7 +98,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = 'aaaaaaa'
+    Text = 'sssssss'
   end
   object Edit2: TEdit
     Left = 176
@@ -112,7 +113,7 @@ object Form1: TForm1
     ParentFont = False
     PasswordChar = '*'
     TabOrder = 2
-    Text = 'aaaaaaa'
+    Text = 'sssssss'
   end
   object Button1: TButton
     Left = 176

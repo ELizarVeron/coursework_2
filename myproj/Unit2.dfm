@@ -17,8 +17,8 @@ object Form2: TForm2
   object Label1: TLabel
     Left = 90
     Top = 25
-    Width = 199
-    Height = 57
+    Width = 174
+    Height = 40
     Caption = #1056#1077#1075#1080#1089#1090#1088#1072#1094#1080#1103
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText

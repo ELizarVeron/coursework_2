@@ -23,6 +23,7 @@ type
     ADOConnection1: TADOConnection;
     ADOQuery1: TADOQuery;
     procedure Button1Click(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -85,5 +86,6 @@ begin
 
 
 end;
+
 
 end.

@@ -27,8 +27,8 @@ object Form3: TForm3
     object TabSheet1: TTabSheet
       Caption = #1040#1075#1077#1085#1090#1099
       object Edit1: TEdit
-        Left = 27
-        Top = 10
+        Left = 19
+        Top = 11
         Width = 142
         Height = 21
         TabOrder = 0
@@ -37,7 +37,7 @@ object Form3: TForm3
       end
       object Sortirovka: TComboBox
         Left = 175
-        Top = 10
+        Top = 11
         Width = 185
         Height = 21
         TabOrder = 1
@@ -46,7 +46,7 @@ object Form3: TForm3
       end
       object Filtr: TComboBox
         Left = 366
-        Top = 10
+        Top = 11
         Width = 169
         Height = 21
         TabOrder = 2
@@ -54,10 +54,10 @@ object Form3: TForm3
         OnChange = FiltrChange
       end
       object Panel1: TPanel
-        Left = 27
-        Top = 56
+        Left = 19
+        Top = 48
         Width = 535
-        Height = 337
+        Height = 345
         BevelOuter = bvNone
         Caption = ' '
         DoubleBuffered = False

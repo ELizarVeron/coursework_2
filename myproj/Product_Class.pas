@@ -16,7 +16,7 @@ type TProduct_Class = class (TMain_Class)
    constructor TProduct_Class.Create();
    begin
      inherited;
-     array_of_products:=from_ado_to_array( sql_select('select * from products','','',true));
+     array_of_products:=from_ado_to_array( sql_select(' * ',' products ','','','',false));
    end;
 
 

@@ -17,7 +17,7 @@ type TSupplier_Class = class (TMain_Class)
    constructor TSupplier_Class.Create();
    begin
      inherited;
-     array_of_suppliers:=from_ado_to_array( sql_select('select * from supplier','','',true));
+     array_of_suppliers:=from_ado_to_array( sql_select('*','supplier','','','',false));
    end;
 
 

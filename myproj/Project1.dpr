@@ -1,5 +1,4 @@
 program Project1;
-
 uses
   Vcl.Forms,
   Unit1 in 'Unit1.pas' {Form1},
@@ -23,10 +22,11 @@ uses
   Supplier_Class in 'Supplier_Class.pas',
   Frame_sups in 'Frame_sups.pas' {Frame5: TFrame},
   Frame_products in 'Frame_products.pas' {Frame6: TFrame},
-  Product_Class in 'Product_Class.pas';
+  Product_Class in 'Product_Class.pas',
+  Nav_Frame in 'Nav_Frame.pas' {Frame7: TFrame},
+  Request_Frame in 'Request_Frame.pas' {Frame8: TFrame};
 
 {$R *.res}
-
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;

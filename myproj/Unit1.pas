@@ -21,6 +21,7 @@ type
     Button2: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
 
   private
     { Private declarations }
@@ -41,13 +42,13 @@ begin
 end;
  procedure OpenWindow(staff:string);
  begin
-       if (staff='Manager') then
+       if (staff='Master') then
        begin
             var Form3: TForm3;
             Form3:=TForm3.Create(nil);
            Form3.Show;
        end;
-       if(staff='Master') then WinMaster.Form4.Show;
+       if(staff='Manager') then WinMaster.Form4.Show;
  end;
 procedure Login();
 var
@@ -85,7 +86,12 @@ procedure TForm1.Button2Click(Sender: TObject);
 begin
   Form2.Show;
 end;
-      {procedure TForm1.ComboBox1Change(Sender: TObject);
+      procedure TForm1.ComboBox1Change(Sender: TObject);
+begin
+
+end;
+
+{procedure TForm1.ComboBox1Change(Sender: TObject);
 begin
 
 end;

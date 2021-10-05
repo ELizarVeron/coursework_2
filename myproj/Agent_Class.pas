@@ -1,4 +1,4 @@
-unit Agent_Class;
+﻿unit Agent_Class;
 
 interface
  uses System.Generics.Collections,Data.Win.ADODB,System.SysUtils,Vcl.Controls,
@@ -11,15 +11,46 @@ type TAgent_Class = class (TMain_Class)
       fr:TFrame;
    constructor Create();
   procedure load_frames(Panel1:TPanel;page,count_in_bd:integer); override;
+  procedure create_sort(Sortirovka:TComboBox); override;
+  procedure create_filter(Filtr:TComboBox); override;
   function from_ado_to_array(ado:tADOQuery):TObjectList<TAgent>;
   end;
  implementation
    constructor TAgent_Class.Create();
    begin
      inherited;
-     array_of_agents:=from_ado_to_array( sql_select('select * from agent','','',true));
+     array_of_agents:=from_ado_to_array( sql_select(' * ',' agent ','','','',false));
+
    end;
 
+    procedure TAgent_Class.create_sort(Sortirovka: TComboBox);
+    begin
+         Sortirovka.Items.Add(' ↑ По наименованию');
+         Sortirovka.Items.Add(' ↓ По наименованию');
+         Sortirovka.Items.Add(' ↑ По размеру скидки');
+         Sortirovka.Items.Add(' ↓ По размеру скидки');
+         Sortirovka.Items.Add(' ↑ По приоритету');
+         Sortirovka.Items.Add(' ↓ По приоритету');
+
+    end;
+
+     procedure TAgent_Class.create_filter(Filtr:TComboBox);
+     begin
+         var i:integer;
+         var ado_help:TADOQuery;
+         ado_help:= TADOQuery.Create(Filtr);
+         Filtr.Items.Add('Все');
+         ado_help:= sql_select(' Type_ ',' Agent ', '','','', true);
+
+       //  ado_help.SQL.Add('Select Distinct Type_ from Agent') ;
+
+         while not ado_help.Eof do
+          begin
+          Filtr.Items.Add(ado_help.FieldByName('Type_').AsString);
+          ado_help.Next
+          end;
+
+     end;
 
     function TAgent_Class.from_ado_to_array(ado:tADOQuery):TObjectList<TAgent>;
     begin
@@ -45,7 +76,7 @@ type TAgent_Class = class (TMain_Class)
        beg:=page*on_page;
        en:=((page+1)*on_page)-1;
         i:=0;
-       while Panel1.ControlCount>0 do    //������� ������ ������
+       while Panel1.ControlCount>0 do    //стираем старые фреймы
        begin
          Item:= Panel1.Controls[0];
          Item.Free;

@@ -10,6 +10,11 @@ type
   TFrame5 = class(TFrame)
     Panel1: TPanel;
     Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Button1: TButton;
   private
     { Private declarations }
   public

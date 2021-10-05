@@ -42,9 +42,6 @@ implementation
             agent.Type_:= ADOQuery1.Fields[2].AsString;
             agent.Tel:= ADOQuery1.Fields[7].AsInteger;
 
-
-
-
             ADOQuery2.Active:=False;
             ADOQuery2.SQL.Clear;  //2ой запрос для истории продаж
             ADOQuery2.SQL.Add('Select * from History_of_reliz where ID_Agent = ' + agent.ID_.ToString );

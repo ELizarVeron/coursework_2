@@ -129,6 +129,36 @@ function TForm3.add_data_for_manager (SQL:string): TObjectList<TAgent>;
      result:=data_.Records;   //возвращаем список полученных записей
 
   end;
+procedure TForm3.SortirovkaChange(Sender: TObject);
+begin
+       load_pages();
+      FiltrChange(Sender);
+
+end;
+
+function TForm3.Sortirovka_get_sql():string;
+begin
+            var x:string;
+      x:=' order by ' ;
+      case Sortirovka.ItemIndex of
+         0:
+         x:=x+'company asc' ;
+         1:
+          x:=x+'company desc' ;
+         2:
+          x:=x+'discount asc' ;
+         3:
+          x:=x+'discount desc' ;
+         4:
+          x:=x+'priority asc' ;
+         5:
+          x:=x+'priority desc' ;
+      end;
+      if Sortirovka.ItemIndex<0 then
+        result:=''
+        else
+        result:= x;
+end;
 
 
 procedure TForm3.Edit1Change(Sender: TObject);
@@ -179,8 +209,6 @@ begin
        array_of_agents:= Form3.add_data_for_manager(x); //передаем полученный запрос в функцию загрухки данных
        load_frames(0);     //грузим фреймы ,навигатор сбрасывается
 end;
-
-
 
 procedure TForm3.Label1Click(Sender: TObject);
 begin
@@ -298,36 +326,6 @@ begin
                    LabelRight.Font.Color:=clblack;
 end;
 
-procedure TForm3.SortirovkaChange(Sender: TObject);
-begin
-      load_pages();
-      FiltrChange(Sender);
-
-end;
-
-function TForm3.Sortirovka_get_sql():string;
-begin
-            var x:string;
-      x:=' order by ' ;
-      case Sortirovka.ItemIndex of
-         0:
-         x:=x+'company asc' ;
-         1:
-          x:=x+'company desc' ;
-         2:
-          x:=x+'discount asc' ;
-         3:
-          x:=x+'discount desc' ;
-         4:
-          x:=x+'priority asc' ;
-         5:
-          x:=x+'priority desc' ;
-      end;
-      if Sortirovka.ItemIndex<0 then
-        result:=''
-        else
-        result:= x;
-end;
 
 
 procedure TForm3.load_pages();  //первая загрузка

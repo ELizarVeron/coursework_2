@@ -3,7 +3,7 @@ object Form4: TForm4
   Top = 0
   Caption = 'Form4'
   ClientHeight = 572
-  ClientWidth = 516
+  ClientWidth = 649
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object Form4: TForm4
     Top = 0
     Width = 633
     Height = 506
-    ActivePage = Productions
+    ActivePage = Agents
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -30,11 +30,61 @@ object Form4: TForm4
     object Agents: TTabSheet
       Caption = #1040#1075#1077#1085#1090#1099
       object Panel1: TPanel
-        Left = 0
-        Top = 0
+        Left = 3
+        Top = 53
         Width = 606
-        Height = 474
+        Height = 605
         TabOrder = 0
+        inline Frame71: TFrame7
+          Left = 0
+          Top = 0
+          Width = 605
+          Height = 50
+          TabOrder = 0
+          inherited Panel1: TPanel
+            Left = -3
+            Top = -47
+            ExplicitLeft = -3
+            ExplicitTop = -47
+            inherited Sortirovka: TComboBox
+              Left = 179
+              OnChange = nil
+              ExplicitLeft = 179
+            end
+            inherited Filtr: TComboBox
+              OnChange = nil
+            end
+          end
+        end
+      end
+      inline Frame72: TFrame7
+        Left = 11
+        Top = -3
+        Width = 605
+        Height = 50
+        TabOrder = 1
+        ExplicitLeft = 11
+        ExplicitTop = -3
+        inherited Panel1: TPanel
+          Left = -24
+          Top = 9
+          Width = 609
+          ExplicitLeft = -24
+          ExplicitTop = 9
+          ExplicitWidth = 609
+          inherited Edit1: TEdit
+            Left = 27
+            ExplicitLeft = 27
+          end
+          inherited Sortirovka: TComboBox
+            OnChange = nil
+          end
+          inherited Filtr: TComboBox
+            Left = 386
+            OnChange = nil
+            ExplicitLeft = 386
+          end
+        end
       end
     end
     object Suppliers: TTabSheet
@@ -47,10 +97,10 @@ object Form4: TForm4
       ImageIndex = 1
       ParentFont = False
       object Panel3: TPanel
-        Left = 0
-        Top = 0
+        Left = 3
+        Top = 40
         Width = 625
-        Height = 474
+        Height = 490
         TabOrder = 0
       end
     end
@@ -59,7 +109,7 @@ object Form4: TForm4
       ImageIndex = 2
       object Panel6: TPanel
         Left = 0
-        Top = 3
+        Top = 179
         Width = 625
         Height = 471
         TabOrder = 0
@@ -69,10 +119,10 @@ object Form4: TForm4
       Caption = #1055#1088#1086#1076#1091#1082#1094#1080#1103
       ImageIndex = 3
       object Panel7: TPanel
-        Left = -4
-        Top = 0
+        Left = -3
+        Top = 48
         Width = 625
-        Height = 482
+        Height = 434
         TabOrder = 0
       end
     end

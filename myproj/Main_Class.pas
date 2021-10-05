@@ -14,11 +14,11 @@ type TMain_Class = class
       ADOCon: TADOConnection;
 
          array_of_material :TObjectList<TMaterial>;
-     function sql_select(select,from,where:string;distinct:boolean):TADOQuery;
+     function sql_select(select,from,where,like,order:string;distinct:boolean):TADOQuery;
 
 
-     procedure create_filter(cbox:TComboBox);
-     procedure create_sort(cbox:TComboBox);
+     procedure create_filter(cbox:TComboBox);virtual;
+     procedure create_sort(cbox:TComboBox); virtual;
 
      procedure load_pages(PanelNav:TPanel;count_in_bd,x:integer);
        function change_pages_l(PanelNav:TPanel;x:integer):integer;
@@ -31,6 +31,7 @@ type TMain_Class = class
 
 
 implementation
+uses Nav_Frame;
       constructor TMain_Class.Create;
       begin
         inherited;
@@ -41,12 +42,30 @@ implementation
 
       end;
 
-     function TMain_Class.sql_select(select,from,where:string;distinct:boolean):TADOQuery;
+     function TMain_Class.sql_select(select,from,where,like,order:string;distinct:boolean):TADOQuery;
       begin
         var ADO :TADOQuery;
         ADO:=TADOQuery.Create(nil);
         var str:string;
-        str:=select; //доделай это
+        if (distinct=true) then
+        str:='select distinct '+select+ ' from '+from
+        else    str:='select '+select+ ' from '+from;
+        if (where<>'') then
+             begin
+                    str:=str+'where ';
+
+             end ;
+
+
+        if (like<>'') then
+        begin
+             str:=str+'and'+like;
+
+        end ;
+
+        str:=str+order;
+
+        //str:=select; //доделай это
         ADO.Connection:=ADOCon;
         ADO.Active:=false;
         ADO.SQL.Clear;
@@ -249,5 +268,7 @@ implementation
 
          end;
 end.
+
+
 
 

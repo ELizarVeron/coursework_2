@@ -1,7 +1,7 @@
 object Form4: TForm4
   Left = 0
   Top = 0
-  Caption = '\'
+  Caption = 'Form4'
   ClientHeight = 572
   ClientWidth = 649
   Color = clBtnFace
@@ -48,35 +48,40 @@ object Form4: TForm4
             ExplicitTop = -47
             inherited Sortirovka: TComboBox
               Left = 179
+              OnChange = nil
               ExplicitLeft = 179
+            end
+            inherited Filtr: TComboBox
+              OnChange = nil
             end
           end
         end
       end
       inline Frame72: TFrame7
-        Left = 20
-        Top = 0
+        Left = 11
+        Top = -3
         Width = 605
         Height = 50
         TabOrder = 1
-        ExplicitLeft = 20
+        ExplicitLeft = 11
+        ExplicitTop = -3
         inherited Panel1: TPanel
           Left = -24
-          Top = 6
+          Top = 9
           Width = 609
           ExplicitLeft = -24
-          ExplicitTop = 6
+          ExplicitTop = 9
           ExplicitWidth = 609
           inherited Edit1: TEdit
             Left = 27
             ExplicitLeft = 27
           end
           inherited Sortirovka: TComboBox
-            Left = 183
-            ExplicitLeft = 183
+            OnChange = nil
           end
           inherited Filtr: TComboBox
             Left = 386
+            OnChange = nil
             ExplicitLeft = 386
           end
         end

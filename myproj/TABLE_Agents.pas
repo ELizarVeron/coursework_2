@@ -1,7 +1,7 @@
 unit TABLE_Agents;
 
 interface
-
+     uses TABLE_History_Of_Reliz,System.Generics.Collections;
 type
       TAgent = class
       private
@@ -16,9 +16,10 @@ type
         property Priority: integer read FPriority write FPriority;
         property Sale: integer read FSale write FSale;
         property Tel: integer read FTel write FTel;
-        property SUMMA: integer read FSUMMA write FSUMMA;
+        property SUMMA: integer read FSUMMA write FSUMMA;     //сумма реализации продукции за весь период
         property Count_s_year: integer read FCount_s_year write FCount_s_year;
         function get_sale(c:integer):integer;
+        var history_of_reliz :TObjectList<THistory_Of_Reliz>;
       end;
 
 implementation

@@ -102,29 +102,23 @@
         </DelphiCompile>
         <DCCReference Include="Unit1.pas">
             <Form>Form1</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit2.pas">
             <Form>Form2</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="My_f.pas"/>
         <DCCReference Include="WinManager.pas">
             <Form>Form3</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="WinMaster.pas">
             <Form>Form4</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Frame_agents.pas">
             <Form>Frame3</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Fr_ag.pas">
             <Form>Frame4</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="BD_class.pas"/>
@@ -141,23 +135,19 @@
         <DCCReference Include="Supplier_Class.pas"/>
         <DCCReference Include="Frame_sups.pas">
             <Form>Frame5</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Frame_products.pas">
             <Form>Frame6</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Product_Class.pas"/>
         <DCCReference Include="Nav_Frame.pas">
             <Form>Frame7</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Request_Frame.pas">
             <Form>Frame8</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">

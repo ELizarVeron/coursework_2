@@ -49,10 +49,10 @@ uses Nav_Frame;
         var str:string;
         if (distinct=true) then
         str:='select distinct '+select+ ' from '+from
-        else    str:='select '+select+ ' from '+from;
+        else    str:='select '+select+ ' from '+from+' ';
         if (where<>'') then
              begin
-                    str:=str+'where ';
+                    str:=str+where;
 
              end ;
 

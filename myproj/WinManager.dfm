@@ -18,7 +18,7 @@ object Form3: TForm3
     Top = 0
     Width = 595
     Height = 512
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     Align = alClient
     DoubleBuffered = True
     HotTrack = True

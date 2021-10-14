@@ -68,15 +68,18 @@ object Form4: TForm4
           ExplicitTop = 6
           ExplicitWidth = 609
           inherited Edit1: TEdit
-            Left = 27
-            ExplicitLeft = 27
+            Left = 35
+            OnChange = Frame72Edit1Change
+            ExplicitLeft = 35
           end
           inherited Sortirovka: TComboBox
             Left = 183
+            OnChange = Frame72SortirovkaChange
             ExplicitLeft = 183
           end
           inherited Filtr: TComboBox
             Left = 386
+            OnChange = Frame72FiltrChange
             ExplicitLeft = 386
           end
         end
@@ -124,7 +127,7 @@ object Form4: TForm4
   end
   object Panel2: TPanel
     Left = 152
-    Top = 504
+    Top = 508
     Width = 193
     Height = 41
     TabOrder = 1
@@ -146,7 +149,7 @@ object Form4: TForm4
     end
     object Label2: TLabel
       Left = 45
-      Top = 8
+      Top = 4
       Width = 11
       Height = 25
       Caption = '1'
@@ -193,8 +196,8 @@ object Form4: TForm4
       OnMouseLeave = Label4MouseLeave
     end
     object Label5: TLabel
-      Left = 108
-      Top = 8
+      Left = 104
+      Top = 4
       Width = 11
       Height = 25
       Caption = '4'
@@ -209,8 +212,8 @@ object Form4: TForm4
       OnMouseLeave = Label5MouseLeave
     end
     object Label6: TLabel
-      Left = 125
-      Top = 8
+      Left = 121
+      Top = 4
       Width = 15
       Height = 25
       Caption = '>'

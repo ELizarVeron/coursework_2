@@ -3,8 +3,10 @@ unit Frame_agents;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls,
   Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
 
 type
@@ -23,16 +25,17 @@ type
   private
     { Private declarations }
   public
-  constructor Create (AOwner: TComponent); override;
-  //  property L1: string read Label1.Caption write Label1.Caption;
+    constructor Create(AOwner: TComponent); override;
+    // property L1: string read Label1.Caption write Label1.Caption;
     { Public declarations }
   end;
 
 implementation
-        constructor TFrame3.Create (AOwner: TComponent);
-        begin
-          inherited;
-        end;
+
+constructor TFrame3.Create(AOwner: TComponent);
+begin
+  inherited;
+end;
 {$R *.dfm}
 
 end.

@@ -3,8 +3,10 @@ unit Nav_Frame;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls,
+  Vcl.StdCtrls;
 
 type
   TFrame7 = class(TFrame)
@@ -15,17 +17,17 @@ type
   private
     { Private declarations }
   public
-   procedure  create_filter();
+    procedure create_filter();
     { Public declarations }
   end;
 
 implementation
-    procedure  TFrame7.create_filter();  //сдесь просто добавляет эелементы типа в выпадающий список
-     begin
 
+procedure TFrame7.create_filter();
+// сдесь просто добавляет эелементы типа в выпадающий список
+begin
 
-
-     end;
+end;
 {$R *.dfm}
 
 end.

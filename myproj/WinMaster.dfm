@@ -96,10 +96,46 @@ object Form4: TForm4
       ParentFont = False
       object Panel3: TPanel
         Left = 3
-        Top = 40
+        Top = 112
         Width = 625
-        Height = 490
+        Height = 418
         TabOrder = 0
+      end
+      object Panel4: TPanel
+        Left = 3
+        Top = 0
+        Width = 609
+        Height = 41
+        TabOrder = 1
+        object Edit1: TEdit
+          Left = 35
+          Top = 11
+          Width = 142
+          Height = 21
+          TabOrder = 0
+          TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = Frame72Edit1Change
+        end
+        object Sortirovka: TComboBox
+          Left = 183
+          Top = 11
+          Width = 185
+          Height = 21
+          TabOrder = 1
+          TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          OnChange = Frame72SortirovkaChange
+        end
+        object Filtr: TComboBox
+          Left = 386
+          Top = 11
+          Width = 169
+          Height = 21
+          ParentShowHint = False
+          ShowHint = False
+          TabOrder = 2
+          TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          OnChange = Frame72FiltrChange
+        end
       end
     end
     object Requests: TTabSheet
@@ -112,6 +148,42 @@ object Form4: TForm4
         Height = 471
         TabOrder = 0
       end
+      object Panel5: TPanel
+        Left = 3
+        Top = 3
+        Width = 609
+        Height = 41
+        TabOrder = 1
+        object Edit2: TEdit
+          Left = 34
+          Top = 11
+          Width = 142
+          Height = 21
+          TabOrder = 0
+          TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = Frame72Edit1Change
+        end
+        object ComboBox1: TComboBox
+          Left = 182
+          Top = 11
+          Width = 185
+          Height = 21
+          TabOrder = 1
+          TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          OnChange = Frame72SortirovkaChange
+        end
+        object ComboBox2: TComboBox
+          Left = 385
+          Top = 11
+          Width = 169
+          Height = 21
+          ParentShowHint = False
+          ShowHint = False
+          TabOrder = 2
+          TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          OnChange = Frame72FiltrChange
+        end
+      end
     end
     object Productions: TTabSheet
       Caption = #1055#1088#1086#1076#1091#1082#1094#1080#1103
@@ -122,6 +194,42 @@ object Form4: TForm4
         Width = 625
         Height = 434
         TabOrder = 0
+      end
+      object Panel8: TPanel
+        Left = 3
+        Top = 3
+        Width = 609
+        Height = 41
+        TabOrder = 1
+        object Edit3: TEdit
+          Left = 34
+          Top = 11
+          Width = 142
+          Height = 21
+          TabOrder = 0
+          TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = Frame72Edit1Change
+        end
+        object ComboBox3: TComboBox
+          Left = 182
+          Top = 11
+          Width = 185
+          Height = 21
+          TabOrder = 1
+          TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          OnChange = Frame72SortirovkaChange
+        end
+        object ComboBox4: TComboBox
+          Left = 385
+          Top = 11
+          Width = 169
+          Height = 21
+          ParentShowHint = False
+          ShowHint = False
+          TabOrder = 2
+          TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          OnChange = Frame72FiltrChange
+        end
       end
     end
   end

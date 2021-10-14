@@ -16,7 +16,7 @@ type
     fr: TFrame;
     constructor Create();
     procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
-    function from_ado_to_array(ado: tADOQuery): TObjectList<TSupplier>;
+    function from_ado_to_array_suppliers(ado: tADOQuery): TObjectList<TSupplier>;
   end;
 
 implementation
@@ -24,11 +24,11 @@ implementation
 constructor TSupplier_Class.Create();
 begin
   inherited;
-  array_of_suppliers := from_ado_to_array(sql_select('*', 'supplier', '',
+  array_of_suppliers := from_ado_to_array_suppliers(sql_select('*', 'supplier', '',
     '', false));
 end;
 
-function TSupplier_Class.from_ado_to_array(ado: tADOQuery)
+function TSupplier_Class.from_ado_to_array_suppliers(ado: tADOQuery)
   : TObjectList<TSupplier>;
 begin
   var

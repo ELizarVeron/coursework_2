@@ -31,6 +31,18 @@ type
     line: TLabel;
     Frame71: TFrame7;
     Frame72: TFrame7;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel8: TPanel;
+    Edit1: TEdit;
+    Sortirovka: TComboBox;
+    Filtr: TComboBox;
+    Edit2: TEdit;
+    ComboBox1: TComboBox;
+    ComboBox2: TComboBox;
+    Edit3: TEdit;
+    ComboBox3: TComboBox;
+    ComboBox4: TComboBox;
     procedure Label6Click(Sender: TObject);
     procedure Label1MouseEnter(Sender: TObject);
     procedure Label1MouseLeave(Sender: TObject);

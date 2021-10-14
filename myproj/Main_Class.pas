@@ -16,11 +16,9 @@ type
 
   var
     ADOCon: TADOConnection;
-
     array_of_material: TObjectList<TMaterial>;
     function sql_select(select, from, where, order: string; distinct: boolean)
       : TADOQuery;
-
     procedure create_filter(cbox: TComboBox); virtual;
     procedure create_sort(cbox: TComboBox); virtual;
 
@@ -333,7 +331,7 @@ end;
 
 procedure TMain_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
 begin
-  var
+ { var
     fr: TFrame;
   var
     i, beg, en: integer;
@@ -347,7 +345,7 @@ begin
     Item := Panel1.Controls[0];
     Item.Free;
   end;
-
+          }
 end;
 
 end.

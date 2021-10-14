@@ -1,27 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.903,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_products.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit6.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.755,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Agent_Class.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.001,D:\курсовая_2\myproj\Unit8.pas=D:\курсовая_2\myproj\Request_Frame.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.883,=D:\курсовая_2\myproj\Unit8.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.955,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit6.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.903,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit6.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_products.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.903,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit6.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_products.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.010,=D:\курсовая_2\myproj\Unit7.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.516,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit5.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.871,D:\курсовая_2\myproj\Nav_Frame.dfm=D:\курсовая_2\myproj\Unit7.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.262,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_sups.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.516,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit5.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_sups.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.516,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit5.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_sups.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.743,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Main_Class.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.177,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit5.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.871,D:\курсовая_2\myproj\Nav_Frame.pas=D:\курсовая_2\myproj\Unit7.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.212,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.001,D:\курсовая_2\myproj\Unit8.dfm=D:\курсовая_2\myproj\Request_Frame.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.033,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.322,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.743,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Main_Class.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.755,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Agent_Class.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.885,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.001,D:\курсовая_2\myproj\Request_Frame.dfm=D:\курсовая_2\myproj\Unit8.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.262,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_sups.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.001,D:\курсовая_2\myproj\Request_Frame.pas=D:\курсовая_2\myproj\Unit8.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.686,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Product_Class.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.762,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Supplier_Class.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.871,D:\курсовая_2\myproj\Unit7.dfm=D:\курсовая_2\myproj\Nav_Frame.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.516,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit5.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.212,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.903,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_products.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit6.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.762,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Supplier_Class.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.010,=D:\курсовая_2\myproj\Unit7.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.871,D:\курсовая_2\myproj\Unit7.pas=D:\курсовая_2\myproj\Nav_Frame.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.686,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Product_Class.pas=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
+    <Transaction>2021.10.14 18:36:58.655,=D:\курсовая_2\myproj\Unit3.pas</Transaction>
+    <Transaction>2021.10.14 18:37:29.504,D:\курсовая_2\myproj\Request_Agents_Class.pas=D:\курсовая_2\myproj\Unit3.pas</Transaction>
+    <Transaction>2021.10.14 18:38:50.374,=D:\курсовая_2\myproj\Unit3.pas</Transaction>
+    <Transaction>2021.10.14 18:39:12.874,D:\курсовая_2\myproj\Frame_req_a.pas=D:\курсовая_2\myproj\Unit3.pas</Transaction>
   </Transactions>
 </BorlandProject>

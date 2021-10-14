@@ -150,6 +150,8 @@
             <Form>Frame8</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="Request_Agents_Class.pas"/>
+        <DCCReference Include="Frame_req_a.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

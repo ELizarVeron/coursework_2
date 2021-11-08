@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.Win.ADODB,
   Vcl.ExtCtrls, Main_Class, Agent_Class,
-  Vcl.ComCtrls, Supplier_Class, Product_Class, Nav_Frame;
+  Vcl.ComCtrls, Supplier_Class, Product_Class, Request_Agents_Class, Nav_Frame;
 
 type
   TForm4 = class(TForm)
@@ -74,15 +74,22 @@ type
 
 var
   Form4: TForm4;
+
   AgentClass: TAgent_Class;
   ADO_agent: TADOQuery;
   C_agent: integer;
+
   SupClass: TSupplier_Class;
   ADO_sup: TADOQuery;
   C_sup: integer;
+
   ProdClass: TProduct_Class;
   ADO_prod: TADOQuery;
   C_prod: integer;
+
+  ReqClass: TRequest_Agents_Class;
+  ADO_req:  TADOQuery;
+  C_req: integer;
 
 implementation
 
@@ -90,30 +97,32 @@ constructor TForm4.Create;
 begin
   inherited;
   PageControl1.ActivePage := Agents;
-  AgentClass := TAgent_Class.Create; // зачем тут адо??
-  //ADO_agent := AgentClass.sql_select('*', 'agent', '', '', false);
- // C_agent := ADO_agent.RecordCount;
-
- // AgentClass.load_frames(Panel1, 0, C_agent);
+  AgentClass := TAgent_Class.Create;
 
   AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
+
+  AgentClass.load_pages(Panel2, AgentClass.array_of_agents.Count, 0);
+  AgentClass.create_sort(Frame72.Sortirovka);
+  AgentClass.create_filter(Frame72.Filtr);
 
   SupClass := TSupplier_Class.Create;
   ADO_sup := SupClass.sql_select('*', 'supplier', '', '', false);
   C_sup := ADO_sup.RecordCount;
-  // SupClass.load_pages(Panel3,C_sup);
   SupClass.load_frames(Panel3, 0, C_sup);
 
   ProdClass := TProduct_Class.Create;
   ADO_prod := ProdClass.sql_select('*', 'products', '', '', false);
   C_prod := ADO_prod.RecordCount;
   ProdClass.load_frames(Panel7, 0, C_agent);
-  PageControl1.ActivePage := Agents;
 
-  AgentClass.load_pages(Panel2, AgentClass.array_of_agents.Count, 0);
-  AgentClass.create_sort(Frame72.Sortirovka);
-  AgentClass.create_filter(Frame72.Filtr);
 
+  ReqClass := TRequest_Agents_Class.Create;
+  ADO_req:= ReqClass.sql_select('*', 'Request_from_agent','','',false);
+  C_req:= ADO_req.RecordCount;
+  ReqClass.load_frames(Panel6,0, C_req);
+
+
+   PageControl1.ActivePage := Agents;
 end;
 {$R *.dfm}
 
@@ -132,8 +141,24 @@ end;
 
 procedure TForm4.Frame72SortirovkaChange(Sender: TObject);
 begin
-  AgentClass.FiltrChange(Frame72.Edit1, Frame72.Filtr, Frame72.Sortirovka);
-  AgentClass.load_pages(Panel2, C_agent, 0);
+     if (PageControl1.ActivePage = Agents) then
+     begin
+         AgentClass.FiltrChange(Frame72.Edit1, Frame72.Filtr, Frame72.Sortirovka);
+          AgentClass.load_pages(Panel2, C_agent, 0);
+     end;
+     if (PageControl1.ActivePage = Requests) then
+  begin
+          // RequestClass.
+  end;
+  if (PageControl1.ActivePage = Suppliers) then
+  begin
+          // SupClass.
+  end;
+  if (PageControl1.ActivePage = Productions) then
+  begin
+
+  end;
+
 end;
 
 procedure TForm4.Label1Click(Sender: TObject);

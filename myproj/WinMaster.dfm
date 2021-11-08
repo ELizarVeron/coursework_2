@@ -18,7 +18,7 @@ object Form4: TForm4
     Top = 0
     Width = 633
     Height = 506
-    ActivePage = Agents
+    ActivePage = Requests
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -96,9 +96,9 @@ object Form4: TForm4
       ParentFont = False
       object Panel3: TPanel
         Left = 3
-        Top = 112
+        Top = 47
         Width = 625
-        Height = 418
+        Height = 483
         TabOrder = 0
       end
       object Panel4: TPanel
@@ -143,9 +143,9 @@ object Form4: TForm4
       ImageIndex = 2
       object Panel6: TPanel
         Left = 0
-        Top = 179
+        Top = 50
         Width = 625
-        Height = 471
+        Height = 600
         TabOrder = 0
       end
       object Panel5: TPanel

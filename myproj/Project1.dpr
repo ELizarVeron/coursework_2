@@ -27,6 +27,7 @@ uses
   Nav_Frame in 'Nav_Frame.pas' {Frame7: TFrame},
   Request_Frame in 'Request_Frame.pas' {Frame8: TFrame},
   Request_Agents_Class in 'Request_Agents_Class.pas',
+  Frame_req_ag in 'Frame_req_ag.pas' {Frame9: TFrame},
   Frame_req_a in 'Frame_req_a.pas';
 
 {$R *.res}

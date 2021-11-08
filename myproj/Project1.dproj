@@ -151,6 +151,11 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Request_Agents_Class.pas"/>
+        <DCCReference Include="Frame_req_ag.pas">
+            <Form>Frame9</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <DCCReference Include="Frame_req_a.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

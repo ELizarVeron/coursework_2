@@ -46,8 +46,7 @@ begin
   result := array_of_suppliers;
 end;
 
-procedure TSupplier_Class.load_frames(Panel1: TPanel;
-  page, count_in_bd: integer);
+procedure TSupplier_Class.load_frames(Panel1: TPanel;     page, count_in_bd: integer);
 begin
   var
     i, beg, en: integer;

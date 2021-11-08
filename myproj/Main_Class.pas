@@ -64,12 +64,6 @@ begin
 
   end;
 
-  { if (like<>'') then
-    begin
-    str:=str+'and'+like;
-
-    end ;
-  }
   str := str + order;
 
   ADO.Connection := ADOCon;

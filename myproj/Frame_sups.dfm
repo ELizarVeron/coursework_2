@@ -2,13 +2,13 @@ object Frame5: TFrame5
   Left = 0
   Top = 0
   Width = 453
-  Height = 112
+  Height = 98
   TabOrder = 0
   object Panel1: TPanel
     Left = 1
-    Top = 3
+    Top = 0
     Width = 449
-    Height = 107
+    Height = 94
     BevelOuter = bvNone
     BorderWidth = 4
     BorderStyle = bsSingle
@@ -56,7 +56,7 @@ object Frame5: TFrame5
       Caption = 'Label6'
     end
     object Button1: TButton
-      Left = 32
+      Left = 40
       Top = 66
       Width = 177
       Height = 25

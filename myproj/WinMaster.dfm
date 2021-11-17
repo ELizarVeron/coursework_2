@@ -2,8 +2,8 @@ object Form4: TForm4
   Left = 0
   Top = 0
   Caption = '\'
-  ClientHeight = 572
-  ClientWidth = 649
+  ClientHeight = 672
+  ClientWidth = 905
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,9 +16,9 @@ object Form4: TForm4
   object PageControl1: TPageControl
     Left = 8
     Top = 0
-    Width = 633
-    Height = 506
-    ActivePage = Requests
+    Width = 889
+    Height = 574
+    ActivePage = Agents
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -30,9 +30,9 @@ object Form4: TForm4
     object Agents: TTabSheet
       Caption = #1040#1075#1077#1085#1090#1099
       object Panel1: TPanel
-        Left = 3
+        Left = 0
         Top = 53
-        Width = 606
+        Width = 462
         Height = 605
         TabOrder = 0
         inline Frame71: TFrame7
@@ -63,24 +63,28 @@ object Form4: TForm4
         inherited Panel1: TPanel
           Left = -24
           Top = 6
-          Width = 609
+          Width = 469
           ExplicitLeft = -24
           ExplicitTop = 6
-          ExplicitWidth = 609
+          ExplicitWidth = 469
           inherited Edit1: TEdit
-            Left = 35
+            Left = 24
             OnChange = Frame72Edit1Change
-            ExplicitLeft = 35
+            ExplicitLeft = 24
           end
           inherited Sortirovka: TComboBox
-            Left = 183
+            Left = 179
+            Width = 125
             OnChange = Frame72SortirovkaChange
-            ExplicitLeft = 183
+            ExplicitLeft = 179
+            ExplicitWidth = 125
           end
           inherited Filtr: TComboBox
-            Left = 386
+            Left = 326
+            Width = 131
             OnChange = Frame72FiltrChange
-            ExplicitLeft = 386
+            ExplicitLeft = 326
+            ExplicitWidth = 131
           end
         end
       end
@@ -97,18 +101,18 @@ object Form4: TForm4
       object Panel3: TPanel
         Left = 3
         Top = 47
-        Width = 625
+        Width = 542
         Height = 483
         TabOrder = 0
       end
       object Panel4: TPanel
         Left = 3
         Top = 0
-        Width = 609
+        Width = 542
         Height = 41
         TabOrder = 1
         object Edit1: TEdit
-          Left = 35
+          Left = 0
           Top = 11
           Width = 142
           Height = 21
@@ -117,7 +121,7 @@ object Form4: TForm4
           OnChange = Frame72Edit1Change
         end
         object Sortirovka: TComboBox
-          Left = 183
+          Left = 148
           Top = 11
           Width = 185
           Height = 21
@@ -126,7 +130,7 @@ object Form4: TForm4
           OnChange = Frame72SortirovkaChange
         end
         object Filtr: TComboBox
-          Left = 386
+          Left = 346
           Top = 11
           Width = 169
           Height = 21
@@ -144,18 +148,18 @@ object Form4: TForm4
       object Panel6: TPanel
         Left = 0
         Top = 50
-        Width = 625
+        Width = 537
         Height = 600
         TabOrder = 0
       end
       object Panel5: TPanel
         Left = 3
         Top = 3
-        Width = 609
+        Width = 534
         Height = 41
         TabOrder = 1
         object Edit2: TEdit
-          Left = 34
+          Left = 0
           Top = 11
           Width = 142
           Height = 21
@@ -164,7 +168,7 @@ object Form4: TForm4
           OnChange = Frame72Edit1Change
         end
         object ComboBox1: TComboBox
-          Left = 182
+          Left = 148
           Top = 11
           Width = 185
           Height = 21
@@ -173,7 +177,7 @@ object Form4: TForm4
           OnChange = Frame72SortirovkaChange
         end
         object ComboBox2: TComboBox
-          Left = 385
+          Left = 353
           Top = 11
           Width = 169
           Height = 21
@@ -191,18 +195,18 @@ object Form4: TForm4
       object Panel7: TPanel
         Left = -3
         Top = 48
-        Width = 625
+        Width = 532
         Height = 434
         TabOrder = 0
       end
       object Panel8: TPanel
         Left = 3
         Top = 3
-        Width = 609
+        Width = 526
         Height = 41
         TabOrder = 1
         object Edit3: TEdit
-          Left = 34
+          Left = 0
           Top = 11
           Width = 142
           Height = 21
@@ -211,7 +215,7 @@ object Form4: TForm4
           OnChange = Frame72Edit1Change
         end
         object ComboBox3: TComboBox
-          Left = 182
+          Left = 148
           Top = 11
           Width = 185
           Height = 21
@@ -220,7 +224,7 @@ object Form4: TForm4
           OnChange = Frame72SortirovkaChange
         end
         object ComboBox4: TComboBox
-          Left = 385
+          Left = 345
           Top = 11
           Width = 169
           Height = 21
@@ -234,8 +238,8 @@ object Form4: TForm4
     end
   end
   object Panel2: TPanel
-    Left = 152
-    Top = 508
+    Left = 136
+    Top = 572
     Width = 193
     Height = 41
     TabOrder = 1

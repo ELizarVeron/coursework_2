@@ -7,7 +7,7 @@ uses
   System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.ExtCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, EDITAgent, Vcl.Menus, TABLE_Agents;
 
 type
   TFrame3 = class(TFrame)
@@ -21,21 +21,67 @@ type
     Label7: TLabel;
     Image1: TImage;
     Label8: TLabel;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+
+
+    procedure N1Click(Sender: TObject);
 
   private
+
     { Private declarations }
   public
+     AgentOnFrame: TAgent;
+     AgentID: integer;
+     procedure AddData;
+     procedure upgrade;
     constructor Create(AOwner: TComponent); override;
-    // property L1: string read Label1.Caption write Label1.Caption;
+
     { Public declarations }
   end;
 
 implementation
-
+uses  Main_Class,Agent_Class;
 constructor TFrame3.Create(AOwner: TComponent);
 begin
   inherited;
+
 end;
 {$R *.dfm}
+
+procedure TFrame3.N1Click(Sender: TObject);
+begin
+     var EWin : TForm5;  //окно редактирования
+       begin
+       EWin := TForm5.Create ( nil );
+       EWin.ini(AgentOnFrame);
+       EWin.ShowModal;
+       AgentOnFrame:=EWin.agent_after_change;
+       AddData;
+
+   end;
+end;
+
+procedure TFrame3.AddData ;
+begin
+      AgentID:= AgentOnFrame.ID_;
+      Label1.Caption := AgentOnFrame.Type_;
+      Label2.Caption := AgentOnFrame.Name;
+      Label5.Caption := AgentOnFrame.Tel.ToString;
+      Label4.Caption := AgentOnFrame.Count_s_year.ToString +
+      Label4.Caption;
+      Label3.Caption := AgentOnFrame.Discount.ToString + '%';
+      Label7.Caption := AgentOnFrame.Priority.ToString;
+      Label8.Caption := Label8.Caption + AgentOnFrame.SUMMA.ToString;
+end;
+
+ procedure TFrame3.upgrade;
+begin
+       var temp_agent_class: TAgent_Class;
+       temp_agent_class:= TAgent_Class.Create;
+
+
+end;
+
 
 end.

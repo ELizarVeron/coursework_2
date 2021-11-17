@@ -2,7 +2,7 @@ object Frame3: TFrame3
   AlignWithMargins = True
   Left = 0
   Top = 0
-  Width = 654
+  Width = 457
   Height = 98
   AutoScroll = True
   BiDiMode = bdLeftToRight
@@ -13,13 +13,14 @@ object Frame3: TFrame3
   ParentColor = False
   ParentDoubleBuffered = False
   ParentShowHint = False
+  PopupMenu = PopupMenu1
   ShowHint = False
   TabOrder = 0
   object Panel1: TPanel
-    Left = 0
+    Left = 5
     Top = 0
     Width = 449
-    Height = 82
+    Height = 95
     BevelOuter = bvNone
     BorderWidth = 4
     BorderStyle = bsSingle
@@ -219,6 +220,14 @@ object Frame3: TFrame3
       Width = 132
       Height = 13
       Caption = #1055#1088#1086#1076#1072#1078#1080' '#1079#1072' '#1074#1077#1089#1100' '#1087#1077#1088#1080#1086#1076'  '
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 376
+    Top = 48
+    object N1: TMenuItem
+      Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
+      OnClick = N1Click
     end
   end
 end

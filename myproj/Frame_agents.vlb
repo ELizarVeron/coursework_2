@@ -1,28 +1,44 @@
 ﻿[]
-Coordinates=256,1,57,58
+Coordinates=241,174,91,36
 Visible=True
 
 [Label6]
-Coordinates=165,78,53,58
+Coordinates=165,78,46,51
 
 [Label2]
-Coordinates=165,155,53,58
+Coordinates=165,155,46,51
+Visible=True
 
 [Panel1]
-Coordinates=72,1,55,58
+Coordinates=72,1,47,51
 
 [Label3]
-Coordinates=165,1,53,58
+Coordinates=165,1,46,51
 
 [Label5]
-Coordinates=47,173,53,58
+Coordinates=47,173,46,51
 
 [Label7]
-Coordinates=0,0,53,58
+Coordinates=0,0,46,51
 
 [Label4]
-Coordinates=106,173,53,58
+Coordinates=106,173,46,51
 
 [Label1]
-Coordinates=53,77,53,58
+Coordinates=53,77,46,51
+
+[Image1]
+Coordinates=165,1,49,51
+
+[Label8]
+Coordinates=260,1,46,51
+
+[(TMenuItem)]
+Coordinates=388,56,75,33
+
+[PopupMenu1]
+Coordinates=260,133,79,33
+
+[N1]
+Coordinates=0,137,40,33
 

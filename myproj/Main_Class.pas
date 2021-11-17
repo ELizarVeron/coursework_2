@@ -19,6 +19,7 @@ type
     array_of_material: TObjectList<TMaterial>;
     function sql_select(select, from, where, order: string; distinct: boolean)
       : TADOQuery;
+    procedure sql_update(table, column_value, where :string);
     procedure create_filter(cbox: TComboBox); virtual;
     procedure create_sort(cbox: TComboBox); virtual;
 
@@ -75,6 +76,22 @@ begin
   result := ADO;
   // ADO.Destroy;
 end;
+
+  procedure TMain_Class.sql_update(table, column_value, where :string);
+  begin
+       var
+    ADO: TADOQuery;
+    ADO := TADOQuery.Create(nil);
+     var
+    str: string;
+    str:= 'update '+ table+ ' set ' + column_value+ where;
+    ADO.Connection := ADOCon;
+    ADO.Active := false;
+    ADO.SQL.Clear;
+    ADO.SQL.Add(str);
+    ADO.ExecSQL;
+
+  end;
 
 procedure TMain_Class.create_filter(cbox: TComboBox);
 begin

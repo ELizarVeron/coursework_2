@@ -12,7 +12,7 @@ type
   TAgent_Class = class(TMain_Class)
   public
   var
-    array_of_agents: TObjectList<TAgent>;
+   class var array_of_agents: TObjectList<TAgent>;
 
     fr: TFrame;
     constructor Create();
@@ -27,6 +27,8 @@ type
     procedure Get_sale;
     procedure Get_Count_and_Sale;
     procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+    procedure EditAgentsFrame;
+
   end;
 
 implementation
@@ -35,7 +37,7 @@ constructor TAgent_Class.Create();
 begin
   inherited;
   array_of_agents := from_ado_to_array_agents(sql_select(' * ', ' agent ', '',
-    '', false));
+    ' order by company ', false));
   Get_History_and_Products;
   Get_Count_and_Sale;
 
@@ -276,9 +278,9 @@ begin
     agent.Name := ado.Fields[1].AsString;
     agent.Type_ := ado.Fields[2].AsString;
     agent.Address:= ado.Fields[3].AsString;
-     agent.INN := ado.Fields[4].AsInteger;
-      agent.KPP := ado.Fields[5].AsInteger;
-      agent.Boss:= ado.Fields[6].AsString;
+    agent.INN := ado.Fields[4].AsInteger;
+    agent.KPP := ado.Fields[5].AsInteger;
+    agent.Boss:= ado.Fields[6].AsString;
     agent.Tel := ado.Fields[7].AsInteger;
     agent.Email:= ado.Fields[8].AsString;
     agent.Priority  := ado.Fields[10].AsInteger;
@@ -314,22 +316,13 @@ begin
       Name := 'FORM' + beg.ToString;
       Top := (fr.Height * i) + 10;
       Tag := 1;
-      {
-      TFrame3(fr).AgentID:= array_of_agents[beg].ID_;
-      TFrame3(fr).Label1.Caption := array_of_agents[beg].Type_;
-      TFrame3(fr).Label2.Caption := array_of_agents[beg].Name;
-      TFrame3(fr).Label5.Caption := array_of_agents[beg].Tel.ToString;
-      TFrame3(fr).Label4.Caption := array_of_agents[beg].Count_s_year.ToString +
-        TFrame3(fr).Label4.Caption;
-      TFrame3(fr).Label3.Caption := array_of_agents[beg]
-        .Discount.ToString + '%';
-       TFrame3(fr).Label7.Caption := array_of_agents[beg].Priority.ToString;
-      TFrame3(fr).Label8.Caption := TFrame3(fr).Label8.Caption + array_of_agents
-        [beg].SUMMA.ToString;
-       }
+
 
       TFrame3(fr).AgentOnFrame:=array_of_agents[beg];
+
        TFrame3(fr).AddData;
+
+        TFrame3(fr).AgentID:=array_of_agents[beg].ID_;
       Visible := true;
       Show;
       Inc(beg);
@@ -345,5 +338,10 @@ begin
     end;
 
 end;
+ procedure TAgent_Class.EditAgentsFrame;
+   begin
+
+
+   end;
 
 end.

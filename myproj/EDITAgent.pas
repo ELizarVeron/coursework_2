@@ -93,6 +93,8 @@ implementation
              agent_after_change.INN  :=StrToInt(Edit7.Text);
              agent_after_change.KPP  :=StrToInt(Edit8.Text);
 
+             agent_after_change.ID_ := agent_on_change.ID_;
+
              var mc : TMain_class;
              mc := TMain_class.Create;
              mc.sql_update('agent',to_change, ' where Id = ' +   agent_on_change.ID_.ToString ) ;

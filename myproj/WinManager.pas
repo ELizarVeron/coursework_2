@@ -426,7 +426,7 @@ end;
 
 procedure TForm3.load_frames(page: integer);
 begin
-  var
+ { var
     i, beg, en: integer;
   var
     item: TControl;
@@ -482,7 +482,7 @@ begin
       Panel1.Controls[i].Visible := true;
 
     end;
-
+              }
 end;
 
 procedure TForm3.Label2Click(Sender: TObject);

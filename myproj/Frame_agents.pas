@@ -34,7 +34,7 @@ type
      AgentOnFrame: TAgent;
      AgentID: integer;
      procedure AddData;
-     procedure upgrade;
+
     constructor Create(AOwner: TComponent); override;
 
     { Public declarations }
@@ -49,17 +49,33 @@ begin
 end;
 {$R *.dfm}
 
-procedure TFrame3.N1Click(Sender: TObject);
+procedure TFrame3.N1Click(Sender: TObject);        //РЕДАКТИРОВАНИЕ
 begin
+
+
+
      var EWin : TForm5;  //окно редактирования
        begin
        EWin := TForm5.Create ( nil );
        EWin.ini(AgentOnFrame);
        EWin.ShowModal;
+       if  not(EWin.agent_after_change = nil) then
+       begin
        AgentOnFrame:=EWin.agent_after_change;
        AddData;
+       end;
+
 
    end;
+
+   var i:integer;
+   for  i:=0 to TAgent_Class.array_of_agents.Count-1 do
+    begin
+         if (TAgent_Class.array_of_agents[i].ID_=AgentId) then
+           TAgent_Class.array_of_agents[i]:=EWin.agent_after_change;
+
+    end;
+
 end;
 
 procedure TFrame3.AddData ;
@@ -75,13 +91,7 @@ begin
       Label8.Caption := Label8.Caption + AgentOnFrame.SUMMA.ToString;
 end;
 
- procedure TFrame3.upgrade;
-begin
-       var temp_agent_class: TAgent_Class;
-       temp_agent_class:= TAgent_Class.Create;
 
-
-end;
 
 
 end.

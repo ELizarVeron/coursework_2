@@ -30,19 +30,22 @@ type
     no_line: TLabel;
     line: TLabel;
     Frame71: TFrame7;
-    Frame72: TFrame7;
     Panel4: TPanel;
     Panel5: TPanel;
     Panel8: TPanel;
-    Edit1: TEdit;
-    Sortirovka: TComboBox;
-    Filtr: TComboBox;
-    Edit2: TEdit;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
-    Edit3: TEdit;
-    ComboBox3: TComboBox;
-    ComboBox4: TComboBox;
+    Edit_Sup: TEdit;
+    Sort_Sup: TComboBox;
+    Filter_Sup: TComboBox;
+    Edit_Req: TEdit;
+    Sort_Req: TComboBox;
+    Filter_Req: TComboBox;
+    Edit_Prod: TEdit;
+    Sort_Prod: TComboBox;
+    Filter_Prod: TComboBox;
+    Panel9: TPanel;
+    Edit_Agent: TEdit;
+    Sort_Agent: TComboBox;
+    Filtr_Agent: TComboBox;
     procedure Label6Click(Sender: TObject);
     procedure Label1MouseEnter(Sender: TObject);
     procedure Label1MouseLeave(Sender: TObject);
@@ -62,9 +65,9 @@ type
     procedure Label5Click(Sender: TObject);
     procedure Label1Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
-    procedure Frame72Edit1Change(Sender: TObject);
-    procedure Frame72SortirovkaChange(Sender: TObject);
-    procedure Frame72FiltrChange(Sender: TObject);
+    procedure  Edit1Change(Sender: TObject);
+    procedure  SortirovkaChange(Sender: TObject);
+    procedure  FiltrChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,58 +100,84 @@ constructor TForm4.Create;
 begin
   inherited;
   PageControl1.ActivePage := Agents;
+
   AgentClass := TAgent_Class.Create;
 
   AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
-
   AgentClass.load_pages(Panel2, AgentClass.array_of_agents.Count, 0);
-  AgentClass.create_sort(Frame72.Sortirovka);
-  AgentClass.create_filter(Frame72.Filtr);
+  AgentClass.create_sort( Sort_Agent);
+  AgentClass.create_filter( Filtr_Agent);
 
   SupClass := TSupplier_Class.Create;
   ADO_sup := SupClass.sql_select('*', 'supplier', '', '', false);
   C_sup := ADO_sup.RecordCount;
   SupClass.load_frames(Panel3, 0, C_sup);
+  SupClass.create_sort(Sort_Sup);
+  SupClass.create_filter(filter_sup);
+
 
   ProdClass := TProduct_Class.Create;
   ADO_prod := ProdClass.sql_select('*', 'products', '', '', false);
   C_prod := ADO_prod.RecordCount;
   ProdClass.load_frames(Panel7, 0, C_agent);
+  ProdClass.create_sort(Sort_Prod);
+  ProdClass.create_filter(filter_prod);
 
 
   ReqClass := TRequest_Agents_Class.Create;
   ADO_req:= ReqClass.sql_select('*', 'Request_from_agent','','',false);
   C_req:= ADO_req.RecordCount;
   ReqClass.load_frames(Panel6,0, C_req);
+    ReqClass.create_sort(sort_req);
+  ReqClass.create_filter(Filter_req);
+
 
 
    PageControl1.ActivePage := Agents;
 end;
 {$R *.dfm}
 
-procedure TForm4.Frame72Edit1Change(Sender: TObject); // edit change
+procedure TForm4.Edit1Change(Sender: TObject); // edit change
 begin
-  AgentClass.FiltrChange(Frame72.Edit1, Frame72.Filtr, Frame72.Sortirovka);
-  AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
-   AgentClass.load_pages(Panel2, AgentClass.array_of_agents.Count, 0);
+
+      if (PageControl1.ActivePage = Agents) then
+     begin
+         AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
+         AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
+         AgentClass.load_pages(Panel2, C_agent, 0);
+     end;
+     if (PageControl1.ActivePage = Requests) then
+  begin
+        ReqClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
+        ReqClass.load_frames(Panel6, 0, ReqClass.array_of_requests_agent.Count);
+        ReqClass.load_pages(Panel2, C_req, 0);
+  end;
+  if (PageControl1.ActivePage = Suppliers) then
+  begin
+         SupClass.FiltrChange(Edit_Sup, Filter_Sup, Sort_Sup);
+         SupClass.load_frames(Panel3, 0, SupClass.array_of_suppliers.Count);
+         SupClass.load_pages(Panel2, C_sup, 0); // SupClass.
+  end;
+  if (PageControl1.ActivePage = Productions) then
+  begin
+         ProdClass.FiltrChange(Edit_Prod, Filter_Prod, Sort_Prod);
+         ProdClass.load_frames(Panel7, 0, ProdClass.array_of_products.Count);
+         ProdClass.load_pages(Panel2, C_prod, 0);
+  end;
+
+
 end;
 
-procedure TForm4.Frame72FiltrChange(Sender: TObject);
-begin
-  AgentClass.FiltrChange(Frame72.Edit1, Frame72.Filtr, Frame72.Sortirovka);
-  AgentClass.load_pages(Panel2, C_agent, 0);
-end;
-
-procedure TForm4.Frame72SortirovkaChange(Sender: TObject);
+procedure TForm4.FiltrChange(Sender: TObject);
 begin
      if (PageControl1.ActivePage = Agents) then
      begin
-         AgentClass.FiltrChange(Frame72.Edit1, Frame72.Filtr, Frame72.Sortirovka);
+         AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
           AgentClass.load_pages(Panel2, C_agent, 0);
      end;
      if (PageControl1.ActivePage = Requests) then
   begin
-          // RequestClass.
+
   end;
   if (PageControl1.ActivePage = Suppliers) then
   begin
@@ -156,7 +185,29 @@ begin
   end;
   if (PageControl1.ActivePage = Productions) then
   begin
+           //ProdClass.FiltrChange(Edit3,ComboBox4,ComboBox3) ;
+  end;
 
+end;
+
+procedure TForm4.SortirovkaChange(Sender: TObject);
+begin
+     if (PageControl1.ActivePage = Agents) then
+     begin
+         AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
+          AgentClass.load_pages(Panel2, C_agent, 0);
+     end;
+     if (PageControl1.ActivePage = Requests) then
+  begin
+
+  end;
+  if (PageControl1.ActivePage = Suppliers) then
+  begin
+          // SupClass.
+  end;
+  if (PageControl1.ActivePage = Productions) then
+  begin
+          // ProdClass.FiltrChange(Edit3,ComboBox4,ComboBox3) ;
   end;
 
 end;

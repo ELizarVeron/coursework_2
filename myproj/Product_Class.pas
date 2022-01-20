@@ -1,4 +1,4 @@
-unit Product_Class;
+﻿unit Product_Class;
 
 interface
 
@@ -17,6 +17,9 @@ type
     constructor Create();
     procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
     function from_ado_to_array(ado: tADOQuery): TObjectList<TProduct>;
+        procedure create_sort(Sortirovka: TComboBox); override;
+    procedure create_filter(Filtr: TComboBox); override;
+     procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
   end;
 
 implementation
@@ -57,7 +60,7 @@ begin
   beg := page * on_page;
   en := ((page + 1) * on_page) - 1;
   i := 0;
-  while Panel1.ControlCount > 0 do // ������� ������ ������
+  while Panel1.ControlCount > 0 do // стираем старые фреймы
   begin
     Item := Panel1.Controls[0];
     Item.Free;
@@ -89,6 +92,97 @@ begin
       Panel1.Controls[i].Show;
       Panel1.Controls[i].Visible := true;
     end;
+
+end;
+   procedure TProduct_Class.create_sort(Sortirovka: TComboBox);
+begin
+  Sortirovka.Items.Add(' ↑ По наименованию');
+  Sortirovka.Items.Add(' ↓ По наименованию');
+  Sortirovka.Items.Add(' ↑ По стоимости');
+  Sortirovka.Items.Add(' ↓ По стоимсоти');
+  Sortirovka.Items.Add(' ↑ По времени производства');
+  Sortirovka.Items.Add(' ↓ По времени производства');
+   Sortirovka.Items.Add(' ↑ По наличию единиц на складе');
+  Sortirovka.Items.Add(' ↓ По наличию единиц на складе');
+
+end;
+
+procedure TProduct_Class.create_filter(Filtr: TComboBox);
+begin
+  var
+    i: integer;
+  var
+    ado_help: tADOQuery;
+  ado_help := tADOQuery.Create(Filtr);
+  Filtr.Items.Add('Все');
+  ado_help := sql_select(' Type_ ', ' Products ', '', '', true);
+  // ado_help.SQL.Add('Select Distinct Type_ from Agent') ;
+  while not ado_help.Eof do
+  begin
+    Filtr.Items.Add(ado_help.FieldByName('Type_').AsString);
+    ado_help.Next
+  end;
+
+end;
+
+procedure TProduct_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
+  sort: TComboBox);
+begin // надо создать новый sql запрос и перезагрузить фреймы
+  // потом мб надо вынести это в маин класс
+  var
+    item: string;
+  var
+    select, from, where, like, order: string;
+  var
+    distinct: boolean;
+  distinct := false;
+  select := ' * ';
+  from := ' Products ';
+
+  item := Filtr.Items[Filtr.ItemIndex]; // то что пишем в фильтре
+  if (item = 'Все') or (Filtr.ItemIndex < 0) // если все или ничего
+  then
+  begin
+    if (edit.Text = '') then
+      where := ' '
+    else
+      where := 'where Name_ like ' + #39 + '%' + edit.Text + '%' + #39;
+
+  end
+
+  else // если все таки что то ввели в фильтр
+  begin
+    if (edit.Text = '') then
+      where := '  where Type_ = ' + #39 + item + #39
+    else
+      where := ' where Type_ = ' + #39 + item + #39 + ' and  Company like ' +
+        #39 + '%' + edit.Text + '%' + #39;
+  end;
+
+  order := ' order by ';
+  case sort.ItemIndex of
+    0:
+      order := order + 'Name_ asc';
+    1:
+      order := order + 'Name_ desc';
+    2:
+      order := order + 'cost asc';
+    3:
+      order := order + 'cost desc';
+    4:
+      order := order + 'time asc';
+    5:
+      order := order + 'time desc';
+       6:
+      order := order + 'in_stock desc';
+       7:
+      order := order + 'in_stock desc';
+  end;
+  if sort.ItemIndex < 0 then
+    order := '';
+
+  array_of_products := from_ado_to_array(sql_select(' * ', from, where,
+    order, false));
 
 end;
 

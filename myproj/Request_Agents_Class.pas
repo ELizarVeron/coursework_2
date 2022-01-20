@@ -1,4 +1,4 @@
-unit Request_Agents_Class;
+﻿unit Request_Agents_Class;
 
 interface
   uses    System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
@@ -14,6 +14,9 @@ interface
            constructor Create();
            procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
            function from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
+            procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+            procedure create_sort(Sortirovka: TComboBox); override;
+            procedure create_filter(Filtr: TComboBox); override;
      end;
 
 implementation
@@ -44,6 +47,35 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
 
  end;
 
+
+procedure TRequest_Agents_Class.create_sort(Sortirovka: TComboBox);
+begin
+  Sortirovka.Items.Add(' ↑ По наименованию агента');
+  Sortirovka.Items.Add(' ↓ По наименованию агента');
+  Sortirovka.Items.Add(' ↑ По дате создания');
+  Sortirovka.Items.Add(' ↓ По дате создания');
+  Sortirovka.Items.Add(' ↑ По стоимости');
+  Sortirovka.Items.Add(' ↓ По стоимости');
+end;
+
+procedure TRequest_Agents_Class.create_filter(Filtr: TComboBox);
+begin
+  var
+    i: integer;
+  var
+    ado_help: tADOQuery;
+  ado_help := tADOQuery.Create(Filtr);
+  Filtr.Items.Add('Все');
+  ado_help := sql_select(' Status ', ' Request_from_agent ', '', '', true);
+  // ado_help.SQL.Add('Select Distinct Type_ from Agent') ;
+  while not ado_help.Eof do
+  begin
+    Filtr.Items.Add(ado_help.FieldByName('Status').AsString);
+    ado_help.Next
+  end;
+
+end;
+
   procedure TRequest_Agents_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
   begin
         var
@@ -53,7 +85,7 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
       beg := page * on_page;
       en := ((page + 1) * on_page) - 1;
       i := 0;
-      while Panel1.ControlCount > 0 do // ������� ������ ������
+      while Panel1.ControlCount > 0 do // стираем старые фреймы
       begin
         Item := Panel1.Controls[0];
         Item.Free;
@@ -69,7 +101,10 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
           Name := 'FORM' + beg.ToString;
           Top := (fr.Height * i) + 10;
           Tag := 1;
-          TFrame9(fr).Label1.Caption :=sql_select('Company', 'Agent' , 'where ID = ' +   array_of_requests_agent[beg].ID_Agent.ToString,'',false).Fields[0].AsString; //��� �� ������ ��� ������ �� id
+          array_of_requests_agent[beg].Company:=sql_select('Company', 'Agent' , 'where ID = ' +   array_of_requests_agent[beg].ID_Agent.ToString,'',false).Fields[0].AsString; //что бы узнать имя агента по id
+
+          TFrame9(fr).Label1.Caption :=array_of_requests_agent[beg].Company;
+
           TFrame9(fr).Label4.Caption :=  DateTimeToStr(array_of_requests_agent[beg].Date_Of_Create);
           TFrame9(fr).Label6.Caption := array_of_requests_agent[beg].Status;
           TFrame9(fr).Label8.Caption :=  array_of_requests_agent[beg].ID_Request.ToString;
@@ -90,6 +125,64 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
 
   end;
 
+          procedure TRequest_Agents_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
+  sort: TComboBox);
+begin // надо создать новый sql запрос и перезагрузить фреймы
+  // потом мб надо вынести это в маин класс
+  var
+    item: string;
+  var
+    select, from, where, like, order: string;
+  var
+  distinct: boolean;
+  distinct := false;
+  select := ' * ';
+  from := ' Request_from_agent ';
+
+  item := Filtr.Items[Filtr.ItemIndex]; // то что пишем в фильтре
+  if (item = 'Все') or (Filtr.ItemIndex < 0) // если все или ничего
+  then
+  begin
+    if (edit.Text = '') then
+      where := ' '
+    else
+      where := 'where Company like ' + #39 + '%' + edit.Text + '%' + #39;
+
+  end
+
+  else // если все таки что то ввели в фильтр
+  begin
+    if (edit.Text = '') then
+      where := '  where Status = ' + #39 + item + #39
+    else
+      where := ' where Status = ' + #39 + item + #39 + ' and  Company like ' +
+        #39 + '%' + edit.Text + '%' + #39;
+  end;
+
+  order := ' order by ';
+  case sort.ItemIndex of
+    0:
+      order := order + 'company asc';
+    1:
+      order := order + 'company desc';
+    2:
+      order := order + 'discount asc';
+    3:
+      order := order + 'discount desc';
+    4:
+      order := order + 'priority asc';
+    5:
+      order := order + 'priority desc';
+  end;
+  if sort.ItemIndex < 0 then
+    order := '';
+
+ // array_of_agents := from_ado_to_array_agents(sql_select(' * ', from, where,
+  //  order, false));
+  //Get_History_and_Products;
+  //Get_Count_and_Sale;
+
+end;
 
 
 end.

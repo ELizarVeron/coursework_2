@@ -156,7 +156,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="Frame_req_a.pas"/>
         <DCCReference Include="EDITAgent.pas">
             <Form>Form5</Form>
             <FormType>dfm</FormType>

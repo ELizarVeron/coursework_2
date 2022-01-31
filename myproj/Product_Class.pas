@@ -11,8 +11,8 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
 type
   TProduct_Class = class(TMain_Class)
   public
+  class var  array_of_products: TObjectList<TProduct>;
   var
-    array_of_products: TObjectList<TProduct>;
     fr: TFrame;
     constructor Create();
     procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
@@ -44,6 +44,7 @@ begin
     prod.Article := ado.Fields[0].AsInteger;
     prod.Name_ := ado.Fields[6].AsString;
     prod.Cost := ado.Fields[1].AsInteger;
+    prod.In_stock:=ado.Fields[3].AsInteger;
     array_of_products.Add(prod);
     ado.Next;
   end;

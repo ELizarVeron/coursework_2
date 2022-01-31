@@ -14,8 +14,8 @@ object Form5: TForm5
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 72
-    Top = 16
+    Left = 64
+    Top = 32
     Width = 315
     Height = 25
     Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1076#1072#1085#1085#1099#1093' '#1072#1075#1077#1085#1090#1072':'
@@ -131,6 +131,13 @@ object Form5: TForm5
     Font.Style = []
     ParentFont = False
   end
+  object Label10: TLabel
+    Left = 88
+    Top = 32
+    Width = 37
+    Height = 13
+    Caption = 'Label10'
+  end
   object Edit2: TEdit
     Left = 216
     Top = 157
@@ -243,5 +250,14 @@ object Form5: TForm5
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1080#1079#1084#1077#1085#1077#1085#1080#1103
     TabOrder = 8
     OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 64
+    Top = 480
+    Width = 121
+    Height = 25
+    Caption = #1059#1076#1072#1083#1080#1090#1100' '#1072#1075#1077#1085#1090#1072
+    TabOrder = 9
+    OnClick = Button2Click
   end
 end

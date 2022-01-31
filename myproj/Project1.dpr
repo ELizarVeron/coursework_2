@@ -5,10 +5,9 @@ uses
   Unit1 in 'Unit1.pas' {Form1},
   Unit2 in 'Unit2.pas' {Form2},
   My_f in 'My_f.pas',
-  WinManager in 'WinManager.pas' {Form3},
-  WinMaster in 'WinMaster.pas' {Form4},
+  Win_Master in 'Win_Master.pas' {Form3},
+  Win_Manager in 'Win_Manager.pas' {Form4},
   Frame_agents in 'Frame_agents.pas' {Frame3: TFrame},
-  Fr_ag in 'Fr_ag.pas' {Frame4: TFrame},
   BD_class in 'BD_class.pas',
   BD_Manager in 'BD_Manager.pas',
   TABLE_Agents in 'TABLE_Agents.pas',
@@ -28,7 +27,13 @@ uses
   Request_Frame in 'Request_Frame.pas' {Frame8: TFrame},
   Request_Agents_Class in 'Request_Agents_Class.pas',
   Frame_req_ag in 'Frame_req_ag.pas' {Frame9: TFrame},
-  EDITAgent in 'EDITAgent.pas' {Form5};
+  EDITAgent in 'EDITAgent.pas' {Form5},
+  Navigator in 'Navigator.pas' {Frame10: TFrame},
+  HistoryPriority in 'HistoryPriority.pas' {Form6},
+  HistoryRelizAgent in 'HistoryRelizAgent.pas' {Form7},
+  Create_RelizAgent in 'Create_RelizAgent.pas' {Form8},
+  CREATE_REQUEST in 'CREATE_REQUEST.pas' {Form9},
+  SelectProducts in 'SelectProducts.pas' {Form10};
 
 {$R *.res}
 
@@ -39,6 +44,10 @@ begin
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm4, Form4);
   Application.CreateForm(TForm5, Form5);
+  Application.CreateForm(TForm6, Form6);
+  Application.CreateForm(TForm7, Form7);
+  Application.CreateForm(TForm8, Form8);
+  Application.CreateForm(TForm10, Form10);
   Application.Run;
 
 end.

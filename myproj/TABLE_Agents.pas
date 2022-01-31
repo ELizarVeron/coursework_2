@@ -7,13 +7,13 @@ uses TABLE_History_Of_Reliz, System.Generics.Collections;
 type
   TAgent = class
   private
-    FName,FBoss,FAddress,FEmail, FType_: string;
-    FPriority, FSale, FTel, FSUMMA, FCount_s_year, FId, FDiscount,FINN,FKPP: integer;
+    FName,FBoss,FAddress,FEmail, FTel, FType_ ,FINN: string;
+    FPriority, FSale, FSUMMA, FCount_s_year, FId, FDiscount,FKPP: integer;
   protected
   public
     property Discount: integer read FDiscount write FDiscount;
     property ID_: integer read FId write FId;
-        property INN: integer read FINN write FINN;
+        property INN: string read FINN write FINN;
             property KPP: integer read FKPP write FKPP;
     property Name: string read FName write FName;
         property Boss: string read FBoss write FBoss;
@@ -22,14 +22,16 @@ type
     property Type_: string read FType_ write FType_;
     property Priority: integer read FPriority write FPriority;
     property Sale: integer read FSale write FSale;
-    property Tel: integer read FTel write FTel;
+    property Tel: string read FTel write FTel;
     property SUMMA: integer read FSUMMA write FSUMMA;
     // сумма реализации продукции за весь период
     property Count_s_year: integer read FCount_s_year write FCount_s_year;
     function get_sale(c: integer): integer;
 
+
   var
     history_of_reliz: TObjectList<THistory_Of_Reliz>;
+    on_change_priority: boolean;
   end;
 
 implementation

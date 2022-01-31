@@ -1,0 +1,41 @@
+unit REQUEST;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TForm9 = class(TForm)
+    Label3: TLabel;
+    ComboBox1: TComboBox;
+    Button2: TButton;
+    Button1: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    û: TRichEdit;
+    Label4: TLabel;
+    CheckBox1: TCheckBox;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    Button3: TButton;
+    Button4: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form9: TForm9;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -26,8 +26,11 @@ type
     Edit8: TEdit;
     Edit1: TEdit;
     Button1: TButton;
+    Button2: TButton;
+    Label10: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Label5Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     FName, FType_: string;
     FPriority, FSale, FTel, FSUMMA, FCount_s_year, FId, FDiscount: integer;
@@ -40,12 +43,14 @@ type
     property Tel: integer read FTel write FTel;
      property ID: integer read FID write FID;
      var agent_after_change: TAgent;
+          var nothing_to_change, need_delete: bool;
+
   end;
 
 var
   Form5: TForm5;
-    agent_on_change: TAgent;
-   to_change :string;
+  agent_on_change: TAgent;
+  to_change :string;
 
 
 implementation
@@ -53,58 +58,102 @@ implementation
      constructor  TForm5.Create(AOwner: TComponent);
        begin
          inherited;
-
+          nothing_to_change:= true;
+          need_delete:=false;
 
        end;
         procedure TForm5.Button1Click(Sender: TObject); //тут нужно изменять в бд только те записи которые мы изменили
           begin
               to_change:='';
+              agent_after_change:= TAgent.Create;
               if NOT(agent_on_change.Name=(Edit1.Text)) then
-               if (to_change='') then  to_change:= '  Company = '+#39 + Edit1.Text + #39  else  to_change:=to_change+' , Company = '+#39 + Edit1.Text + #39;
+              begin
+                  if (to_change='') then  to_change:= '  Company = '+#39 + Edit1.Text + #39  else  to_change:=to_change+' , Company = '+#39 + Edit1.Text + #39;
+                  nothing_to_change:=false;
+              end;
 
               if NOT(agent_on_change.Type_= (Edit2.Text)) then
-               if (to_change='') then  to_change:= ' Type_  = '+#39 + Edit2.Text + #39  else  to_change:=to_change+' , Type_ = '+#39 + Edit2.Text + #39;
+              begin
+                   if (to_change='') then  to_change:= ' Type_  = '+#39 + Edit2.Text + #39  else  to_change:=to_change+' , Type_ = '+#39 + Edit2.Text + #39;
+                    nothing_to_change:=false;
+              end;
 
               if NOT(agent_on_change.Boss=Edit3.Text) then
-               if (to_change='') then  to_change:= ' Director = '+#39 + Edit3.Text + #39  else  to_change:=to_change+' , Director = '+#39 + Edit3.Text + #39;
+              begin
+                    if (to_change='') then  to_change:= ' Director = '+#39 + Edit3.Text + #39  else  to_change:=to_change+' , Director = '+#39 + Edit3.Text + #39;
+                      nothing_to_change:=false;
+              end;
 
               if NOT(agent_on_change.Address=(Edit4.Text)) then
-               if (to_change='') then  to_change:= ' Adress = '+#39 + Edit4.Text + #39  else  to_change:=to_change+' , Adress = '+#39 + Edit4.Text + #39;
+              begin
+                      if (to_change='') then  to_change:= ' Adress = '+#39 + Edit4.Text + #39  else  to_change:=to_change+' , Adress = '+#39 + Edit4.Text + #39;
+                       nothing_to_change:=false;
+              end;
 
-              if NOT(agent_on_change.Tel=StrToInt(Edit5.Text)) then
-               if (to_change='') then  to_change:= ' Tel = '+#39 + Edit5.Text + #39  else  to_change:=to_change+' , Tel = '+#39 + Edit5.Text + #39;
+              if NOT(agent_on_change.Tel= (Edit5.Text)) then
+              begin
+                      if (to_change='') then  to_change:= ' Tel = '+#39 + Edit5.Text + #39  else  to_change:=to_change+' , Tel = '+#39 + Edit5.Text + #39;
+                      nothing_to_change:=false;
+              end;
 
               if NOT(agent_on_change.Email= (Edit6.Text)) then
-               if (to_change='') then  to_change:= ' Email = '+#39 + Edit6.Text + #39  else  to_change:=to_change+' , Email = '+#39 + Edit6.Text + #39;
-
-             if NOT(agent_on_change.INN=StrToInt(Edit7.Text)) then
-               if (to_change='') then  to_change:= ' INN = '+#39 + Edit7.Text + #39  else  to_change:=to_change+' , INN = '+#39 + Edit7.Text + #39;
-
-                if NOT(agent_on_change.KPP=StrToInt(Edit8.Text)) then
-               if (to_change='') then  to_change:= ' KPP = '+#39 + Edit8.Text + #39  else  to_change:=to_change+' , KPP = '+#39 + Edit8.Text + #39;
-
-             agent_after_change:= TAgent.Create;
-             agent_after_change.Name:=Edit1.Text;
-             agent_after_change.Type_:=Edit2.Text;
-             agent_after_change.Boss:=Edit3.Text;
-             agent_after_change.Address:=Edit4.Text;
-             agent_after_change.Tel    :=STRtoINT(Edit5.Text);
-             agent_after_change.Email :=Edit6.Text;
-             agent_after_change.INN  :=StrToInt(Edit7.Text);
-             agent_after_change.KPP  :=StrToInt(Edit8.Text);
-
-             agent_after_change.ID_ := agent_on_change.ID_;
-
-             var mc : TMain_class;
-             mc := TMain_class.Create;
-             mc.sql_update('agent',to_change, ' where Id = ' +   agent_on_change.ID_.ToString ) ;
-
-             ShowMessage('Изменения сохранены');
+              begin
+                       if (to_change='') then  to_change:= ' Email = '+#39 + Edit6.Text + #39  else  to_change:=to_change+' , Email = '+#39 + Edit6.Text + #39;
+                       nothing_to_change:=false;
+              end;
 
 
-             Close;
+               if NOT(agent_on_change.INN=(Edit7.Text)) then
+               begin
+                           if (to_change='') then  to_change:= ' INN = '+#39 + Edit7.Text + #39  else  to_change:=to_change+' , INN = '+#39 + Edit7.Text + #39;
+                           nothing_to_change:=false;
+               end;
+
+                  if NOT(agent_on_change.KPP=StrToInt(Edit8.Text)) then
+                begin
+                            if (to_change='') then  to_change:= ' KPP = '+#39 + Edit8.Text + #39  else  to_change:=to_change+' , KPP = '+#39 + Edit8.Text + #39;
+                             nothing_to_change:=false;
+                end;
+
+              if  nothing_to_change then
+              begin
+                 agent_after_change:=nil;
+                Close;
+
+              end
+              else
+              begin
+
+                 agent_after_change.Name:=Edit1.Text;
+                 agent_after_change.Type_:=Edit2.Text;
+                 agent_after_change.Boss:=Edit3.Text;
+                 agent_after_change.Address:=Edit4.Text;
+                 agent_after_change.Tel    := (Edit5.Text);
+                 agent_after_change.Email :=Edit6.Text;
+                 agent_after_change.INN  :=(Edit7.Text);
+                 agent_after_change.KPP  :=StrToInt(Edit8.Text);
+                 agent_after_change.ID_ := agent_on_change.ID_;
+                 var mc : TMain_class;
+                 mc := TMain_class.Create;
+                 mc.sql_update('agent',to_change, ' where Id = ' +   agent_on_change.ID_.ToString );
+                 ShowMessage('Изменения сохранены');
+                 Close;
+              end;
+
+
+
 
           end;
+
+procedure TForm5.Button2Click(Sender: TObject);
+begin
+               var mc : TMain_class;
+                mc := TMain_class.Create;
+                need_delete:=true;
+                mc.sql_delete('agent', ' ID ' , agent_on_change.ID_.ToString );
+                ShowMessage('Удаление успешно');
+                Close;
+end;
 
 procedure TForm5.Ini(agent:TAgent);
         begin
@@ -113,9 +162,9 @@ procedure TForm5.Ini(agent:TAgent);
               Edit2.Text:=agent.Type_;
               Edit3.Text:=agent.Boss;
               Edit4.Text:=agent.address;
-              Edit5.Text:=agent.Tel.ToString;
+              Edit5.Text:=agent.Tel;
               Edit6.Text:=agent.Email;
-              Edit7.Text:=agent.INN.ToString;
+              Edit7.Text:=agent.INN;
               Edit8.Text:=agent.KPP.ToString;
 
 
@@ -125,8 +174,8 @@ procedure TForm5.Ini(agent:TAgent);
 
 procedure TForm5.Label5Click(Sender: TObject);
 begin
+  end;
 
-end;
 
 {$R *.dfm}
 

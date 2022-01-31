@@ -6,17 +6,19 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
   TABLE_Agents, TABLE_History_Of_Reliz, TABLE_Products, TABLE_Requests_agent,
   TABLE_Request_supplier, TABLE_Suppliers, TABLE_Materials, Main_Class,
-  Frame_agents, DateUtils;
+   DateUtils;
 
 type
   TAgent_Class = class(TMain_Class)
   public
   var
    class var array_of_agents: TObjectList<TAgent>;
-
+     Panel:TPanel;
     fr: TFrame;
+
+//   class procedure reload(Panel1:TPanel);
     constructor Create();
-    procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
+  class  procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
     procedure create_sort(Sortirovka: TComboBox); override;
     procedure create_filter(Filtr: TComboBox); override;
     function from_ado_to_array_agents(ado: tADOQuery): TObjectList<TAgent>;
@@ -32,16 +34,22 @@ type
   end;
 
 implementation
-
+ uses Frame_agents;
 constructor TAgent_Class.Create();
 begin
   inherited;
+
   array_of_agents := from_ado_to_array_agents(sql_select(' * ', ' agent ', '',
     ' order by company ', false));
   Get_History_and_Products;
   Get_Count_and_Sale;
 
 end;
+
+
+
+
+
 
 procedure TAgent_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
   sort: TComboBox);
@@ -278,10 +286,10 @@ begin
     agent.Name := ado.Fields[1].AsString;
     agent.Type_ := ado.Fields[2].AsString;
     agent.Address:= ado.Fields[3].AsString;
-    agent.INN := ado.Fields[4].AsInteger;
+    agent.INN := ado.Fields[4].AsString;
     agent.KPP := ado.Fields[5].AsInteger;
     agent.Boss:= ado.Fields[6].AsString;
-    agent.Tel := ado.Fields[7].AsInteger;
+    agent.Tel := ado.Fields[7].AsString;
     agent.Email:= ado.Fields[8].AsString;
     agent.Priority  := ado.Fields[10].AsInteger;
     array_of_agents_.Add(agent);
@@ -291,7 +299,7 @@ begin
   result := array_of_agents_;
 end;
 
-procedure TAgent_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
+class procedure TAgent_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
 begin
   var
     i, beg, en: integer;
@@ -308,21 +316,26 @@ begin
   while (beg <= en) and (beg < array_of_agents.Count) do
   begin
     fr := TFrame3.Create(Panel1);
+
     var
       Discount: integer;
     With fr do
     begin
       Parent := Panel1;
+     // panel:=Panel1;
       Name := 'FORM' + beg.ToString;
       Top := (fr.Height * i) + 10;
       Tag := 1;
 
-
+      TFrame3(fr).panel:=Panel1;
       TFrame3(fr).AgentOnFrame:=array_of_agents[beg];
 
        TFrame3(fr).AddData;
 
         TFrame3(fr).AgentID:=array_of_agents[beg].ID_;
+
+
+
       Visible := true;
       Show;
       Inc(beg);
@@ -336,6 +349,9 @@ begin
       Panel1.Controls[i].Show;
       Panel1.Controls[i].Visible := true;
     end;
+
+
+
 
 end;
  procedure TAgent_Class.EditAgentsFrame;

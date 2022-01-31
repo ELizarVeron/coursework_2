@@ -8,8 +8,9 @@ interface
   type
      TRequest_Agents_Class = class(TMain_Class)
       public
+      class var array_of_requests_agent: TObjectList<TRequest_Agent>;
       var
-          array_of_requests_agent: TObjectList<TRequest_Agent>;
+
           fr: TFrame;
            constructor Create();
            procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;

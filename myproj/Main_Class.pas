@@ -17,9 +17,17 @@ type
   var
     ADOCon: TADOConnection;
     array_of_material: TObjectList<TMaterial>;
+
+
+
     function sql_select(select, from, where, order: string; distinct: boolean)
       : TADOQuery;
     procedure sql_update(table, column_value, where :string);
+    procedure sql_delete(table, key, value :string);
+
+      procedure sql_insert(table:string ;   values: array of string);
+
+
     procedure create_filter(cbox: TComboBox); virtual;
     procedure create_sort(cbox: TComboBox); virtual;
 
@@ -85,6 +93,63 @@ end;
      var
     str: string;
     str:= 'update '+ table+ ' set ' + column_value+ where;
+    ADO.Connection := ADOCon;
+    ADO.Active := false;
+    ADO.SQL.Clear;
+    ADO.SQL.Add(str);
+    ADO.ExecSQL;
+
+  end;
+
+
+   procedure TMain_Class.sql_delete(table, key, value :string);
+  begin
+       var
+    ADO: TADOQuery;
+    ADO := TADOQuery.Create(nil);
+     var
+    str: string;
+    str:= 'delete from '+ table+ ' where ' +  key + ' = ' +     value       ;
+    ADO.Connection := ADOCon;
+    ADO.Active := false;
+    ADO.SQL.Clear;
+    ADO.SQL.Add(str);
+    ADO.ExecSQL;
+
+  end;
+
+  procedure TMain_Class.sql_insert(table:string ; values: array of string);
+  begin
+       var
+    ADO: TADOQuery;
+    ADO := TADOQuery.Create(nil);
+    var str,str2, v: string;
+
+    var i:integer;
+    var temp:double;
+    for I := 0 to length(values)-1 do
+    begin
+        if not( i = length(values)-1)  then
+        begin
+                 if TryStrToFloat(values[i],temp) then
+                  v:=v+ ' '+ temp.ToString + ' , '
+                else
+                    v:=v+ '  '+ QuotedStr( values[i]) + ' , ' ;
+        end
+
+        else
+
+         begin
+                 if TryStrToFloat(values[i],temp) then
+                  v:=v+ ' '+ temp.ToString + '   '
+                else
+                    v:=v+ '  '+ QuotedStr( values[i]) + '  ' ;
+        end
+
+
+
+   end;
+    str:= 'insert into '+ table+ ' values ( ' +  v + ' ) '  ;
     ADO.Connection := ADOCon;
     ADO.Active := false;
     ADO.SQL.Clear;
@@ -342,21 +407,7 @@ end;
 
 procedure TMain_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
 begin
- { var
-    fr: TFrame;
-  var
-    i, beg, en: integer;
-  var
-    Item: TControl;
-  beg := page * on_page;
-  en := ((page + 1) * on_page) - 1;
-  i := 0;
-  while Panel1.ControlCount > 0 do // סעטנאול סעאנûו פנוילû
-  begin
-    Item := Panel1.Controls[0];
-    Item.Free;
-  end;
-          }
+
 end;
 
 end.

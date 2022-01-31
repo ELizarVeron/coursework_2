@@ -107,18 +107,14 @@
             <Form>Form2</Form>
         </DCCReference>
         <DCCReference Include="My_f.pas"/>
-        <DCCReference Include="WinManager.pas">
+        <DCCReference Include="Win_Master.pas">
             <Form>Form3</Form>
         </DCCReference>
-        <DCCReference Include="WinMaster.pas">
+        <DCCReference Include="Win_Manager.pas">
             <Form>Form4</Form>
         </DCCReference>
         <DCCReference Include="Frame_agents.pas">
             <Form>Frame3</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Fr_ag.pas">
-            <Form>Frame4</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="BD_class.pas"/>
@@ -158,6 +154,31 @@
         </DCCReference>
         <DCCReference Include="EDITAgent.pas">
             <Form>Form5</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Navigator.pas">
+            <Form>Frame10</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="HistoryPriority.pas">
+            <Form>Form6</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="HistoryRelizAgent.pas">
+            <Form>Form7</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Create_RelizAgent.pas">
+            <Form>Form8</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CREATE_REQUEST.pas">
+            <Form>Form9</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="SelectProducts.pas">
+            <Form>Form10</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

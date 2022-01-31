@@ -50,7 +50,7 @@ begin
     agent.ID_ := ADOQuery1.Fields[0].AsInteger;
     agent.Name := ADOQuery1.Fields[1].AsString;
     agent.Type_ := ADOQuery1.Fields[2].AsString;
-    agent.Tel := ADOQuery1.Fields[7].AsInteger;
+    agent.Tel := ADOQuery1.Fields[7].AsString;
 
     ADOQuery2.Active := False;
     ADOQuery2.SQL.Clear; // 2ой запрос для истории продаж

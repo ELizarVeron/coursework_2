@@ -7,7 +7,7 @@ uses
   System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.ExtCtrls,
-  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, EDITAgent, Vcl.Menus, TABLE_Agents;
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, EDITAgent, HistoryRelizAgent,HistoryPriority, Vcl.Menus, TABLE_Agents,Agent_Class;
 
 type
   TFrame3 = class(TFrame)
@@ -23,9 +23,17 @@ type
     Label8: TLabel;
     PopupMenu1: TPopupMenu;
     N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    CheckBox1: TCheckBox;
+    N4: TMenuItem;
 
 
     procedure N1Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
 
   private
 
@@ -33,6 +41,9 @@ type
   public
      AgentOnFrame: TAgent;
      AgentID: integer;
+     panel:TPanel;
+     cheked:bool;
+     var arr: array[0..5] of string;
      procedure AddData;
 
     constructor Create(AOwner: TComponent); override;
@@ -41,11 +52,19 @@ type
   end;
 
 implementation
-uses  Main_Class,Agent_Class;
+uses  Main_Class, Win_Manager;
+procedure TFrame3.CheckBox1Click(Sender: TObject);
+begin
+    AgentOnFrame.on_change_priority:=CheckBox1.Checked;
+
+end;
+
 constructor TFrame3.Create(AOwner: TComponent);
 begin
   inherited;
-
+    cheked:=true;
+    if cheked  then
+              CheckBox1.Enabled:=true;
 end;
 {$R *.dfm}
 
@@ -59,22 +78,114 @@ begin
        EWin := TForm5.Create ( nil );
        EWin.ini(AgentOnFrame);
        EWin.ShowModal;
-       if  not(EWin.agent_after_change = nil) then
+
+       if (EWin.need_delete=true) then
+         begin
+
+                     var i,k:integer;
+                        k:=TAgent_Class.array_of_agents.Count-1;
+                 for  i:=0 to (k) do
+                  begin
+                       if (TAgent_Class.array_of_agents[i].ID_=AgentId) then
+                       begin
+                               TAgent_Class.array_of_agents.Delete(i);
+                               break;
+
+                       end;
+
+                  end;
+
+
+          TAgent_Class.load_frames(panel,0,TAgent_Class.array_of_agents.Count-1);     //перезагрузка панели с фреймами после удаления 1 ого фрейма
+
+         end;
+
+
+       if  (EWin.nothing_to_change = false ) then
        begin
        AgentOnFrame:=EWin.agent_after_change;
-       AddData;
+       AddData;           //просто фрейм перезагрузили
+                  var i:integer;
+                 for  i:=0 to TAgent_Class.array_of_agents.Count-1 do      //а тут добавили эту инфу в массив агентов
+                  begin
+                       if (TAgent_Class.array_of_agents[i].ID_=AgentId) then
+                         TAgent_Class.array_of_agents[i]:=EWin.agent_after_change;
+
+                  end;
+
        end;
 
 
    end;
 
-   var i:integer;
-   for  i:=0 to TAgent_Class.array_of_agents.Count-1 do
-    begin
-         if (TAgent_Class.array_of_agents[i].ID_=AgentId) then
-           TAgent_Class.array_of_agents[i]:=EWin.agent_after_change;
 
-    end;
+
+end;
+
+procedure TFrame3.N2Click(Sender: TObject);
+begin                                                //история relizа
+          var HRWin: TForm7;
+          HRWin:=TForm7.Create(nil);
+          HRWin.Filtr(AgentID);
+
+          HRWin.Show;
+end;
+
+procedure TFrame3.N3Click(Sender: TObject);
+begin                                                       //история priority
+
+           var HPWin: TForm6;
+          HPWin:=TForm6.Create(nil);
+          HPWin.Filtr(AgentID);
+
+          HPWin.Show;
+
+end;
+
+procedure TFrame3.N4Click(Sender: TObject);           //смена приоритета
+begin
+           var s:string;
+              var mc:TMain_class;
+               mc:=TMain_class.Create;
+           InputQuery('Выбор приоритета', 'Изменить приоритет на:',s);
+             var i:integer;
+
+             for  i:=0 to TAgent_Class.array_of_agents.Count-1 do      //
+                  begin
+                       if (TAgent_Class.array_of_agents[i].on_change_priority) then
+                       begin
+
+                              arr[3]:=  IntToStr(TAgent_Class.array_of_agents[i].Priority);   //старое значение
+
+                            TAgent_Class.array_of_agents[i].Priority:= StrToInt(s);
+                            TAgent_Class.array_of_agents[i].on_change_priority:= false; //флажок убираем
+                            mc.sql_update(' agent ' , ' Priority = ' + s , ' where id =  ' +    TAgent_Class.array_of_agents[i].ID_.ToString  )  ;
+
+                              arr[0]:=  TAgent_Class.array_of_agents[i].ID_.ToString;
+                              arr[1]:=  TForm4.login;
+                              arr[2]:=  FormatDateTime('dd.mm.yyyy', Now);
+                              arr[4]:=  s; //новое значение
+
+                              if(StrToInt(arr[3]) < StrToInt( arr[4])) then     //если старое меньше нового
+                              arr[5]:= ' + ' +   IntToStr ( (StrToInt(arr[4]) - StrToInt( arr[3])))
+                               else
+                              arr[5]:= ' - ' +   IntToStr ( (StrToInt(arr[3]) - StrToInt( arr[4]))) ;
+
+                            mc.sql_insert( ' History_of_priority ' , arr);
+
+
+
+                       end;
+
+                  end;                     //надо записать в бд историю
+              TAgent_Class.load_frames(panel,0,TAgent_Class.array_of_agents.Count-1);   //загрузка фреймов после смены приоритетов
+             ShowMessage('Изменения успешно сохранены');
+
+
+
+
+
+
 
 end;
 
@@ -83,12 +194,14 @@ begin
       AgentID:= AgentOnFrame.ID_;
       Label1.Caption := AgentOnFrame.Type_;
       Label2.Caption := AgentOnFrame.Name;
-      Label5.Caption := AgentOnFrame.Tel.ToString;
+      Label5.Caption := AgentOnFrame.Tel;
       Label4.Caption := AgentOnFrame.Count_s_year.ToString +
       Label4.Caption;
       Label3.Caption := AgentOnFrame.Discount.ToString + '%';
       Label7.Caption := AgentOnFrame.Priority.ToString;
       Label8.Caption := Label8.Caption + AgentOnFrame.SUMMA.ToString;
+
+      CheckBox1.Checked:=AgentOnFrame.on_change_priority;
 end;
 
 

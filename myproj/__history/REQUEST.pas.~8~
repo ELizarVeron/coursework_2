@@ -1,0 +1,100 @@
+unit REQUEST;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Data.Win.ADODB, Agent_Class, Request_agents_class, Main_Class;
+
+type
+  TForm9 = class(TForm)
+    Label3: TLabel;
+    ComboBox1: TComboBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    REdit: TRichEdit;
+    Label4: TLabel;
+    CheckBox1: TCheckBox;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    Button3: TButton;
+    Button4: TButton;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Button2: TButton;
+    Button1: TButton;
+    RichEdit1: TRichEdit;
+    Label11: TLabel;
+    procedure ComboBox1Change(Sender: TObject);
+  private
+    { Private declarations }
+  public
+  constructor Create( AOwner: TComponent);  override;
+    { Public declarations }
+  end;
+
+var
+  Form9: TForm9;
+   i,id_agent:integer;
+   mc: TMain_Class;
+   ado: TADOQuery;
+implementation
+ constructor  TForm9.Create(AOwner: TComponent);
+       begin
+         inherited;
+           for I := 0 to TAgent_Class.array_of_agents.Count-1 do
+           ComboBox1.Items.Add(TAgent_Class.array_of_agents[i].Name);
+
+
+
+           mc:=TMain_class.Create;
+           ado:=TADOQuery.Create(nil);
+
+       end;
+
+{$R *.dfm}
+
+procedure TForm9.ComboBox1Change(Sender: TObject);
+begin
+        var  b_new: bool;     //новый агент?
+         var    id:integer;
+        for I := 0 to TAgent_Class.array_of_agents.Count-1 do
+          if TAgent_Class.array_of_agents[i].Name=ComboBox1.Items[ComboBox1.ItemIndex] then
+                    id:=TAgent_Class.array_of_agents[i].ID_;
+        ado:=mc.sql_select(' * ', ' history_of_reliz ', ' where ID_Agent =  ' + id.ToString , ' ' , false );
+       // в адо - все истории реализации с этим агентом
+       b_new:=true;
+         for I := 0 to TRequest_agents_class.array_of_requests_agent.Count-1
+         do begin
+             if TRequest_agents_class.array_of_requests_agent[i].ID_Agent=id then
+             begin
+                    b_new:= false;
+                    break;
+
+             end;
+
+         end;
+
+         if b_new then
+         begin
+            label10.Visible:=true ;
+             Button2.Visible:=true;
+             Button1.Visible:=false;
+
+         end
+         else
+         begin
+              Label10.Visible:=false;
+               Button2.Visible:=false;
+                Button1.Visible:=true;
+
+         end;
+
+end;
+
+end.

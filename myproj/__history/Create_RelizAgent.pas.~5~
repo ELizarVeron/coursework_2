@@ -1,0 +1,92 @@
+unit Create_RelizAgent;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.WinXPickers, Data.Win.ADODB, Main_Class;
+
+type
+  TForm8 = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label7: TLabel;
+    Edit3: TEdit;
+    DatePicker1: TDatePicker;
+    ComboBox1: TComboBox;
+    Button1: TButton;
+    Button2: TButton;
+    Label4: TLabel;
+    Edit1: TEdit;
+    procedure ComboBox1Change(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+     constructor Create(AOwner: TComponent); override;
+      var mc:TMain_Class;
+       var ado:TADOQuery;
+  end;
+
+var
+  Form8: TForm8;
+
+implementation
+      constructor TForm8.Create(AOwner: TComponent);
+      begin
+
+             inherited;
+
+
+              mc:= TMain_Class.Create;
+              ado:=mc.sql_select('article', 'products','','',false);
+                while not ado.Eof do
+                  begin
+                    ComboBox1.Items.Add(ado.FieldByName('article').AsString);
+                    ado.Next
+                  end;
+
+
+
+      end;
+{$R *.dfm}
+
+procedure TForm8.Button1Click(Sender: TObject);       //save
+begin
+   var count: string;
+   count:=  Edit3.Text;
+   if not(Edit3.Text ='') then
+       begin
+           if (count[1]='0' ) then
+            begin
+               ShowMessage('Проверьте правильность ввода');
+               Edit3.Text:='';
+
+
+           end;
+
+
+
+
+
+
+
+        end;
+
+end;
+
+procedure TForm8.ComboBox1Change(Sender: TObject);
+begin
+            ado:=mc.sql_select('name_',' products ', 'where article =  '  + ComboBox1.Items[ComboBox1.ItemIndex],'',false );
+            Edit1.Text:= ado.Fields[0].AsString;
+end;
+
+procedure TForm8.Edit3Change(Sender: TObject);
+begin
+// if  Edit3.Text='0' then     ShowMessage('Неверный ввод');
+end;
+
+end.

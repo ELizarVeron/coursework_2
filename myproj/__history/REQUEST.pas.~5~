@@ -1,0 +1,52 @@
+unit REQUEST;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Agent_Class;
+
+type
+  TForm9 = class(TForm)
+    Label3: TLabel;
+    ComboBox1: TComboBox;
+    Button2: TButton;
+    Button1: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    û: TRichEdit;
+    Label4: TLabel;
+    CheckBox1: TCheckBox;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    CheckBox4: TCheckBox;
+    Button3: TButton;
+    Button4: TButton;
+    Label8: TLabel;
+    Label9: TLabel;
+  private
+    { Private declarations }
+  public
+  constructor Create( AOwner: TComponent);  override;
+    { Public declarations }
+  end;
+
+var
+  Form9: TForm9;
+   i:integer;
+implementation
+ constructor  TForm9.Create(AOwner: TComponent);
+       begin
+         inherited;
+           for I := 0 to TAgent_Class.array_of_agents.Count-1 do
+           ComboBox1.Items.Add(TAgent_Class.array_of_agents[i].Name);
+
+
+       end;
+
+{$R *.dfm}
+
+end.

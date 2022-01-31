@@ -25,7 +25,6 @@ type
         Button2: TButton;
         procedure Button1Click(Sender: TObject);
         procedure Button2Click(Sender: TObject);
-        procedure ComboBox1Change(Sender: TObject);
 
     private
         { Private declarations }
@@ -40,7 +39,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2, My_f, WinManager, WinMaster;
+uses Unit2, My_f, Win_Master, Win_Manager;
 
 function TForm1.hash(Data: string): string;
 var
@@ -60,7 +59,10 @@ begin
         Form3.Show;
     end;
     if (staff = 'Manager') then
-        WinMaster.Form4.Show;
+
+
+       TForm4.login:=Form1.Edit1.Text;
+        Win_Manager.Form4.Show;
 end;
 
 procedure Login();
@@ -101,15 +103,4 @@ begin
     Form2.Show;
 end;
 
-procedure TForm1.ComboBox1Change(Sender: TObject);
-begin
-
-end;
-
-{ procedure TForm1.ComboBox1Change(Sender: TObject);
-  begin
-
-  end;
-
-  $R *.dfm }
 end.

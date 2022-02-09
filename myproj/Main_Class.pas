@@ -26,7 +26,7 @@ type
     procedure sql_delete(table, key, value :string);
 
       procedure sql_insert(table:string ;   values: array of string);
-
+     procedure  sql(s:string);
 
     procedure create_filter(cbox: TComboBox); virtual;
     procedure create_sort(cbox: TComboBox); virtual;
@@ -51,7 +51,7 @@ begin
   ADOCon.LoginPrompt := false;
   ADOCon.Provider := 'Microsoft.Jet.OLEDB.4.0';
   ADOCon.ConnectionString :=
-    'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Курсовая\Database2.mdb;Persist Security Info=False;';
+    'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Курсовая\1111.mdb;Persist Security Info=False;';
 
 end;
 
@@ -85,6 +85,22 @@ begin
   // ADO.Destroy;
 end;
 
+ procedure TMain_Class.sql(s:string);
+ begin
+
+     var
+    ADO: TADOQuery;
+    ADO := TADOQuery.Create(nil);
+
+     ADO.Connection := ADOCon;
+    ADO.Active := false;
+    ADO.SQL.Clear;
+    ADO.SQL.Add(s );
+    ADO.ExecSQL;
+
+
+
+ end;
   procedure TMain_Class.sql_update(table, column_value, where :string);
   begin
        var
@@ -92,8 +108,8 @@ end;
     ADO := TADOQuery.Create(nil);
      var
     str: string;
-    str:= 'update '+ table+ ' set ' + column_value+ where;
-    ADO.Connection := ADOCon;
+    str:= 'update '+ table+ ' set ' +  column_value+ where;
+     ADO.Connection := ADOCon;
     ADO.Active := false;
     ADO.SQL.Clear;
     ADO.SQL.Add(str);
@@ -134,6 +150,9 @@ end;
                  if TryStrToFloat(values[i],temp) then
                   v:=v+ ' '+ temp.ToString + ' , '
                 else
+                  if ( (values[i]='true') or (values[i]='false')) then
+                  v:=v+ ' '+  values[i]  + ' , '
+                else
                     v:=v+ '  '+ QuotedStr( values[i]) + ' , ' ;
         end
 
@@ -142,6 +161,9 @@ end;
          begin
                  if TryStrToFloat(values[i],temp) then
                   v:=v+ ' '+ temp.ToString + '   '
+                 else
+                  if ( (values[i]='true') or (values[i]='false')) then
+                  v:=v+ ' '+  values[i]  + '   '
                 else
                     v:=v+ '  '+ QuotedStr( values[i]) + '  ' ;
         end

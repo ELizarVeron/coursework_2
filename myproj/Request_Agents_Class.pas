@@ -4,28 +4,26 @@ interface
   uses    System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
   TABLE_Agents, TABLE_History_Of_Reliz,   TABLE_Requests_agent,
-   TABLE_Suppliers,   Main_Class,     Frame_req_ag , Agent_Class;
+   TABLE_Suppliers,   Main_Class,    Agent_Class;
   type
      TRequest_Agents_Class = class(TMain_Class)
       public
       class var array_of_requests_agent: TObjectList<TRequest_Agent>;
-      var
 
-          fr: TFrame;
            constructor Create();
-           procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
+           class    procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
            function from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
-            procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
-            procedure create_sort(Sortirovka: TComboBox); override;
-            procedure create_filter(Filtr: TComboBox); override;
+           procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+           procedure create_sort(Sortirovka: TComboBox); override;
+           procedure create_filter(Filtr: TComboBox); override;
      end;
 
 implementation
+uses   Frame_req_ag ;
 constructor TRequest_Agents_Class.Create();
 begin
   inherited;
- array_of_requests_agent := from_ado_to_array_req_ag(sql_select('*', 'Request_from_agent', '',
-    '', false));
+ array_of_requests_agent := from_ado_to_array_req_ag(sql_select('*', 'Request_from_agent','',' order by ID_request_agent desc ', false));
 end;
 
 function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
@@ -41,6 +39,11 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
     req.ID_Agent := ado.Fields[1].AsInteger;
     req.Status:=  ado.Fields[2].AsString;
     req.Date_Of_Create:=ado.Fields[3].AsDateTime;
+    req.Premayment:= ado.Fields[4].AsBoolean;
+    req.Done:= ado.Fields[5].AsBoolean;
+
+
+
     array_of_requests_agent.Add(req);
     ado.Next;
   end;
@@ -77,12 +80,13 @@ begin
 
 end;
 
-  procedure TRequest_Agents_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
+class procedure TRequest_Agents_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
   begin
         var
         i, beg, en: integer;
       var
         Item: TControl;
+         var  fr: TFrame;
       beg := page * on_page;
       en := ((page + 1) * on_page) - 1;
       i := 0;
@@ -96,19 +100,23 @@ end;
         fr := TFrame9.Create(Panel1);
         var
           discount: integer;
+        var mc:TMain_Class;
+        mc:=TMain_Class.Create;
         With fr do
         begin
           Parent := Panel1;
           Name := 'FORM' + beg.ToString;
           Top := (fr.Height * i) + 10;
           Tag := 1;
-          array_of_requests_agent[beg].Company:=sql_select('Company', 'Agent' , 'where ID = ' +   array_of_requests_agent[beg].ID_Agent.ToString,'',false).Fields[0].AsString; //что бы узнать имя агента по id
+          array_of_requests_agent[beg].Company:=mc.sql_select('Company', 'Agent' , 'where ID = ' + array_of_requests_agent[beg].ID_Agent.ToString,'',false).Fields[0].AsString; //что бы узнать имя агента по id
 
           TFrame9(fr).Label1.Caption :=array_of_requests_agent[beg].Company;
 
           TFrame9(fr).Label4.Caption :=  DateTimeToStr(array_of_requests_agent[beg].Date_Of_Create);
           TFrame9(fr).Label6.Caption := array_of_requests_agent[beg].Status;
           TFrame9(fr).Label8.Caption :=  array_of_requests_agent[beg].ID_Request.ToString;
+           TFrame9(fr).panel:=Panel1;
+          TFrame9(fr).Req_on_frame:= array_of_requests_agent[beg];
           Show;
           Inc(beg);
           Inc(i);
@@ -126,7 +134,7 @@ end;
 
   end;
 
-          procedure TRequest_Agents_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
+procedure TRequest_Agents_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
   sort: TComboBox);
 begin // надо создать новый sql запрос и перезагрузить фреймы
   // потом мб надо вынести это в маин класс
@@ -147,7 +155,7 @@ begin // надо создать новый sql запрос и перезагр
     if (edit.Text = '') then
       where := ' '
     else
-      where := 'where Company like ' + #39 + '%' + edit.Text + '%' + #39;
+      where := 'where ID_request_ like ' + #39 +   edit.Text + #39    ;
 
   end
 
@@ -178,10 +186,8 @@ begin // надо создать новый sql запрос и перезагр
   if sort.ItemIndex < 0 then
     order := '';
 
- // array_of_agents := from_ado_to_array_agents(sql_select(' * ', from, where,
-  //  order, false));
-  //Get_History_and_Products;
-  //Get_Count_and_Sale;
+    array_of_requests_agent := from_ado_to_array_req_ag(sql_select(' * ', from, where,
+    order, false));
 
 end;
 

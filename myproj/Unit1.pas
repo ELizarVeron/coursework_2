@@ -30,6 +30,7 @@ type
         { Private declarations }
     public
         function hash(Data: string): string;
+         function  Return_staff(cb: TComboBox): string;
     end;
 
 var
@@ -39,7 +40,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2, My_f, Win_Master, Win_Manager;
+uses Unit2 , Win_Master, Win_Manager;
 
 function TForm1.hash(Data: string): string;
 var
@@ -76,7 +77,7 @@ begin
     Form1.ADOQuery1.SQL.Clear; // удаление предыдущего текста запроса
     log := Form1.Edit1.Text;
     my_SQL := 'SELECT * FROM Users WHERE lOGIN = ' + QuotedStr(log) +
-      'AND STAFF=' + QuotedStr(My_f.Return_staff(Form1.ComboBox1));
+      'AND STAFF=' + QuotedStr( Form1.Return_staff(Form1.ComboBox1));
     Form1.ADOQuery1.SQL.Add(my_SQL); // добавление нового текста запроса
     Form1.ADOQuery1.Active := True; // включение запроса
     if (Form1.ADOQuery1.IsEmpty) then
@@ -101,6 +102,16 @@ end;
 procedure TForm1.Button2Click(Sender: TObject);
 begin
     Form2.Show;
+end;
+
+
+  function TForm1.Return_staff(cb: TComboBox): string;
+// ѕолучение выбранной на форме должности
+begin
+  if (cb.ItemIndex = 0) then
+    Result := 'Manager'
+  else
+    Result := 'Master';
 end;
 
 end.

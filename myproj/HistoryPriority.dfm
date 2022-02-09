@@ -36,7 +36,7 @@ object Form6: TForm6
   object DBGrid1: TDBGrid
     Left = 56
     Top = 84
-    Width = 401
+    Width = 417
     Height = 136
     DataSource = DataSource1
     DrawingStyle = gdsGradient
@@ -52,31 +52,33 @@ object Form6: TForm6
       item
         Expanded = False
         FieldName = 'login manager'
+        Title.Caption = #1052#1077#1085#1077#1076#1078#1077#1088
         Width = 121
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'Date_'
+        Title.Caption = #1044#1072#1090#1072
         Width = 121
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'change'
+        Title.Caption = #1048#1079#1084#1077#1085#1077#1085#1080#1103
         Width = 121
         Visible = True
       end>
   end
   object ADOTable1: TADOTable
-    Active = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\'#1050#1091#1088#1089#1086#1074#1072#1103'\Databas' +
-      'e2.mdb;Persist Security Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\'#1050#1091#1088#1089#1086#1074#1072#1103'\1111.md' +
+      'b;Persist Security Info=False'
     CursorType = ctStatic
     TableName = 'History_of_priority'
-    Left = 464
-    Top = 48
+    Left = 504
+    Top = 88
   end
   object DataSource1: TDataSource
     DataSet = ADOTable1

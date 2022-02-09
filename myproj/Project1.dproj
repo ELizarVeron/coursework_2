@@ -106,7 +106,6 @@
         <DCCReference Include="Unit2.pas">
             <Form>Form2</Form>
         </DCCReference>
-        <DCCReference Include="My_f.pas"/>
         <DCCReference Include="Win_Master.pas">
             <Form>Form3</Form>
         </DCCReference>
@@ -117,8 +116,6 @@
             <Form>Frame3</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="BD_class.pas"/>
-        <DCCReference Include="BD_Manager.pas"/>
         <DCCReference Include="TABLE_Agents.pas"/>
         <DCCReference Include="TABLE_History_Of_Reliz.pas"/>
         <DCCReference Include="TABLE_Materials.pas"/>
@@ -140,10 +137,6 @@
         <DCCReference Include="Product_Class.pas"/>
         <DCCReference Include="Nav_Frame.pas">
             <Form>Frame7</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Request_Frame.pas">
-            <Form>Frame8</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Request_Agents_Class.pas"/>
@@ -179,6 +172,26 @@
         </DCCReference>
         <DCCReference Include="SelectProducts.pas">
             <Form>Form10</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Request_Info.pas">
+            <Form>Form11</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CREATE_Agent.pas">
+            <Form>Form12</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CREATE_Supplier.pas">
+            <Form>Form13</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CREATE_Product.pas">
+            <Form>Form14</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ChangesRequest.pas">
+            <Form>Form15</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

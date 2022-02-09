@@ -47,10 +47,6 @@ begin
 end;
 
 
-
-
-
-
 procedure TAgent_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
   sort: TComboBox);
 begin // надо создать новый sql запрос и перезагрузить фреймы

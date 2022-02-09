@@ -77,12 +77,13 @@ object Frame9: TFrame9
       Caption = 'Label8'
     end
     object Button1: TButton
-      Left = 32
+      Left = 30
       Top = 66
       Width = 177
       Height = 25
       Caption = #1055#1086#1076#1088#1086#1073#1085#1072#1103' '#1080#1085#1092#1086#1088#1084#1072#1094#1080#1103
       TabOrder = 0
+      OnClick = Button1Click
     end
   end
 end

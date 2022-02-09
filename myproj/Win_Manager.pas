@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.Win.ADODB,
   Vcl.ExtCtrls, Main_Class, Agent_Class,
   Vcl.ComCtrls, Supplier_Class, Product_Class, Request_Agents_Class, Nav_Frame,
-  Navigator, Frame_req_ag,CREATE_REQUEST;
+  Navigator, Frame_req_ag,CREATE_REQUEST , CREATE_Agent, CREATE_Product, CREATE_Supplier;
 
 type
   TForm4 = class(TForm)
@@ -56,7 +56,14 @@ type
     procedure Navigator_Agent_FrameLabel_3Click(Sender: TObject);
     procedure Navigator_Agent_FrameLabel_4Click(Sender: TObject);
     procedure reload_agents();
+    procedure reload_req();
+    procedure reload_ag();
+    procedure reload_sup();
+    procedure reload_prod();
     procedure Button3Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,19 +100,14 @@ begin
 
   AgentClass := TAgent_Class.Create();
   AgentClass.Panel:=Panel1;
-
   AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
   AgentClass.load_pages(Navigator_Agent_Frame.Panel2, AgentClass.array_of_agents.Count,0);
-
-
-
   AgentClass.create_sort( Sort_Agent);
   AgentClass.create_filter( Filtr_Agent);
 
 
   SupClass := TSupplier_Class.Create;
-  ADO_sup := SupClass.sql_select('*', 'supplier', '', '', false);
-  C_sup := ADO_sup.RecordCount;
+  C_sup :=  SupClass.array_of_suppliers.Count;
   SupClass.load_frames(Panel3, 0, C_sup);
   SupClass.create_sort(Sort_Sup);
   SupClass.create_filter(filter_sup);
@@ -113,19 +115,16 @@ begin
 
 
   ProdClass := TProduct_Class.Create;
-  ADO_prod := ProdClass.sql_select('*', 'products', '', '', false);
-  C_prod := ADO_prod.RecordCount;
+  C_prod := ProdClass.array_of_products.Count;
   ProdClass.load_frames(Panel7, 0, C_agent);
   ProdClass.create_sort(Sort_Prod);
   ProdClass.create_filter(filter_prod);
-
   ProdClass.load_pages(Navigator_Production_Frame.Panel2, ProdClass.array_of_products.Count,0);
 
   ReqClass := TRequest_Agents_Class.Create;
-  ADO_req:= ReqClass.sql_select('*', 'Request_from_agent','','',false);
-  C_req:= ADO_req.RecordCount;
+  C_req:= ReqClass.array_of_requests_agent.Count;
   ReqClass.load_frames(Panel6,0, C_req);
-    ReqClass.create_sort(sort_req);
+  ReqClass.create_sort(sort_req);
   ReqClass.create_filter(Filter_req);
   ReqClass.load_pages(Navigator_Request_Frame.Panel2, ReqClass.array_of_requests_agent.Count,0);
 
@@ -142,12 +141,86 @@ begin
 
 end;
 
-procedure TForm4.Button3Click(Sender: TObject);
+
+procedure TForm4.reload_req();
+begin
+
+  ReqClass := TRequest_Agents_Class.Create;
+  C_req:= ReqClass.array_of_requests_agent.Count;
+  ReqClass.load_frames(Panel6,0, C_req);
+  ReqClass.load_pages(Navigator_Request_Frame.Panel2, ReqClass.array_of_requests_agent.Count,0);
+
+end;
+
+procedure TForm4.reload_ag();
+begin
+
+   AgentClass := TAgent_Class.Create();
+  AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
+  AgentClass.load_pages(Navigator_Agent_Frame.Panel2, AgentClass.array_of_agents.Count,0);
+
+end;
+
+procedure TForm4.reload_sup();
+begin
+
+  SupClass := TSupplier_Class.Create;
+  C_sup :=  SupClass.array_of_suppliers.Count;
+  SupClass.load_frames(Panel3, 0, C_sup);
+  SupClass.load_pages(Navigator_Supplier_Frame.Panel2, SupClass.array_of_suppliers.Count,0);
+
+end;
+
+procedure TForm4.reload_prod();
+begin
+
+  ProdClass := TProduct_Class.Create;
+  C_prod := ProdClass.array_of_products.Count;
+  ProdClass.load_frames(Panel7, 0, C_agent);
+  ProdClass.load_pages(Navigator_Production_Frame.Panel2, ProdClass.array_of_products.Count,0);
+
+end;
+procedure TForm4.Button1Click(Sender: TObject);    //доб.агента
+begin
+          var
+        Form12: TForm12;
+        Form12 := TForm12.Create(nil);
+        Form12.ShowModal;
+
+
+end;
+
+procedure TForm4.Button2Click(Sender: TObject);     //доб.поставшика
+begin
+          var
+        Form13: TForm13;
+        Form13 := TForm13.Create(nil);
+        Form13.ShowModal;
+
+      //  reload_req;
+
+end;
+
+procedure TForm4.Button3Click(Sender: TObject);    //создание заявки
 begin
     var
-            Form9: TForm9;
+        Form9: TForm9;
         Form9 := TForm9.Create(nil);
-        Form9.Show;
+        Form9.ShowModal;
+
+        reload_req;
+
+
+
+end;
+
+procedure TForm4.Button4Click(Sender: TObject);      //add production
+begin
+
+          var
+        Form14: TForm14;
+        Form14 := TForm14.Create(nil);
+        Form14.ShowModal;
 end;
 
 procedure TForm4.Edit1Change(Sender: TObject); // этот метод все редактирует
@@ -161,7 +234,7 @@ begin
      end;
      if (PageControl1.ActivePage = Requests) then
   begin
-        ReqClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
+        ReqClass.FiltrChange(Edit_Req, Filter_Req, Filter_Req);
         ReqClass.load_frames(Panel6, 0, ReqClass.array_of_requests_agent.Count);
         ReqClass.load_pages(Navigator_Request_Frame.Panel2, ReqClass.array_of_requests_agent.Count, 0);
   end;
@@ -190,15 +263,18 @@ begin
      end;
      if (PageControl1.ActivePage = Requests) then
   begin
-
+        ReqClass.FiltrChange(Edit_Req, Filter_Req, Filter_Req);
+        ReqClass.load_pages(Navigator_Request_Frame.Panel2, ReqClass.array_of_requests_agent.Count, 0);
   end;
   if (PageControl1.ActivePage = Suppliers) then
   begin
-          // SupClass.
+         SupClass.FiltrChange(Edit_Sup, Filter_Sup, Sort_Sup);
+         SupClass.load_pages( Navigator_Supplier_Frame.Panel2, SupClass.array_of_suppliers.Count, 0);
   end;
   if (PageControl1.ActivePage = Productions) then
   begin
-           //ProdClass.FiltrChange(Edit3,ComboBox4,ComboBox3) ;
+         ProdClass.FiltrChange(Edit_Prod, Filter_Prod, Sort_Prod);
+         ProdClass.load_pages(Navigator_Production_Frame.Panel2, ProdClass.array_of_products.Count, 0);
   end;
 
 end;
@@ -263,7 +339,7 @@ begin
     if (PageControl1.ActivePage = Requests) then
   begin
     i:= strToInt(  Navigator_Request_Frame.Label_1.Caption  ) - 1;
-    ReqClass.load_frames(Panel3, i, ReqClass.array_of_requests_agent.Count);
+    ReqClass.load_frames(Panel6, i, ReqClass.array_of_requests_agent.Count);
      Navigator_Supplier_Frame.Label_1.Font.Style := [fsUnderline];
    Navigator_Supplier_Frame.Label_2.Font.Style := [];
    Navigator_Supplier_Frame.Label_3.Font.Style:= [];
@@ -306,12 +382,12 @@ begin
 
     if (PageControl1.ActivePage = Requests) then
   begin
-    i:= strToInt(  Navigator_Request_Frame.Label_1.Caption  ) - 1;
-    ReqClass.load_frames(Panel3, i, ReqClass.array_of_requests_agent.Count);
-     Navigator_Supplier_Frame.Label_1.Font.Style := [];
-   Navigator_Supplier_Frame.Label_2.Font.Style := [fsUnderline];
-   Navigator_Supplier_Frame.Label_3.Font.Style:= [];
-   Navigator_Supplier_Frame.Label_4.Font.Style := [];
+    i:= strToInt(  Navigator_Request_Frame.Label_2.Caption  ) - 1;
+    ReqClass.load_frames(Panel6, i, ReqClass.array_of_requests_agent.Count);
+    Navigator_Request_Frame.Label_1.Font.Style := [];
+   Navigator_Request_Frame.Label_2.Font.Style := [fsUnderline];
+   Navigator_Request_Frame.Label_3.Font.Style:= [];
+   Navigator_Request_Frame.Label_4.Font.Style := [];
   end;
 
 end;
@@ -353,7 +429,7 @@ begin
     if (PageControl1.ActivePage = Requests) then
   begin
     i:= strToInt(  Navigator_Request_Frame.Label_3.Caption  ) - 1;
-    ReqClass.load_frames(Panel3, i, ReqClass.array_of_requests_agent.Count);
+    ReqClass.load_frames(Panel6, i, ReqClass.array_of_requests_agent.Count);
      Navigator_Supplier_Frame.Label_1.Font.Style := [];
    Navigator_Supplier_Frame.Label_2.Font.Style := [];
    Navigator_Supplier_Frame.Label_3.Font.Style:= [fsUnderline];
@@ -399,11 +475,11 @@ begin
     if (PageControl1.ActivePage = Requests) then
   begin
     i:= strToInt(  Navigator_Request_Frame.Label_4.Caption  ) - 1;
-    ReqClass.load_frames(Panel3, i, ReqClass.array_of_requests_agent.Count);
-     Navigator_Supplier_Frame.Label_1.Font.Style := [];
-   Navigator_Supplier_Frame.Label_2.Font.Style := [];
-   Navigator_Supplier_Frame.Label_3.Font.Style:= [];
-   Navigator_Supplier_Frame.Label_4.Font.Style := [fsUnderline];
+    ReqClass.load_frames(Panel6, i, ReqClass.array_of_requests_agent.Count);
+    Navigator_Supplier_Frame.Label_1.Font.Style := [];
+    Navigator_Supplier_Frame.Label_2.Font.Style := [];
+    Navigator_Supplier_Frame.Label_3.Font.Style:= [];
+    Navigator_Supplier_Frame.Label_4.Font.Style := [fsUnderline];
   end;
 end;
 

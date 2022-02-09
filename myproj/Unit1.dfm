@@ -141,13 +141,19 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object ADOConnection1: TADOConnection
-    Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\'#1050#1091#1088#1089#1086#1074#1072#1103'\Databas' +
-      'e2.mdb;Persist Security Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;User ID=Admin;Data Source=D:\'#1050#1091 +
+      #1088#1089#1086#1074#1072#1103'\1111.mdb;Mode=Share Deny None;Persist Security Info=False' +
+      ';Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OLE' +
+      'DB:Database Password="";Jet OLEDB:Engine Type=5;Jet OLEDB:Databa' +
+      'se Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB:' +
+      'Global Bulk Transactions=1;Jet OLEDB:New Database Password="";Je' +
+      't OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database=' +
+      'False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Com' +
+      'pact Without Replica Repair=False;Jet OLEDB:SFP=False;'
     LoginPrompt = False
     Mode = cmShareDenyNone
-    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Provider = 'MSDAOSP'
     Left = 40
   end
   object DataSource1: TDataSource
@@ -155,7 +161,6 @@ object Form1: TForm1
     Top = 8
   end
   object ADOQuery1: TADOQuery
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     Parameters = <>

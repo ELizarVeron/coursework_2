@@ -18,7 +18,7 @@ object Form4: TForm4
     Top = 8
     Width = 889
     Height = 777
-    ActivePage = Agents
+    ActivePage = Requests
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11

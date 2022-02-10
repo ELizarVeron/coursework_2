@@ -10,6 +10,8 @@ type
     FStatus, FCompany: string;
     FID_Request, FID_Agent: integer;
     FDate_Of_Create: TDateTime;
+    FDate_Of_Confirm: TDateTime;
+    FDate_Of_Begin: TDateTime;
     FPremayment, FDone:boolean;
   protected
   public
@@ -19,6 +21,8 @@ type
     property Company: string read FCompany write FCompany;
     property Status: string read FStatus write FStatus;
     property Date_Of_Create: TDateTime read FDate_Of_Create write FDate_Of_Create;
+    property Date_Of_Confirm: TDateTime read FDate_Of_Confirm write FDate_Of_Confirm;
+    property Date_Of_Begin: TDateTime read FDate_Of_Begin write FDate_Of_Begin;
     property Premayment: boolean read FPremayment write FPremayment;
     property Done: boolean read FDone write FDone;
   var

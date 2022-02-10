@@ -5,7 +5,7 @@ interface
 uses
   ComObj,Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,Generics.Collections,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Data.DB,
-  Data.Win.ADODB, Vcl.DBGrids, Main_Class , TABLE_Agents, Product_Class,  Request_Agents_Class;
+  Data.Win.ADODB, Vcl.DBGrids, Main_Class , TABLE_Agents, Product_Class, DateUtils , Request_Agents_Class;
 
 type
   TForm10 = class(TForm)
@@ -33,7 +33,7 @@ type
     function save_request_in_db(arr:array of string;agent_id:integer;new:boolean):integer;
     procedure save_composition_in_db(arr2:array  of string;agent_id:integer);
   private
-    var arr: array[0..6] of string;
+    var arr: array[0..8] of string;
     var arr2: array[0..2] of string;
   public
     { Public declarations }
@@ -263,7 +263,13 @@ begin
      arr[5]:='false';
      if(new) then arr[6]:='true'
      else arr[6]:='false';
+     arr[7]:=FormatDateTime('dd.mm.yyyy hh:nn:ss ', EncodeDateTime(1999, 2, 9, 1, 2, 3,4));
+     arr[8]:=FormatDateTime('dd.mm.yyyy hh:nn:ss ', EncodeDateTime(1999, 2, 9, 1, 2, 3,4));
      mc.sql_insert(' Request_from_agent ' ,arr );
+
+     //надо ещ в масив сохранить
+
+
      result:=  next_id;
 
 
@@ -458,6 +464,7 @@ end;
             //    save_in_doc;
                 save_request_in_db(arr,agent_id,false);
                 save_composition_in_db(arr2,agent_id);
+
            finally
                   ShowMessage('Предложение успешно созданно');
                    Close;

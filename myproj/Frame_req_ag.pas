@@ -44,7 +44,7 @@ begin
       WINFO.panel:=panel;
        WINFO.Init;
       WINFO.ShowModal;
-         TRequest_Agents_Class.load_frames(panel,0, TRequest_Agents_Class.array_of_requests_agent.Count-1);
+      TRequest_Agents_Class.load_frames(panel,0, TRequest_Agents_Class.array_of_requests_agent.Count-1);
 
 
 

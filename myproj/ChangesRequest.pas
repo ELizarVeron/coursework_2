@@ -25,7 +25,7 @@ type
      procedure init();
      procedure get_array();
      procedure   change_composition_in_db;
-     procedure  change_status;
+     procedure  change_status_in_db;
    var  need_reload:boolean;
 
   end;
@@ -79,10 +79,11 @@ implementation
         end;
 
 
-   procedure TForm15.change_status;
+   procedure TForm15.change_status_in_db;
    begin
          var mc:=TMain_class.Create();
-         mc.sql_update( 'Request_from_agent ' , ' Status =  ' + QuotedStr('В ожидании оплаты'), ' where ID_request_agent =  ' + FReq_on_frame.ID_Request.ToString);
+         var s:= ' Status =  ' + QuotedStr('В ожидании оплаты') + ' ,  DateOfConfirm =  ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now) )  ;    //сохранятем новый статус и время отсчета
+         mc.sql_update( 'Request_from_agent ' , s , ' where ID_request_agent =  ' + FReq_on_frame.ID_Request.ToString);
 
    end;
 
@@ -91,7 +92,10 @@ implementation
 begin
 
          change_composition_in_db;
-         change_status;
+         change_status_in_db;
+
+         Req_On_Frame.Date_Of_Confirm:=   Now;
+
          SHowMessage( 'Изменения внесены' );
          need_reload:=true;
         Close;
@@ -133,7 +137,7 @@ procedure TForm15.get_array();
                  var str:='delete from Com where IDr  = ' + Req_on_frame.ID_Request.ToString +
                  ' and art = ' +  arr[i][2]  ;
                    mc.sql(str);
-                 str:= 'insert into Com values ( ' +Req_on_frame.ID_Request.ToString+ ',' + arr[i][2] + ' ,' +  s.Text + ')';
+                  str:= 'insert into Com values ( ' +Req_on_frame.ID_Request.ToString+ ',' + arr[i][2] + ' ,' +  s.Text + ')';
                    mc.sql(str);
 
 

@@ -39,6 +39,10 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
     req.ID_Agent := ado.Fields[1].AsInteger;
     req.Status:=  ado.Fields[2].AsString;
     req.Date_Of_Create:=ado.Fields[3].AsDateTime;
+    if(req.Status = 'В ожидании оплаты'  )   then
+    req.Date_Of_Confirm:=ado.Fields[7].AsDateTime;
+    req.Date_Of_Begin:=ado.Fields[8].AsDateTime;
+
     req.Premayment:= ado.Fields[4].AsBoolean;
     req.Done:= ado.Fields[5].AsBoolean;
 

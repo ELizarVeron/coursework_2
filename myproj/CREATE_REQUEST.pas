@@ -24,7 +24,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure save_in_file;
   private
-    var arr: array[0..6] of string;
+    var arr: array[0..8] of string;
     var arr2: array[0..2] of string;
   public
   constructor Create( AOwner: TComponent);  override;

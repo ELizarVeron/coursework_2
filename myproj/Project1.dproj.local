@@ -67,8 +67,8 @@
     <Transaction>1899.12.30 00:00:00.000.844,=D:\coursework_2\myproj\Unit10.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.430,=D:\coursework_2\myproj\Unit10.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.151,D:\coursework_2\myproj\Unit10.pas=D:\coursework_2\myproj\SelectProducts.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.708,D:\coursework_2\myproj\Frame_req_a.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.957,=D:\coursework_2\myproj\Frame_req_a.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.708,D:\coursework_2\myproj\Frame_req_a.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.082,D:\coursework_2\myproj\EDITAgent.pas=D:\coursework_2\myproj\Unit5.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.856,D:\coursework_2\myproj\REQUEST.pas=D:\coursework_2\myproj\CREATE_REQUEST.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.019,=D:\coursework_2\myproj\Unit6.pas</Transaction>
@@ -85,10 +85,10 @@
     <Transaction>1899.12.30 00:00:00.000.262,C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Frame_sups.dfm=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\ddfSSsupss.dfm</Transaction>
     <Transaction>1899.12.30 00:00:00.000.911,D:\coursework_2\myproj\My_f.pas=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.731,D:\coursework_2\myproj\Unit6.pas=D:\coursework_2\myproj\HistoryPriprity.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.033,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.212,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.885,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.322,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.212,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.033,=C:\Users\eliza\Downloads\coursework-main\coursework-main\myproj\Unit3.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Agent_Class.pas"/>

@@ -2,8 +2,8 @@ object Form15: TForm15
   Left = 0
   Top = 0
   Caption = 'Form15'
-  ClientHeight = 505
-  ClientWidth = 373
+  ClientHeight = 411
+  ClientWidth = 348
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -42,15 +42,5 @@ object Form15: TForm15
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     TabOrder = 1
     OnClick = Button1Click
-  end
-  object SpinEdit1: TSpinEdit
-    Left = 152
-    Top = 408
-    Width = 121
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 2
-    Value = 0
   end
 end

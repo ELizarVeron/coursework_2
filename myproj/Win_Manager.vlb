@@ -82,9 +82,6 @@ Coordinates=343,10,101,124
 [Sort_Prod]
 Coordinates=787,10,101,124
 
-[Panel6]
-Coordinates=10,416,55,58
-
 [Panel4]
 Coordinates=459,212,55,58
 
@@ -131,6 +128,6 @@ Coordinates=245,212,204,58
 Coordinates=449,620,154,36
 
 []
-Coordinates=366,416,55,58
+Coordinates=10,416,55,58
 Visible=True
 

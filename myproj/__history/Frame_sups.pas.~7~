@@ -1,0 +1,53 @@
+unit Frame_sups;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,TABLE_Suppliers,
+  Vcl.ExtCtrls,
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage,INFOSupplier;
+
+type
+  TFrame5 = class(TFrame)
+    Panel1: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label1: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    procedure Panel1Click(Sender: TObject);
+  private
+    procedure  ShowINFO;
+    var FsupplierOnFrame: TSupplier;
+  public
+     property supplierOnFrame: TSupplier read FsupplierOnFrame write FsupplierOnFrame;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrame5.Panel1Click(Sender: TObject);
+begin
+  ShowINFO;
+end;
+
+procedure TFrame5.ShowINFO ;
+ begin
+     var SINFO: TForm19;
+     SINFO:=TForm19.Create(self);
+     SINFO.Sup:=supplierOnFrame;
+     SINFO.Init;
+     SINFO.Show;
+
+ end;
+
+end.

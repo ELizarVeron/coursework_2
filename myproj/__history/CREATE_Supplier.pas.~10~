@@ -1,0 +1,156 @@
+unit CREATE_Supplier;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls ,System.Generics.Collections, Main_Class, TABLE_Suppliers, Supplier_class,
+  Vcl.ExtDlgs , StrUtils , JPEG, Vcl.ExtCtrls;
+
+type
+  TForm13 = class(TForm)
+    Label1: TLabel;
+    Edit_name: TEdit;
+    Label2: TLabel;
+    Label4: TLabel;
+    Edit_tel: TEdit;
+    Label7: TLabel;
+    Edit_email: TEdit;
+    Label8: TLabel;
+    Edit_Inn: TEdit;
+    Label10: TLabel;
+    ComboBox_type: TComboBox;
+    Button1: TButton;
+    Button2: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Image1: TImage;
+    OpenPictureDialog1: TOpenPictureDialog;
+    procedure Button4Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    procedure SaveInArrayOfSup;
+    procedure SaveInDB;
+    procedure SaveIcon;
+  public
+       constructor Create( AOwner: TComponent);  override;
+        procedure Init(sup:TSupplier);
+        var  modeEdit,need_delete:boolean;
+  end;
+
+var
+  Form13: TForm13;
+  new_sup: TSupplier;
+  arr: array[0..7] of string;
+  img:TJpegImage;
+  mc:TMain_class;
+
+   img_name: string;
+  ext:string;
+  sup_on_change:TSupplier;
+
+implementation
+
+{$R *.dfm}
+  procedure TForm13.Button1Click(Sender: TObject);      //save
+begin
+        SaveInArrayOfSup;
+        SaveInDB;
+        Inc(TSupplier_Class.max_id);
+        Close;
+
+end;
+
+procedure TForm13.Button4Click(Sender: TObject);
+begin
+   if OpenPictureDialog1.Execute and
+   FileExists(OpenPictureDialog1.FileName) then
+   begin
+        Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+   ext:= ExtractFileExt(OpenPictureDialog1.FileName);
+   end;
+end;
+
+constructor TForm13.Create(AOwner: TComponent);
+  begin
+
+           mc:=TMain_class.Create;
+           new_sup:= TSupplier.Create;
+
+           inherited;
+
+  end;
+  procedure TForm13.SaveInArrayOfSup;
+  begin
+         new_sup.ID:=(TSupplier_Class.max_id +1) ;
+         new_sup.Title:=Edit_name.Text;
+         new_sup.Type_:=ComboBox_type.Text;
+         new_sup.Tel  :=Edit_tel.Text;
+         new_sup.Email:=Edit_email.Text;
+
+         new_sup.Logo:= img_name;
+
+         TSupplier_Class.array_of_suppliers.Add(new_sup);
+
+  end;
+    procedure TForm13.SaveInDB;
+  begin
+          arr[0]:= (TSupplier_Class.max_id +1).ToString;
+          arr[1]:= new_sup.Title;
+           arr[2]:=new_sup.Type_;
+            arr[3]:=new_sup.INN;
+             arr[4]:=new_sup.Rate.ToString;
+              arr[5]:=new_sup.Logo;
+               arr[6]:=new_sup.Tel;
+                arr[7]:=new_sup.Email;
+
+            mc.sql_insert('Supplier', arr);
+
+  end;
+
+
+   procedure TForm13.SaveIcon;
+  begin
+            img_name:=  'img_agent' + (TSupplier_Class.max_id +1).ToString+ext;
+            var MyFolder:= 'images\';
+            var Path,FileName: String;
+
+          Path:=ExtractFilePath(ParamStr(0))+MyFolder;
+          if ForceDirectories(Path) then
+          begin
+          img_name:=Path+img_name;
+
+          end;
+   Image1.Picture.SaveToFile(img_name);
+     if  (Image1.Picture.Graphic = nil ) then
+      begin
+         new_sup.Logo:='icn.png';
+      end
+      else
+      begin
+          new_sup.Logo:=img_name;
+      end;
+
+  end;
+  procedure TForm13.Init(sup:TSupplier);
+        begin
+              sup_on_change:=sup;
+              Edit_name.Text:=sup.Title;
+              Edit_tel.Text:=sup.Tel;
+              Edit_email.Text:=sup.Email;
+              Edit_inn.Text:=sup.INN;
+
+
+                if (sup_on_change.Logo = '') then
+                Image1.Picture.LoadFromFile('icn.png')
+                else
+                Image1.Picture.LoadFromFile(sup_on_change.Logo);
+
+
+
+
+
+        end;
+
+
+end.

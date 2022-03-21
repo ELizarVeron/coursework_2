@@ -60,10 +60,14 @@ begin
         Form3.Show;
     end;
     if (staff = 'Manager') then
+    begin
 
-
-       TForm4.login:=Form1.Edit1.Text;
+        TForm4.login:=Form1.Edit1.Text;
         Win_Manager.Form4.Show;
+    end;
+
+
+
 end;
 
 procedure Login();
@@ -97,6 +101,7 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
     Login();
+    Hide;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);

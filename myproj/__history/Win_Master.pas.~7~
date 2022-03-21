@@ -1,0 +1,51 @@
+﻿unit Win_Master;
+
+interface
+
+uses
+  System.Generics.Collections, Winapi.Windows, Winapi.Messages, System.SysUtils,
+  System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Data.DB,
+  Data.Win.ADODB, Frame_agents, Vcl.ExtCtrls, Vcl.Imaging.jpeg,
+  BD_Manager, Agents;
+
+type
+  TForm3 = class(TForm)
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    Panel1: TPanel;
+    Button1: TButton;
+    Button2: TButton;
+
+
+  private
+    { Private declarations }
+  public
+     constructor Create(AOwner: TComponent); override;
+
+
+  end;
+
+
+
+implementation
+
+constructor TForm3.Create;
+begin
+       inherited;
+
+
+
+end;
+
+
+
+
+
+
+{$R *.dfm}
+
+end.

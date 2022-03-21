@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = '7'
   ClientHeight = 444
   ClientWidth = 369
   Color = clBtnFace
@@ -77,13 +77,14 @@ object Form1: TForm1
     Font.Height = -21
     Font.Name = 'Comic Sans MS'
     Font.Style = []
-    ItemIndex = 0
+    ItemIndex = 1
     ParentFont = False
     TabOrder = 0
-    Text = #1052#1077#1085#1077#1078#1077#1088
+    Text = #1052#1072#1089#1090#1077#1088' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1072
     Items.Strings = (
       #1052#1077#1085#1077#1078#1077#1088
-      #1052#1072#1089#1090#1077#1088' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1072)
+      #1052#1072#1089#1090#1077#1088' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1072
+      '')
   end
   object Edit1: TEdit
     Left = 176
@@ -97,7 +98,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = 'sssssss'
+    Text = 'sssssss1'
   end
   object Edit2: TEdit
     Left = 176

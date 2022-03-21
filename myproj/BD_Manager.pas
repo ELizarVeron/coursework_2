@@ -6,8 +6,8 @@ uses // потом сотри лишнее
   System.Generics.Collections, Winapi.Windows, Winapi.Messages, System.SysUtils,
   System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Data.DB,
-  Data.Win.ADODB, Frame_agents, Vcl.ExtCtrls, Vcl.Imaging.jpeg, Fr_ag, BD_class,
-  TABLE_Agents, DateUtils;
+  Data.Win.ADODB, Frame_agents, Vcl.ExtCtrls, Vcl.Imaging.jpeg,  BD_class,
+  Agents, DateUtils;
 
 type
   TFor_Manager = class(Tdata_from_bd)

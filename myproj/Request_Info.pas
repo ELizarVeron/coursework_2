@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Vcl.StdCtrls,DateUtils , Request_Agents_Class,TABLE_Requests_agent,  Data.Win.ADODB, Main_Class,ChangesRequest;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Vcl.StdCtrls,DateUtils , Request_Agents_Class,Requests_agent,  Data.Win.ADODB, Main_Class,ChangesRequest;
 
 type
   TForm11 = class(TForm)
@@ -26,6 +26,7 @@ type
     CheckBox1: TCheckBox;
     Label_ForTimer: TLabel;
     Button_Delivery: TButton;
+    Label6: TLabel;
     procedure Button_DeleteClick(Sender: TObject);
     procedure Button_ChangesClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -33,9 +34,12 @@ type
 
 
 
+
   private
   var timer_for_prepayment :bool;
   public
+  constructor Create(AOwner: TComponent); override;
+
    var Req_on_frame:  TRequest_agent;
    var need_delete:boolean;
     procedure Do_List;
@@ -48,6 +52,7 @@ type
        var EndTime:integer;
         var max_time:integer;
 
+
   end;
 
 var
@@ -59,14 +64,12 @@ implementation
 
 procedure TForm11.Button_ChangesClick(Sender: TObject);  //внести уточнения от агента
 begin
-       var ECHR:TForm15;
-
-       ECHR:=TForm15.Create(self);
-       ECHR.Req_on_frame:=Req_on_frame;
-
-       ECHR.init;
-       ECHR.ShowModal;
-       if( ECHR.need_reload ) then
+       var ChangeReqWindow:TForm15;
+       ChangeReqWindow:=TForm15.Create(self);
+       ChangeReqWindow.Req_on_frame:=Req_on_frame;
+       ChangeReqWindow.init;
+       ChangeReqWindow.ShowModal;
+       if( ChangeReqWindow.need_reload ) then
        begin
           Do_List;
           label_Red.Visible:=false;
@@ -74,9 +77,9 @@ begin
           Button_Changes.Enabled:=false;
        end;
 
-       TRequest_Agents_Class.load_frames(panel,0,TRequest_Agents_Class.array_of_requests_agent.Count);
 
-       Req_on_frame.Status:= 'В ожидании оплаты';
+
+       Req_on_frame.Status:= '2';
        init;
 
 end;
@@ -115,31 +118,36 @@ begin
 
          Timer1.Enabled := False;
          Req_on_frame.Premayment:=true;
-
          NextStepAfterPay;
-          init;
+         init;
 
 end;
 
 
-procedure TForm11.NextStepAfterPay;
+constructor TForm11.Create(AOwner: TComponent);
+begin
+  inherited;
+
+end;
+
+procedure TForm11.NextStepAfterPay;    //это после галочки
 begin
 
         var mc:=TMain_class.Create();
         var time:= GetTimeToInWork;
         if time>0 then
         begin
-             var s:=   ' Prepayment =  TRUE , Status = '+ QuotedStr('В работе') + ' , DateOfBegin = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
+             var s:=   ' Prepayment =  TRUE , Status = '+'3' + ' , DateOfBegin = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
              mc.sql_update( 'Request_from_agent ' ,  s , ' where ID_request_agent =  ' +  Req_on_frame.ID_Request.ToString);
-             Req_on_frame.Status:= 'В работе';
+             Req_on_frame.Status:= '3';
 
 
         end
         else
         begin
-             var s:=   ' Prepayment =  TRUE , Status = '+ QuotedStr('Ожидает отправления') + ' , DateOfBegin = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
+             var s:=   ' Prepayment =  TRUE , Status = '+  '6' + ' , DateOfBegin = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
              mc.sql_update( 'Request_from_agent ' ,  s , ' where ID_request_agent =  ' +  Req_on_frame.ID_Request.ToString);           //
-             Req_on_frame.Status:= 'Ожидает отправления';
+             Req_on_frame.Status:='В ожидании отправления';
 
 
 
@@ -162,10 +170,12 @@ begin
             Button_Delete.Visible:=true;
             CheckBox1.Visible:=false;
 
+
       end
+
        else  if Req_on_frame.Status= 'В ожидании оплаты' then
       begin
-             Label_Status.Caption:='В ожидании оплаты';
+           Label_Status.Caption:='В ожидании оплаты';
             Label_Red.Visible:=false;
             Button_Changes.Visible:=false;
             Button_Delete.Visible:=false;
@@ -177,6 +187,18 @@ begin
             Label_Time.Visible:=true;
 
       end
+       else if Req_on_frame.Status = 'В обработке' then
+            begin
+                   Label_Red.Visible:=false;
+                   Label_Status.Caption:='В обработке у мастера';
+                   Button_Changes.Visible:=false;
+                   Button_Delete.Visible:=false;
+                   CheckBox1.Visible:=false;
+                  Label_Time.Visible:=false;
+              Label_ForTimer.Visible:=false;
+              label8.Caption:='Да';
+
+            end
       else if Req_on_frame.Status= 'В работе'  then
       begin
             Label_Status.Caption:='В работе';
@@ -184,7 +206,7 @@ begin
             Button_Changes.Visible:=false;
             Button_Delete.Visible:=false;
             CheckBox1.Visible:=false;
-
+             Label_Time.Visible:=false;
               Label_ForTimer.Visible:=false;
               label8.Caption:='Да';
 
@@ -196,7 +218,7 @@ begin
             Label_Time.Caption:='Будет готово через: ';
       end
 
-      else if Req_on_frame.Status= 'Ожидает отправления'  then
+      else if Req_on_frame.Status= 'В ожидании отправления'  then
       begin
             Label_Status.Caption:='Ожидает отправления';
             Label_Red.Visible:=false;
@@ -218,8 +240,18 @@ begin
             Label_Time.Visible:=false;
             Label_ForTimer.Visible:=false;
 
-      end;
+      end
+        else
+      begin
+            Label_Status.Caption:='ERROR';
+            Label_Red.Visible:=false;
+            Button_Changes.Visible:=false;
+            Button_Delete.Visible:=false;
+            CheckBox1.Visible:=false;
+            Label_Time.Visible:=false;
+            Label_ForTimer.Visible:=false;
 
+      end;
 
       if( Req_on_frame.Premayment )  then
       Label8.Caption:= 'Да'
@@ -235,7 +267,7 @@ end;
 function TForm11.GetTimeToInWork: integer;  //тут по иддее надо инфу еще для мастера сохранить    //еще ситуация если не нужно работы а все есть на складе
 begin
      var mc:=TMain_class.Create();
-     var ado:=mc.sql_select( ' * ' , ' Com ' , ' where IDR =  ' +  Req_on_frame.ID_Request.ToString , '' , false ); //состав заявки
+     var ado:=mc.sql_select( ' * ' , ' Composition_of_req_ag ' , ' where ID_request =  ' +  Req_on_frame.ID_Request.ToString , '' , false ); //состав заявки
      var ado2,ado_instock:TADOQuery;
       max_time:=0;
      var need_job:=false;
@@ -274,8 +306,7 @@ begin
        ListBox1.Clear;
    var mc:=TMain_class.Create();
    var  mc2:=TMain_class.Create();
-
-   var  ado_composition:= mc.sql_select(' * ', ' Com  ' , 'where idr =  ' +  Req_on_frame.ID_Request.ToString , '   ' , false );
+   var  ado_composition:= mc.sql_select(' * ', ' Composition_of_req_ag  ' , 'where id_request =  ' +  Req_on_frame.ID_Request.ToString , '   ' , false );
      if ( ado_composition.IsEmpty) then
      begin
           ListBox1.Visible:=false;
@@ -299,6 +330,8 @@ begin
 
 
 end;
+
+
 
 procedure TForm11.Timer1Timer(Sender: TObject);
 var

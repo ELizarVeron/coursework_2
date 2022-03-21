@@ -1,0 +1,120 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'Form3'
+  ClientHeight = 671
+  ClientWidth = 722
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 722
+    Height = 671
+    ActivePage = TabSheet1
+    Align = alClient
+    DoubleBuffered = True
+    HotTrack = True
+    ParentDoubleBuffered = False
+    TabOrder = 0
+    ExplicitWidth = 726
+    ExplicitHeight = 630
+    object TabSheet1: TTabSheet
+      Caption = #1055#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1086
+      inline Navigator_Manufacture: TFrame10
+        Left = 224
+        Top = 568
+        Width = 220
+        Height = 72
+        TabOrder = 0
+        ExplicitLeft = 224
+        ExplicitTop = 568
+      end
+      inline Frame103: TFrame10
+        Left = 235
+        Top = 568
+        Width = 220
+        Height = 72
+        TabOrder = 1
+        ExplicitLeft = 235
+        ExplicitTop = 568
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = #1047#1072#1082#1072#1079' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
+      ImageIndex = 1
+      object TLabel
+        Left = 32
+        Top = 32
+        Width = 89
+        Height = 13
+        Caption = #1042#1099#1073#1086#1088' '#1084#1072#1090#1077#1088#1080#1072#1083#1072
+      end
+      object TLabel
+        Left = 32
+        Top = 96
+        Width = 97
+        Height = 13
+        Caption = #1042#1099#1073#1086#1088' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072
+      end
+      object TLabel
+        Left = 32
+        Top = 64
+        Width = 60
+        Height = 13
+        Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+      end
+      object Button2: TButton
+        Left = 32
+        Top = 128
+        Width = 113
+        Height = 25
+        Caption = #1057#1086#1079#1076#1072#1085#1080#1077' '#1079#1072#1103#1074#1082#1080
+        TabOrder = 0
+      end
+      inline Navigator_Requests: TFrame10
+        Left = 256
+        Top = 571
+        Width = 220
+        Height = 72
+        TabOrder = 1
+        ExplicitLeft = 256
+        ExplicitTop = 571
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = #1055#1088#1086#1076#1091#1082#1094#1080#1103
+      ImageIndex = 3
+      inline Navigator_Production: TFrame10
+        Left = 240
+        Top = 571
+        Width = 220
+        Height = 72
+        TabOrder = 0
+        ExplicitLeft = 240
+        ExplicitTop = 571
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = #1052#1072#1090#1077#1088#1080#1072#1083#1099
+      ImageIndex = 2
+      inline Navigator_Materials: TFrame10
+        Left = 232
+        Top = 571
+        Width = 220
+        Height = 72
+        TabOrder = 0
+        ExplicitLeft = 232
+        ExplicitTop = 571
+      end
+    end
+  end
+end

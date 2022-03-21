@@ -1,0 +1,38 @@
+unit INFOSupplier;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,TABLE_Suppliers;
+
+type
+  TForm19 = class(TForm)
+  private
+     FSup:TSupplier;
+  public
+  property Sup: TSupplier read FSup write FSup;
+  procedure Init;
+  end;
+
+var
+  Form19: TForm19;
+
+implementation
+procedure TForm19.Init;
+     begin
+       if not(sup=nil) then
+       begin
+
+
+
+
+       end;
+
+
+     end;
+
+
+{$R *.dfm}
+
+end.

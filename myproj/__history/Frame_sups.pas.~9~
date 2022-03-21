@@ -1,0 +1,67 @@
+unit Frame_sups;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,TABLE_Suppliers,
+  Vcl.ExtCtrls,
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage,INFOSupplier, Vcl.Menus;
+
+type
+  TFrame5 = class(TFrame)
+    Panel1: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label1: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    PopupMenu1: TPopupMenu;
+    N1: TMenuItem;
+    procedure Panel1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+  private
+    procedure  ShowINFO;
+    var FsupplierOnFrame: TSupplier;
+  public
+     property supplierOnFrame: TSupplier read FsupplierOnFrame write FsupplierOnFrame;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TFrame5.N1Click(Sender: TObject);   //редактирвонаие
+begin
+
+            var
+        Form13: TForm13;
+        Form13 := TForm13.Create(nil);
+        Form13.ShowModal;
+        reload_sup;
+end;
+
+procedure TFrame5.Panel1Click(Sender: TObject);
+begin
+  ShowINFO;
+end;
+
+procedure TFrame5.ShowINFO ;
+ begin
+     var SINFO: TForm19;
+     SINFO:=TForm19.Create(self);
+     SINFO.Sup:=supplierOnFrame;
+     SINFO.Init;
+     SINFO.Show;
+
+ end;
+
+end.

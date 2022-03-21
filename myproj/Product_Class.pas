@@ -4,22 +4,24 @@ interface
 
 uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
-  TABLE_Agents, TABLE_History_Of_Reliz, TABLE_Products, TABLE_Requests_agent,
-  TABLE_Request_supplier, TABLE_Suppliers, TABLE_Materials, Main_Class,
+ Agents, History_Of_Reliz, Product, Requests_agent,
+  Request_supplier,Supplier, Material, Main_Class,
   Frame_products;
 
 type
-  TProduct_Class = class(TMain_Class)
+  TProduct_Class = class(TMain_class)
   public
-  class var  array_of_products: TObjectList<TProduct>;
+
   var
+  class var  array_of_products: TObjectList<TProduct>;
+     class var  max_id: integer;
     fr: TFrame;
     constructor Create();
     procedure load_frames(Panel1: TPanel; page, count_in_bd: integer); override;
     function from_ado_to_array(ado: tADOQuery): TObjectList<TProduct>;
-        procedure create_sort(Sortirovka: TComboBox); override;
+    procedure create_sort(Sortirovka: TComboBox); override;
     procedure create_filter(Filtr: TComboBox); override;
-     procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+    procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
   end;
 
 implementation
@@ -29,6 +31,14 @@ begin
   inherited;
   array_of_products := from_ado_to_array(sql_select(' * ', ' products ', '',
     '', false));
+
+         max_id:=0;
+  for var i := 0 to array_of_products.Count-1 do
+  begin
+       if array_of_products[i].Article>max_id then
+       max_id:=array_of_products[i].Article;
+
+  end;
 end;
 
 function TProduct_Class.from_ado_to_array(ado: tADOQuery)
@@ -42,9 +52,13 @@ begin
   begin
     prod := TProduct.Create();
     prod.Article := ado.Fields[0].AsInteger;
-    prod.Name_ := ado.Fields[6].AsString;
-    prod.Cost := ado.Fields[1].AsInteger;
-    prod.In_stock:=ado.Fields[3].AsInteger;
+    prod.Cost:= ado.Fields[1].AsInteger;
+    prod.Time_ := ado.Fields[2].AsInteger;
+    prod.In_stock:= ado.Fields[3].AsInteger;
+    prod.Technology := ado.Fields[4].AsString;
+    prod.Name_ := ado.Fields[5].AsString;
+    prod.Logo := ado.Fields[6].AsString;
+
     array_of_products.Add(prod);
     ado.Next;
   end;
@@ -77,6 +91,7 @@ begin
       Name := 'FORM' + beg.ToString;
       Top := (fr.Height * i) + 10;
       Tag := 1;
+      TFrame6(fr).productOnFrame:= array_of_products[beg];
       TFrame6(fr).Label1.Caption := array_of_products[beg].Article.ToString;
       TFrame6(fr).Label2.Caption := array_of_products[beg].Name_;
       TFrame6(fr).Label7.Caption := array_of_products[beg].Cost.ToString;
@@ -188,3 +203,4 @@ begin // надо создать новый sql запрос и перезагр
 end;
 
 end.
+

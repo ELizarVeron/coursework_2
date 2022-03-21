@@ -112,39 +112,21 @@
         <DCCReference Include="Win_Manager.pas">
             <Form>Form4</Form>
         </DCCReference>
-        <DCCReference Include="Frame_agents.pas">
-            <Form>Frame3</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="TABLE_Agents.pas"/>
-        <DCCReference Include="TABLE_History_Of_Reliz.pas"/>
-        <DCCReference Include="TABLE_Materials.pas"/>
-        <DCCReference Include="TABLE_Products.pas"/>
-        <DCCReference Include="TABLE_Request_supplier.pas"/>
-        <DCCReference Include="TABLE_Requests_agent.pas"/>
-        <DCCReference Include="TABLE_Suppliers.pas"/>
-        <DCCReference Include="Main_Class.pas"/>
-        <DCCReference Include="Agent_Class.pas"/>
-        <DCCReference Include="Supplier_Class.pas"/>
-        <DCCReference Include="Frame_sups.pas">
-            <Form>Frame5</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Frame_products.pas">
-            <Form>Frame6</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Product_Class.pas"/>
-        <DCCReference Include="Nav_Frame.pas">
+        <DCCReference Include="Models\Entities\History_Of_Reliz.pas"/>
+        <DCCReference Include="Models\Entities\Material.pas"/>
+        <DCCReference Include="Models\Entities\Product.pas"/>
+        <DCCReference Include="Models\Entities\Request_supplier.pas"/>
+        <DCCReference Include="Models\Entities\Requests_agent.pas"/>
+        <DCCReference Include="Models\Entities\Supplier.pas"/>
+        <DCCReference Include="Classes\Main_Class.pas"/>
+        <DCCReference Include="Classes\Agent_Class.pas"/>
+        <DCCReference Include="Classes\Supplier_Class.pas"/>
+        <DCCReference Include="Classes\Product_Class.pas"/>
+        <DCCReference Include="Frames\Nav_Frame.pas">
             <Form>Frame7</Form>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="Request_Agents_Class.pas"/>
-        <DCCReference Include="Frame_req_ag.pas">
-            <Form>Frame9</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
+        <DCCReference Include="Classes\Request_Agents_Class.pas"/>
         <DCCReference Include="EDITAgent.pas">
             <Form>Form5</Form>
             <FormType>dfm</FormType>
@@ -154,13 +136,11 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="HistoryPriority.pas">
+        <DCCReference Include="Models\Entities\HistoryPriority.pas">
             <Form>Form6</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="HistoryRelizAgent.pas">
+        <DCCReference Include="Models\Entities\HistoryRelizAgent.pas">
             <Form>Form7</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Create_RelizAgent.pas">
             <Form>Form8</Form>
@@ -168,10 +148,6 @@
         </DCCReference>
         <DCCReference Include="CREATE_REQUEST.pas">
             <Form>Form9</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="SelectProducts.pas">
-            <Form>Form10</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Request_Info.pas">
@@ -182,16 +158,59 @@
             <Form>Form12</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CREATE_Supplier.pas">
+        <DCCReference Include="CREATE_EDIT_Supplier.pas">
             <Form>Form13</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CREATE_Product.pas">
+        <DCCReference Include="CREATE_EDIT_Product.pas">
             <Form>Form14</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="ChangesRequest.pas">
             <Form>Form15</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="AddPoints.pas">
+            <Form>Form16</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="INFOAgent.pas">
+            <Form>Form17</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="INFOSupplier.pas">
+            <Form>Form19</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="INFOProduct.pas">
+            <Form>Form20</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Models\Entities\Agents.pas"/>
+        <DCCReference Include="Frames\Frame_agents.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Frames\Frame_sups.pas"/>
+        <DCCReference Include="Frames\Frame_products.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Frames\Frame_req_ag.pas"/>
+        <DCCReference Include="My_f.pas"/>
+        <DCCReference Include="Models\Entities\Manufacture.pas"/>
+        <DCCReference Include="Frames\Frame_manufacture.pas">
+            <Form>Frame_manufact</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Classes\Manufacture_Class.pas"/>
+        <DCCReference Include="Classes\Request_Sup_Class.pas"/>
+        <DCCReference Include="Classes\Material_Class.pas"/>
+        <DCCReference Include="Frames\Frame_material.pas">
+            <Form>Framematerial</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="CREATE_REQUEST_AGENT.pas">
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

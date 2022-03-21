@@ -1,0 +1,124 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'Form3'
+  ClientHeight = 671
+  ClientWidth = 722
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 722
+    Height = 671
+    ActivePage = TabSheet4
+    Align = alClient
+    DoubleBuffered = True
+    HotTrack = True
+    ParentDoubleBuffered = False
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = #1055#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1086
+      inline Navigator_Manufacture: TFrame10
+        Left = 224
+        Top = 568
+        Width = 220
+        Height = 72
+        TabOrder = 0
+        ExplicitLeft = 224
+        ExplicitTop = 568
+      end
+      object Panel_manufacture: TPanel
+        Left = 28
+        Top = 19
+        Width = 563
+        Height = 543
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = #1047#1072#1082#1072#1079' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
+      ImageIndex = 1
+      object Panel_request_sup: TPanel
+        Left = 28
+        Top = 51
+        Width = 563
+        Height = 543
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 0
+      end
+      inline Navigator_Materials: TFrame10
+        Left = 232
+        Top = 571
+        Width = 220
+        Height = 72
+        TabOrder = 1
+        ExplicitLeft = 232
+        ExplicitTop = 571
+      end
+    end
+    object TabSheet4: TTabSheet
+      Caption = #1055#1088#1086#1076#1091#1082#1094#1080#1103
+      ImageIndex = 3
+      inline Navigator_Production: TFrame10
+        Left = 240
+        Top = 571
+        Width = 220
+        Height = 72
+        TabOrder = 0
+        ExplicitLeft = 240
+        ExplicitTop = 571
+      end
+      object Panel_production: TPanel
+        Left = 36
+        Top = 27
+        Width = 563
+        Height = 543
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = #1052#1072#1090#1077#1088#1080#1072#1083#1099
+      ImageIndex = 2
+      object Panel_MAterials: TPanel
+        Left = 20
+        Top = 22
+        Width = 563
+        Height = 543
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 0
+      end
+      inline Navigator_Requests: TFrame10
+        Left = 240
+        Top = 568
+        Width = 220
+        Height = 72
+        TabOrder = 1
+        ExplicitLeft = 240
+        ExplicitTop = 568
+        inherited Panel2: TPanel
+          Left = 3
+          ExplicitLeft = 3
+        end
+      end
+    end
+  end
+end

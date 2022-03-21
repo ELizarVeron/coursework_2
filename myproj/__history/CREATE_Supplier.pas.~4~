@@ -1,0 +1,123 @@
+unit CREATE_Supplier;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls ,System.Generics.Collections,  Main_Class, TABLE_Suppliers, Supplier_class,
+  Vcl.ExtDlgs , StrUtils , JPEG, Vcl.ExtCtrls;
+
+type
+  TForm13 = class(TForm)
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    Label4: TLabel;
+    Edit6: TEdit;
+    Label7: TLabel;
+    Edit7: TEdit;
+    Label8: TLabel;
+    Edit9: TEdit;
+    Label10: TLabel;
+    ComboBox1: TComboBox;
+    Button1: TButton;
+    Button2: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Image1: TImage;
+  private
+    procedure SaveInArrayOfSup;
+    procedure SaveInDB;
+    procedure SaveIcon;
+  public
+       constructor Create( AOwner: TComponent);  override;
+  end;
+
+var
+  Form13: TForm13;
+  new_sup: TSupplier;
+  arr: array[0..6] of string;
+  img:TJpegImage;
+  mc:TMain_class;
+implementation
+
+{$R *.dfm}
+  constructor TForm13.Create(AOwner: TComponent);
+  begin
+
+           mc:=TMain_class.Create;
+           new_sup:= TSupplier.Create;
+
+           inherited;
+
+  end;
+  procedure TForm13.SaveInArrayOfSup;
+  begin
+         new_sup.ID_:=(TAgent_Class.max_id +1) ;
+         new_sup.Name:=Edit1.Text;
+         new_sup.Type_:=ComboBox1.Text;
+         new_sup.Address:=Edit2.Text;
+         new_sup.INN:=Edit9.Text;
+         new_sup.KPP:= (Edit4.Text);
+         new_sup.Boss:=Edit5.Text;
+         new_sup.Tel:=Edit6.Text;
+         new_sup.Email:=Edit7.Text;
+
+         new_sup.Logo:= img_name;
+
+         new_sup.Priority:=0;
+         new_sup.SUMMA:=0;
+         new_sup.Count_s_year:=0;
+         new_sup.Discount:=0;
+
+
+         new_agent.points:=points;
+         TAgent_Class.array_of_agents.Add(new_agent);
+
+  end;
+    procedure TForm13.SaveInDB;
+  begin
+          arr[0]:= (TAgent_Class.max_id +1).ToString;
+          arr[1]:=new_agent.Name;
+           arr[2]:=new_agent.Type_;
+            arr[3]:=new_agent.Address;
+             arr[4]:=new_agent.INN;
+              arr[5]:=new_agent.KPP ;
+               arr[6]:=new_agent.Boss;
+                arr[7]:=new_agent.Tel;
+                 arr[8]:=new_agent.Email;
+                  arr[9]:=new_agent.Logo;
+                  arr[10]:=new_agent.Priority.ToString;
+                  arr[11]:=new_agent.Count_s_year.ToString;
+                  arr[12]:=new_agent.Discount.ToString;
+            mc.sql_insert('Agent', arr);
+
+  end;
+
+
+   procedure TForm13.SaveIcon;
+  begin
+            img_name:=  'img_agent' + (TAgent_Class.max_id +1).ToString+ext;
+            var MyFolder:= 'images\';
+            var Path,FileName: String;
+
+          Path:=ExtractFilePath(ParamStr(0))+MyFolder;
+          if ForceDirectories(Path) then
+          begin
+          img_name:=Path+img_name;
+
+          end;
+   Image1.Picture.SaveToFile(img_name);
+     if  (Image1.Picture.Graphic = nil ) then
+      begin
+         new_agent.Logo:='icn.png';
+      end
+      else
+      begin
+          new_agent.Logo:=img_name;
+      end;
+
+  end;
+
+
+end.

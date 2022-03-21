@@ -2,8 +2,8 @@ object Form11: TForm11
   Left = 0
   Top = 0
   Caption = 'Form11'
-  ClientHeight = 281
-  ClientWidth = 477
+  ClientHeight = 308
+  ClientWidth = 485
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -126,7 +126,7 @@ object Form11: TForm11
   end
   object Label_Red: TLabel
     Left = 232
-    Top = 176
+    Top = 27
     Width = 186
     Height = 13
     Caption = #1057#1086#1075#1083#1072#1089#1091#1081#1090#1077' '#1089#1086#1089#1090#1072#1074' '#1079#1072#1103#1074#1082#1080' '#1089' '#1072#1075#1077#1085#1090#1086#1084
@@ -153,6 +153,13 @@ object Form11: TForm11
     Caption = 'Label_ForTimer'
     Visible = False
   end
+  object Label6: TLabel
+    Left = 264
+    Top = 256
+    Width = 121
+    Height = 25
+    Caption = 'Label6'
+  end
   object ListBox1: TListBox
     Left = 232
     Top = 46
@@ -171,9 +178,9 @@ object Form11: TForm11
     OnClick = Button_ChangesClick
   end
   object Button_Delete: TButton
-    Left = 239
-    Top = 232
-    Width = 186
+    Left = 232
+    Top = 187
+    Width = 193
     Height = 25
     Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1103#1074#1082#1091
     TabOrder = 2
@@ -190,7 +197,7 @@ object Form11: TForm11
   end
   object Button_Delivery: TButton
     Left = 28
-    Top = 232
+    Top = 224
     Width = 185
     Height = 25
     Caption = #1055#1088#1077#1076#1083#1086#1078#1080#1090#1100' '#1076#1086#1089#1090#1072#1074#1082#1091

@@ -1,11 +1,11 @@
-unit CREATE_REQUEST;
+п»їunit CREATE_REQUEST;
 
 interface
 
 uses
   ComObj,
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics, System.Generics.Collections,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Data.Win.ADODB, Agent_Class, Request_agents_class, Product_Class,TABLE_Products, Main_Class ,SelectProducts;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Data.Win.ADODB, Agent_Class, Request_agents_class, Product_Class,Product, Main_Class ,CREATE_REQUEST_AGENT;
 
 type
   TForm9 = class(TForm)
@@ -28,9 +28,7 @@ type
     var arr2: array[0..2] of string;
   public
   constructor Create( AOwner: TComponent);  override;
-  var v_list: TList<TList<string> >;   //0 имя, 1 - в списке в наличии, 2- в списке под заказ
 
-    { Public declarations }
   end;
 
 var
@@ -72,15 +70,13 @@ implementation
 
 
 
-           SPW:=TForm10.Create(nil);
+           SPW:=TForm10.Create(self);
        end;
 
 {$R *.dfm}
 
-procedure TForm9.Button1Click(Sender: TObject);      //для существуюшего
+procedure TForm9.Button1Click(Sender: TObject);      //РґР»СЏ СЃСѓС‰РµСЃС‚РІСѓСЋС€РµРіРѕ
 begin
-
-
       SPW.agent_id:= id_agent;
       SPW.agent_name:=name_agent;
       SPW.ShowModal;
@@ -91,29 +87,27 @@ end;
 
 
 
-procedure TForm9.Button2Click(Sender: TObject);                 //для нового
+procedure TForm9.Button2Click(Sender: TObject);                 //РґР»СЏ РЅРѕРІРѕРіРѕ
 begin
           //save_in_file;
          var next_id:integer;
          next_id:=SPW.save_request_in_db(arr,id_agent,true);
-         // тут енадо добавить в состав КОМПОЗИЦИИ изначальный заявки все позиции которые есть н складе
+         // С‚СѓС‚ РµРЅР°РґРѕ РґРѕР±Р°РІРёС‚СЊ РІ СЃРѕСЃС‚Р°РІ РљРћРњРџРћР—РР¦РР РёР·РЅР°С‡Р°Р»СЊРЅС‹Р№ Р·Р°СЏРІРєРё РІСЃРµ РїРѕР·РёС†РёРё РєРѕС‚РѕСЂС‹Рµ РµСЃС‚СЊ РЅ СЃРєР»Р°РґРµ
          var mc:TMain_class;
          mc:=TMain_class.Create();
          var ado, ado2:TADOQuery;
          ado:=mc.sql_select('*', ' products ' , ' where In_stock > 0 ' , ' Order by Name_ ' , false );
-
          ado2:= mc.sql_select('*' , 'Request_from_agent' , ' ' ,'  order by ID_request_agent DESC ', false );
-
          arr2[0]:= (next_id).ToString;
          while not ado.Eof  do
          begin
              arr2[1]:=ado.Fields[0].AsString;
              arr2[2]:=ado.Fields[3].AsString;
-             mc.sql_insert( ' Com  ' , arr2 );   //дробавили в состав заявки все позиции, имеющ.  на складе
+             mc.sql_insert( ' Composition_of_req_ag  ' , arr2 );   //РґСЂРѕР±Р°РІРёР»Рё РІ СЃРѕСЃС‚Р°РІ Р·Р°СЏРІРєРё РІСЃРµ РїРѕР·РёС†РёРё, РёРјРµСЋС‰.  РЅР° СЃРєР»Р°РґРµ
              ado.Next;
          end;
 
-         ShowMessage('Заявка успешно созданна') ;
+         ShowMessage('Р—Р°СЏРІРєР° СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅРЅР°') ;
           Close;
 
 
@@ -123,7 +117,7 @@ end;
 
 procedure TForm9.ComboBox1Change(Sender: TObject);
 begin
-        var  b_new: bool;     //новый агент?
+        var  b_new: bool;     //РЅРѕРІС‹Р№ Р°РіРµРЅС‚?
 
         for I := 0 to TAgent_Class.array_of_agents.Count-1 do
           if TAgent_Class.array_of_agents[i].Name=ComboBox1.Items[ComboBox1.ItemIndex] then
@@ -134,7 +128,7 @@ begin
           end;
 
         ado:=mc.sql_select(' * ', ' history_of_reliz ', ' where ID_Agent =  ' + id_agent.ToString , ' ' , false );
-       // в адо - все истории реализации с этим агентом
+       // РІ Р°РґРѕ - РІСЃРµ РёСЃС‚РѕСЂРёРё СЂРµР°Р»РёР·Р°С†РёРё СЃ СЌС‚РёРј Р°РіРµРЅС‚РѕРј
        b_new:=true;
          for I := 0 to TRequest_agents_class.array_of_requests_agent.Count-1
          do begin
@@ -170,120 +164,120 @@ begin
        wdApp := CreateOleObject('Word.Application');
   Sd := SaveDialog1;
  SaveDialog1.DefaultExt:='docx';
-  sd.InitialDir:=' D:\Курсовая\Предложения_для_агентов ' ;
+  sd.InitialDir:=' D:\РљСѓСЂСЃРѕРІР°СЏ\РџСЂРµРґР»РѕР¶РµРЅРёСЏ_РґР»СЏ_Р°РіРµРЅС‚РѕРІ ' ;
   if Sd.InitialDir = ''
   then Sd.InitialDir := ExtractFilePath( ParamStr(0) );
-  //Запуск диалога сохранения файла.
+  //Р—Р°РїСѓСЃРє РґРёР°Р»РѕРіР° СЃРѕС…СЂР°РЅРµРЅРёСЏ С„Р°Р№Р»Р°.
   if not Sd.Execute then Exit;
-  //Если файл с заданным именем существует, то запускаем диалог с пользователем.
+  //Р•СЃР»Рё С„Р°Р№Р» СЃ Р·Р°РґР°РЅРЅС‹Рј РёРјРµРЅРµРј СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ Р·Р°РїСѓСЃРєР°РµРј РґРёР°Р»РѕРі СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј.
   if FileExists(Sd.FileName) then begin
-    Res := MessageBox(0, 'Файл с заданным именем уже существует. Перезаписать?'
-      ,'Внимание!', MB_YESNO + MB_ICONQUESTION + MB_APPLMODAL);
+    Res := MessageBox(0, 'Р¤Р°Р№Р» СЃ Р·Р°РґР°РЅРЅС‹Рј РёРјРµРЅРµРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ?'
+      ,'Р’РЅРёРјР°РЅРёРµ!', MB_YESNO + MB_ICONQUESTION + MB_APPLMODAL);
     if Res <> IDYES then Exit;
   end;
-  //Попытка запустить MS Word.
+  //РџРѕРїС‹С‚РєР° Р·Р°РїСѓСЃС‚РёС‚СЊ MS Word.
   try
     wdApp := CreateOleObject('Word.Application');
   except
-    MessageBox(0, 'Не удалось запустить MS Word. Действие отменено.'
-      ,'Внимание!', MB_OK + MB_ICONERROR + MB_APPLMODAL);
+    MessageBox(0, 'РќРµ СѓРґР°Р»РѕСЃСЊ Р·Р°РїСѓСЃС‚РёС‚СЊ MS Word. Р”РµР№СЃС‚РІРёРµ РѕС‚РјРµРЅРµРЅРѕ.'
+      ,'Р’РЅРёРјР°РЅРёРµ!', MB_OK + MB_ICONERROR + MB_APPLMODAL);
     Exit;
   end;
-  //Делаем видимым окно MS Word. На постоянной основе или на время отладки.
+  //Р”РµР»Р°РµРј РІРёРґРёРјС‹Рј РѕРєРЅРѕ MS Word. РќР° РїРѕСЃС‚РѕСЏРЅРЅРѕР№ РѕСЃРЅРѕРІРµ РёР»Рё РЅР° РІСЂРµРјСЏ РѕС‚Р»Р°РґРєРё.
   wdApp.Visible := True;
-  //Создаём новый документ.
+  //РЎРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ РґРѕРєСѓРјРµРЅС‚.
   wdDoc := wdApp.Documents.Add;
-  //На случай, если очень много данных и wdApp.Visible := True - тогда
-  //для ускорения работы отключаем перерисовку окна MS Word.
+  //РќР° СЃР»СѓС‡Р°Р№, РµСЃР»Рё РѕС‡РµРЅСЊ РјРЅРѕРіРѕ РґР°РЅРЅС‹С… Рё wdApp.Visible := True - С‚РѕРіРґР°
+  //РґР»СЏ СѓСЃРєРѕСЂРµРЅРёСЏ СЂР°Р±РѕС‚С‹ РѕС‚РєР»СЋС‡Р°РµРј РїРµСЂРµСЂРёСЃРѕРІРєСѓ РѕРєРЅР° MS Word.
   wdApp.ScreenUpdating := False;
   try
-    wdRng := wdDoc.Content; //Диапазон, охватывающий всё содержимое документа.
+    wdRng := wdDoc.Content; //Р”РёР°РїР°Р·РѕРЅ, РѕС…РІР°С‚С‹РІР°СЋС‰РёР№ РІСЃС‘ СЃРѕРґРµСЂР¶РёРјРѕРµ РґРѕРєСѓРјРµРЅС‚Р°.
 
-    //Параграф 1. Заголовок отчёта.
+    //РџР°СЂР°РіСЂР°С„ 1. Р—Р°РіРѕР»РѕРІРѕРє РѕС‚С‡С‘С‚Р°.
 
-    //Заголовок отчёта и перевод строки.
-    wdRng.InsertAfter('Предложение для '+ name_agent + #13#10);
-    //Выравнивание по центру.
+    //Р—Р°РіРѕР»РѕРІРѕРє РѕС‚С‡С‘С‚Р° Рё РїРµСЂРµРІРѕРґ СЃС‚СЂРѕРєРё.
+    wdRng.InsertAfter('РџСЂРµРґР»РѕР¶РµРЅРёРµ РґР»СЏ '+ name_agent + #13#10);
+    //Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ С†РµРЅС‚СЂСѓ.
     wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
-    //Параметры шрифта.
+    //РџР°СЂР°РјРµС‚СЂС‹ С€СЂРёС„С‚Р°.
     wdRng.Font.Name := 'Times New Roman';
     wdRng.Font.Bold := True;
     wdRng.Font.Size := 14;
 
-    //Параграф 2. Общие сведения.
+    //РџР°СЂР°РіСЂР°С„ 2. РћР±С‰РёРµ СЃРІРµРґРµРЅРёСЏ.
 
-    //Формируем диапазон нового параграфа непосредственно за текущим диапазоном.
+    //Р¤РѕСЂРјРёСЂСѓРµРј РґРёР°РїР°Р·РѕРЅ РЅРѕРІРѕРіРѕ РїР°СЂР°РіСЂР°С„Р° РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ Р·Р° С‚РµРєСѓС‰РёРј РґРёР°РїР°Р·РѕРЅРѕРј.
     wdRng.Start := wdRng.End;
     wdRng.InsertAfter(#13#10);
     D := Now;
-    wdRng.InsertAfter('Дата: ' + FormatDateTime('dd.mm.yyyy', D) + #13#10);
-    wdRng.InsertAfter('Время: ' + FormatDateTime('hh:nn:ss', D) + #13#10);
-    //Сброс параметров параграфа.
+    wdRng.InsertAfter('Р”Р°С‚Р°: ' + FormatDateTime('dd.mm.yyyy', D) + #13#10);
+    wdRng.InsertAfter('Р’СЂРµРјСЏ: ' + FormatDateTime('hh:nn:ss', D) + #13#10);
+    //РЎР±СЂРѕСЃ РїР°СЂР°РјРµС‚СЂРѕРІ РїР°СЂР°РіСЂР°С„Р°.
     wdRng.ParagraphFormat.Reset;
-    //Выравнивание по левому краю.
+    //Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РїРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ.
     wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
-    //Отступ слева на 2 сантиметра. Размер отступа задаётся в типографских
-    //единицах - в пунктах. 1 пункт = 0.035 сантиметра.
-    //При записи в поле LeftIndent, отступ отсчитывается от левого поля на странице.
+    //РћС‚СЃС‚СѓРї СЃР»РµРІР° РЅР° 2 СЃР°РЅС‚РёРјРµС‚СЂР°. Р Р°Р·РјРµСЂ РѕС‚СЃС‚СѓРїР° Р·Р°РґР°С‘С‚СЃСЏ РІ С‚РёРїРѕРіСЂР°С„СЃРєРёС…
+    //РµРґРёРЅРёС†Р°С… - РІ РїСѓРЅРєС‚Р°С…. 1 РїСѓРЅРєС‚ = 0.035 СЃР°РЅС‚РёРјРµС‚СЂР°.
+    //РџСЂРё Р·Р°РїРёСЃРё РІ РїРѕР»Рµ LeftIndent, РѕС‚СЃС‚СѓРї РѕС‚СЃС‡РёС‚С‹РІР°РµС‚СЃСЏ РѕС‚ Р»РµРІРѕРіРѕ РїРѕР»СЏ РЅР° СЃС‚СЂР°РЅРёС†Рµ.
     //wdRng.ParagraphFormat.LeftIndent := 2 / 0.035;
-    //Параметры шрифта.
-    wdRng.Font.Reset; //Сброс параметров шрифта.
+    //РџР°СЂР°РјРµС‚СЂС‹ С€СЂРёС„С‚Р°.
+    wdRng.Font.Reset; //РЎР±СЂРѕСЃ РїР°СЂР°РјРµС‚СЂРѕРІ С€СЂРёС„С‚Р°.
     wdRng.Font.Size := 12;
     wdRng.Font.Bold := True;
 
-    //Параграф 3. Заголовок таблицы.
+    //РџР°СЂР°РіСЂР°С„ 3. Р—Р°РіРѕР»РѕРІРѕРє С‚Р°Р±Р»РёС†С‹.
 
     wdRng.Start := wdRng.End;
     wdRng.InsertAfter(#13#10);
-    wdRng.InsertAfter('Таблица 1. Товары в наличии.'#13#10);
+    wdRng.InsertAfter('РўР°Р±Р»РёС†Р° 1. РўРѕРІР°СЂС‹ РІ РЅР°Р»РёС‡РёРё.'#13#10);
     wdRng.ParagraphFormat.Reset;
     wdRng.Font.Reset;
     wdRng.Font.Size := 12;
     wdRng.Font.Bold := False;
 
-    //Параграф 4. Таблица.
+    //РџР°СЂР°РіСЂР°С„ 4. РўР°Р±Р»РёС†Р°.
 
   //  if not Query1.Active then Query1.Open;
 
     wdRng.Start := wdRng.End;
-    //Добавляем таблицу MS Word. Пока создаём таблицу с двумя строками.
-    wdTable := wdDoc.Tables.Add(wdRng.Characters.Last, 2, 4);        //3 это количество столбцов
-   //Параметры линий таблицы.
+    //Р”РѕР±Р°РІР»СЏРµРј С‚Р°Р±Р»РёС†Сѓ MS Word. РџРѕРєР° СЃРѕР·РґР°С‘Рј С‚Р°Р±Р»РёС†Сѓ СЃ РґРІСѓРјСЏ СЃС‚СЂРѕРєР°РјРё.
+    wdTable := wdDoc.Tables.Add(wdRng.Characters.Last, 2, 4);        //3 СЌС‚Рѕ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚РѕР»Р±С†РѕРІ
+   //РџР°СЂР°РјРµС‚СЂС‹ Р»РёРЅРёР№ С‚Р°Р±Р»РёС†С‹.
    wdTable.Borders.InsideLineStyle :=  wdLineStyleSingle ;
   wdTable.Borders.OutsideLineStyle := wdLineStyleSingle;
-    //Сброс параметров параграфа.
+    //РЎР±СЂРѕСЃ РїР°СЂР°РјРµС‚СЂРѕРІ РїР°СЂР°РіСЂР°С„Р°.
     wdRng.ParagraphFormat.Reset;
-    //Выравнивание всей таблицы - по левому краю.
+    //Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ РІСЃРµР№ С‚Р°Р±Р»РёС†С‹ - РїРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ.
   wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
 
 
-    //Оформление шапки.
-     wdRng := wdTable.Rows.Item(1).Range; //Диапазон первой строки.
+    //РћС„РѕСЂРјР»РµРЅРёРµ С€Р°РїРєРё.
+     wdRng := wdTable.Rows.Item(1).Range; //Р”РёР°РїР°Р·РѕРЅ РїРµСЂРІРѕР№ СЃС‚СЂРѕРєРё.
     wdRng.ParagraphFormat.Alignment := wdAlignParagraphCenter;
     wdRng.Font.Size := 10;
      wdRng.Font.Bold := True;
 
 
-    //Оформление первой строки данных - это вторая строка в таблице.
-    //При добавлении следующих строк, их оформление будет копироваться с этой строки.
-     wdRng := wdTable.Rows.Item(2).Range; //Диапазон второй строки.
+    //РћС„РѕСЂРјР»РµРЅРёРµ РїРµСЂРІРѕР№ СЃС‚СЂРѕРєРё РґР°РЅРЅС‹С… - СЌС‚Рѕ РІС‚РѕСЂР°СЏ СЃС‚СЂРѕРєР° РІ С‚Р°Р±Р»РёС†Рµ.
+    //РџСЂРё РґРѕР±Р°РІР»РµРЅРёРё СЃР»РµРґСѓСЋС‰РёС… СЃС‚СЂРѕРє, РёС… РѕС„РѕСЂРјР»РµРЅРёРµ Р±СѓРґРµС‚ РєРѕРїРёСЂРѕРІР°С‚СЊСЃСЏ СЃ СЌС‚РѕР№ СЃС‚СЂРѕРєРё.
+     wdRng := wdTable.Rows.Item(2).Range; //Р”РёР°РїР°Р·РѕРЅ РІС‚РѕСЂРѕР№ СЃС‚СЂРѕРєРё.
      wdRng.ParagraphFormat.Alignment := wdAlignParagraphLeft;
      wdRng.Font.Size := 10;
    wdRng.Font.Bold := False;
 
-    ///Записываем шапку таблицы.
+    ///Р—Р°РїРёСЃС‹РІР°РµРј С€Р°РїРєСѓ С‚Р°Р±Р»РёС†С‹.
 
 
-     wdTable.Cell(1, 1).Range.Text := 'Наименование товара';
-     wdTable.Cell(1, 2).Range.Text := 'Цена за 1ед.';
-     wdTable.Cell(1, 3).Range.Text := 'В наличии';
-     wdTable.Cell(1, 4).Range.Text := 'Время на изготовление';
+     wdTable.Cell(1, 1).Range.Text := 'РќР°РёРјРµРЅРѕРІР°РЅРёРµ С‚РѕРІР°СЂР°';
+     wdTable.Cell(1, 2).Range.Text := 'Р¦РµРЅР° Р·Р° 1РµРґ.';
+     wdTable.Cell(1, 3).Range.Text := 'Р’ РЅР°Р»РёС‡РёРё';
+     wdTable.Cell(1, 4).Range.Text := 'Р’СЂРµРјСЏ РЅР° РёР·РіРѕС‚РѕРІР»РµРЅРёРµ';
 
        wdTable.Rows.Add;
 
 
     var k: integer;
-     k:= 2; //Текущая строка в таблице MS Word.
+     k:= 2; //РўРµРєСѓС‰Р°СЏ СЃС‚СЂРѕРєР° РІ С‚Р°Р±Р»РёС†Рµ MS Word.
 
 
        for i := 0 to TProduct_Class.array_of_products.Count-1 do
@@ -302,20 +296,20 @@ begin
        end;
 
   finally
-    //Включение перерисовки окна MS Word. В случае, если wdApp.Visible := True.
+    //Р’РєР»СЋС‡РµРЅРёРµ РїРµСЂРµСЂРёСЃРѕРІРєРё РѕРєРЅР° MS Word. Р’ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё wdApp.Visible := True.
   wdApp.ScreenUpdating := True;
  end;
 
- wdApp.DisplayAlerts := False; //Отключаем режим показа предупреждений.
+ wdApp.DisplayAlerts := False; //РћС‚РєР»СЋС‡Р°РµРј СЂРµР¶РёРј РїРѕРєР°Р·Р° РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёР№.
  try
-    wdDoc.SaveAs(FileName:=Sd.FileName); //Запись документа в файл.
+    wdDoc.SaveAs(FileName:=Sd.FileName); //Р—Р°РїРёСЃСЊ РґРѕРєСѓРјРµРЅС‚Р° РІ С„Р°Р№Р».
  finally
-    wdApp.DisplayAlerts := True; //Включаем режим показа предупреждений.
+    wdApp.DisplayAlerts := True; //Р’РєР»СЋС‡Р°РµРј СЂРµР¶РёРј РїРѕРєР°Р·Р° РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёР№.
   end;
 
-  //Закрываем документ.
+  //Р—Р°РєСЂС‹РІР°РµРј РґРѕРєСѓРјРµРЅС‚.
   wdDoc.Close;
-  //Закрываем MS Word.
+  //Р—Р°РєСЂС‹РІР°РµРј MS Word.
   wdApp.Quit;
 
 

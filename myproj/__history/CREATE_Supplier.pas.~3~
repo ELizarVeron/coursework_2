@@ -1,0 +1,53 @@
+unit CREATE_Supplier;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls ,System.Generics.Collections,  Main_Class, TABLE_Suppliers, Supplier_class,
+  Vcl.ExtDlgs , StrUtils , JPEG, Vcl.ExtCtrls;
+
+type
+  TForm13 = class(TForm)
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    Label4: TLabel;
+    Edit6: TEdit;
+    Label7: TLabel;
+    Edit7: TEdit;
+    Label8: TLabel;
+    Edit9: TEdit;
+    Label10: TLabel;
+    ComboBox1: TComboBox;
+    Button1: TButton;
+    Button2: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Image1: TImage;
+  private
+    { Private declarations }
+  public
+       constructor Create( AOwner: TComponent);  override;
+  end;
+
+var
+  Form13: TForm13;
+  new_sup: TSupplier;
+  arr: array[0..6] of string;
+  img:TJpegImage;
+  mc:TMain_class;
+implementation
+
+{$R *.dfm}
+  constructor TForm13.Create(AOwner: TComponent);
+  begin
+
+           mc:=TMain_class.Create;
+           new_sup:= TSupplier.Create;
+
+           inherited;
+
+  end;
+
+end.

@@ -1,0 +1,57 @@
+unit AddPoints;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm16 = class(TForm)
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    Edit2: TEdit;
+    Label3: TLabel;
+    Edit3: TEdit;
+    Label4: TLabel;
+    Edit4: TEdit;
+    Label5: TLabel;
+    Edit5: TEdit;
+    Label7: TLabel;
+    Edit7: TEdit;
+    Label8: TLabel;
+    Edit8: TEdit;
+    ButtonSave: TButton;
+    Label6: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form16: TForm16;
+
+implementation
+
+{$R *.dfm}
+
+end.
+
+
+type
+  TPoint = class
+  private
+    FCity,FStreet ,FTel   string;
+    FAgentID, FIndex_, FBuilding, FFlat  : integer;
+  protected
+  public
+    property AgentID: integer read FAgentID write FAgentID;
+    property City: string read FCity write FCity;
+    property Street: string read FStreet write FStreet;
+    property Tel: string read FTel write FTel;
+    property Flat: integer read FFlat write FFlat;
+    property Building: integer read FBuilding write FBuilding;
+    property Index_: integer read FIndex_ write FIndex_;
+  end;

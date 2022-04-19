@@ -1,0 +1,55 @@
+unit Create_Req_Sup;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids,Main_Class, Data.Win.ADODB;
+
+type
+  TForm23 = class(TForm)
+    Label1: TLabel;
+    ComboBox1: TComboBox;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Label3: TLabel;
+    DBGrid1: TDBGrid;
+    Создать: TButton;
+    Отмена: TButton;
+  private
+    { Private declarations }
+  public
+   constructor Create( AOwner: TComponent);  override;
+   procedure GetMaterials;
+  end;
+
+var
+  Form23: TForm23;
+  mc:TMain_Class;
+implementation
+
+
+
+
+constructor TForm23.Create(AOwner: TComponent);
+begin
+  inherited;
+  mc:=TMain_Class.Create;
+end;
+
+procedure TForm23.GetMaterials;
+var ado:TADOQuery;
+begin
+   ado:=mc.sql_select('*', 'material' ,'','',false  );
+    while not ado.Eof do
+    begin
+        ComboBox1.Items.Add(ado.Fields[1].AsString);
+        ado.Next;
+    end;
+
+end;
+
+{$R *.dfm}
+
+end.

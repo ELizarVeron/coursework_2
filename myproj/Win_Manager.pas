@@ -158,7 +158,7 @@ end;
 procedure TForm4.reload_ag();
 begin
 
-   AgentClass := TAgent_Class.Create();
+  AgentClass := TAgent_Class.Create();
   AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
   AgentClass.load_pages(Navigator_Agent_Frame.Panel2, AgentClass.array_of_agents.Count,0);
 
@@ -197,7 +197,7 @@ procedure TForm4.Button2Click(Sender: TObject);     //доб.поставшика
 begin
           var
         Form13: TForm13;
-        Form13 := TForm13.Create(nil);
+        Form13 := TForm13.Create(self);
         Form13.ShowModal;
         reload_sup;
 end;
@@ -206,7 +206,7 @@ procedure TForm4.Button3Click(Sender: TObject);    //создание заявки
  begin
      var
         Form9: TForm9;
-        Form9 := TForm9.Create(nil);
+        Form9 := TForm9.Create(self);
         Form9.ShowModal;
         reload_req;
 end;
@@ -216,7 +216,7 @@ begin
 
           var
         Form14: TForm14;
-        Form14 := TForm14.Create(nil);
+        Form14 := TForm14.Create(self);
         Form14.ShowModal;
         reload_prod;
 end;

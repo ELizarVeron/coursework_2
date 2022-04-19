@@ -2,7 +2,25 @@ unit Requests_agent;
 
 interface
 
-uses System.Generics.Collections, Product;
+uses System.Generics.Collections, Product,Vcl.Dialogs;
+
+type
+  TComposition_req_agent = class
+  private
+    FArticul: Integer;
+    FProduct: TProduct;
+    FCount: integer;
+    FCost: integer;
+  protected
+  public
+   
+  property Count: integer read FCount write FCount;
+  property Articul: integer read FArticul write FArticul;
+   property Cost: integer read FCost write FCost;
+  property Product: TProduct read FProduct write FProduct;
+
+end;
+
 
 type
   TRequest_agent = class
@@ -14,8 +32,11 @@ type
     FDate_Of_Begin: TDateTime;
     FPremayment, FDone:boolean;
     procedure SetStatus(const Value: string);
+    
   protected
   public
+    constructor Create;
+    function GetCost:integer;
     property ID_Agent: integer read FID_Agent write FID_Agent;
     property ID_Request: integer read FID_Request write FID_Request;
     property Company: string read FCompany write FCompany;
@@ -28,13 +49,34 @@ type
     property Premayment: boolean read FPremayment write FPremayment;
     property Done: boolean read FDone write FDone;
   var
-     Composition: TObjectList<TProduct>;
+     Composition: TObjectList<TComposition_req_agent>;
 
   end;
 
 implementation
 
 { TRequest_agent }
+
+constructor TRequest_agent.Create;
+begin
+     Composition:= TObjectList<TComposition_req_agent>.Create;
+end;
+
+function TRequest_agent.GetCost: integer;
+var i,sum:integer;  
+begin
+       sum:=0;
+      try
+          for  i:= 0 to Composition.Count-1 do
+          begin
+              sum:= sum+Composition[i].Cost*Composition[i].Count; 
+          end;
+      except              
+             ShowMessage('Composition is empty!!');
+      end;
+     result:=sum;
+
+end;
 
 procedure TRequest_agent.SetStatus(const Value: string);
 begin

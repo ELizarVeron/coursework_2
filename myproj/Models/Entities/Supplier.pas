@@ -2,20 +2,16 @@ unit Supplier;
 
 interface
 
-uses System.Generics.Collections;
+uses System.Generics.Collections,MAterial;
 
 type
   THistory_of_supply = class
   private
     FDate: TDateTime;
-    FIDMaterial: integer;
     FIDSupplier, FCount: integer;
-
   protected
   public
-    property IDMaterial: integer read FIDMaterial write FIDMaterial;
     property IDSupplier: integer read FIDSupplier write FIDSupplier;
-
     property Date: TDateTime read FDate write FDate;
     property Count: integer read FCount write FCount;
 
@@ -40,9 +36,11 @@ type
     property Logo: string read FLogo write FLogo;
     property Tel: string read FTel write FTel;
     property Email: string read FEmail write FEmail;
+    var history_of_: TObjectList<THistory_of_supply>;
+    var materials: TObjectList<TMaterial>;
   end;
-  var
-   history_of_: TObjectList<THistory_of_supply>;
+
+
   implementation
  end.
 

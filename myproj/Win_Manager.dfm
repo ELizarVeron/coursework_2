@@ -4,24 +4,22 @@ object Form4: TForm4
   BorderStyle = bsSingle
   Caption = '\'
   ClientHeight = 785
-  ClientWidth = 602
+  ClientWidth = 599
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = [fsUnderline]
-  OldCreateOrder = False
   Position = poDefault
   OnClose = FormClose
-  PixelsPerInch = 96
   TextHeight = 13
   object PageControl1: TPageControl
     Left = 8
     Top = 8
     Width = 889
     Height = 777
-    ActivePage = Requests
+    ActivePage = Suppliers
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -142,10 +140,16 @@ object Form4: TForm4
           inherited line: TLabel
             Left = 142
             Top = 26
+            Width = 16
+            Height = 13
+            Font.Height = -11
+            Font.Name = 'Tahoma'
             Font.Style = [fsUnderline]
             ParentFont = False
             ExplicitLeft = 142
             ExplicitTop = 26
+            ExplicitWidth = 16
+            ExplicitHeight = 13
           end
         end
       end
@@ -257,8 +261,14 @@ object Form4: TForm4
             OnClick = NavigatorFrameRightLabelClick
           end
           inherited line: TLabel
+            Width = 16
+            Height = 13
+            Font.Height = -11
+            Font.Name = 'Tahoma'
             Font.Style = [fsUnderline]
             ParentFont = False
+            ExplicitWidth = 16
+            ExplicitHeight = 13
           end
         end
       end
@@ -357,10 +367,16 @@ object Form4: TForm4
           inherited line: TLabel
             Left = 142
             Top = 27
+            Width = 16
+            Height = 13
+            Font.Height = -11
+            Font.Name = 'Tahoma'
             Font.Style = [fsUnderline]
             ParentFont = False
             ExplicitLeft = 142
             ExplicitTop = 27
+            ExplicitWidth = 16
+            ExplicitHeight = 13
           end
         end
       end
@@ -471,8 +487,14 @@ object Form4: TForm4
             OnClick = NavigatorFrameRightLabelClick
           end
           inherited line: TLabel
+            Width = 16
+            Height = 13
+            Font.Height = -11
+            Font.Name = 'Tahoma'
             Font.Style = [fsUnderline]
             ParentFont = False
+            ExplicitWidth = 16
+            ExplicitHeight = 13
           end
         end
       end

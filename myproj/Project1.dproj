@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{A26181F9-E4D3-4545-9EC8-2792254F49EF}</ProjectGuid>
-        <ProjectVersion>19.2</ProjectVersion>
+        <ProjectVersion>19.4</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
@@ -127,7 +127,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Classes\Request_Agents_Class.pas"/>
-        <DCCReference Include="EDITAgent.pas">
+        <DCCReference Include="EditWindows\EDITAgent.pas">
             <Form>Form5</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -142,47 +142,47 @@
         <DCCReference Include="Models\Entities\HistoryRelizAgent.pas">
             <Form>Form7</Form>
         </DCCReference>
-        <DCCReference Include="Create_RelizAgent.pas">
+        <DCCReference Include="CreateWindows\Create_RelizAgent.pas">
             <Form>Form8</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CREATE_REQUEST.pas">
+        <DCCReference Include="CreateWindows\CREATE_REQUEST.pas">
             <Form>Form9</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Request_Info.pas">
+        <DCCReference Include="InfoWindows\Request_Info.pas">
             <Form>Form11</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CREATE_Agent.pas">
+        <DCCReference Include="CreateWindows\CREATE_Agent.pas">
             <Form>Form12</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CREATE_EDIT_Supplier.pas">
+        <DCCReference Include="CreateWindows\CREATE_EDIT_Supplier.pas">
             <Form>Form13</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CREATE_EDIT_Product.pas">
+        <DCCReference Include="CreateWindows\CREATE_EDIT_Product.pas">
             <Form>Form14</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="ChangesRequest.pas">
+        <DCCReference Include="EditWindows\ChangesRequest.pas">
             <Form>Form15</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="AddPoints.pas">
+        <DCCReference Include="CreateWindows\AddPoints.pas">
             <Form>Form16</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="INFOAgent.pas">
+        <DCCReference Include="InfoWindows\INFOAgent.pas">
             <Form>Form17</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="INFOSupplier.pas">
+        <DCCReference Include="InfoWindows\INFOSupplier.pas">
             <Form>Form19</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="INFOProduct.pas">
+        <DCCReference Include="InfoWindows\INFOProduct.pas">
             <Form>Form20</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -210,18 +210,46 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="CREATE_REQUEST_AGENT.pas">
+        <DCCReference Include="ForMaster\Create_Request_Sup.pas">
+            <Form>Form10</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <BuildConfiguration Include="Release">
-            <Key>Cfg_2</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
+        <DCCReference Include="CreateWindows\SelectProdForAgent.pas">
+            <Form>Form18</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Frames\Frame_req_sup.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CreateWindows\Create_material.pas">
+            <Form>Form21</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CreateWindows\Create_Manufacture.pas">
+            <Form>Form22</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="CreateWindows\Create_Req_Sup.pas">
+            <Form>Form23</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="EditWindows\EDITRequestSup.pas">
+            <Form>FormEditReqSup</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="InfoWindows\INFOManufacture.pas">
+            <Form>Form24</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
@@ -255,6 +283,16 @@
                     </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClasses">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>64</Operation>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="AndroidClassesDexFile">
@@ -558,6 +596,11 @@
                         <Operation>1</Operation>
                         <Extensions>.framework</Extensions>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
                     </Platform>
@@ -581,6 +624,11 @@
                         <Extensions>.dylib</Extensions>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
@@ -613,6 +661,11 @@
                         <Operation>1</Operation>
                         <Extensions>.dylib</Extensions>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
                         <Extensions>.bpl</Extensions>
@@ -639,6 +692,10 @@
                         <Operation>0</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\Resources\StartUp\</RemoteDir>
                         <Operation>0</Operation>
                     </Platform>
@@ -907,6 +964,10 @@
                         <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXEntitlements">
                     <Platform Name="OSX32">
@@ -914,6 +975,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>..\</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>..\</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -927,6 +992,10 @@
                         <RemoteDir>Contents</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
+                    <Platform Name="OSXARM64">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
                 </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
@@ -934,6 +1003,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\Resources</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -964,6 +1037,10 @@
                         <Operation>1</Operation>
                     </Platform>
                     <Platform Name="OSX64">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="OSXARM64">
                         <RemoteDir>Contents\MacOS</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
@@ -1005,16 +1082,17 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
-                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Android64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="OSXARM64" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>

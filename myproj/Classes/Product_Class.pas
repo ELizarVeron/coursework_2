@@ -9,7 +9,7 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Frame_products;
 
 type
-  TProduct_Class = class(TMain_class)
+  TProduct_Class = class(TRequests)
   public
 
   var

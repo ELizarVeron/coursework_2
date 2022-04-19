@@ -1,0 +1,101 @@
+unit Create_Req_Sup;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils,Generics.Collections, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids,Main_Class, Data.Win.ADODB;
+
+type
+  TForm23 = class(TForm)
+    Label1: TLabel;
+    ComboBox1: TComboBox;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Label3: TLabel;
+    ButtonCreate: TButton;
+    DataSource1: TDataSource;
+    ADOQuery1: TADOQuery;
+    DBGrid1: TDBGrid;
+    procedure DBGrid1CellClick(Column: TColumn);
+    procedure ButtonCreateClick(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+  private
+    { Private declarations }
+  public
+   constructor Create( AOwner: TComponent);  override;
+   procedure GetMaterials;
+  end;
+
+var
+  Form23: TForm23;
+  mc:TMain_Class;
+  ado,ado2:TADOQuery;
+  id_sup: integer;
+  arr: array[0..5] of string;
+  id_materials: Tlist<string>;
+implementation
+constructor TForm23.Create(AOwner: TComponent);
+begin
+  inherited;
+  id_materials:=  Tlist<string>.Create;
+  mc:=TMain_Class.Create;
+  GetMaterials;
+
+
+end;
+
+procedure TForm23.ComboBox1Change(Sender: TObject); //изменение и подгрзка поствщиков
+begin
+
+     ADOQuery1.Parameters.FindParam('mtitle').Value:=ComboBox1.Items[ComboBox1.ItemIndex];
+     var s:string;
+     s:= 'SELECT Supplier.*, Material.Title, Material.Title FROM Supplier'+' INNER JOIN (Material INNER JOIN Materials_from_supplier ON Material.Article = Materials_from_supplier.Article_material) ON Supplier.id = Materials_from_supplier.Id_supplier WHERE (((Material.Title)=[mtitle]));  ' ;
+
+      ADOQuery1.SQL.Add(s);
+      ADOQuery1.Active:=true;
+        id_sup:=DBGrid1.DataSource.DataSet.Fields.Fields[0].Value;
+end;
+
+procedure TForm23.DBGrid1CellClick(Column: TColumn);
+begin
+     id_sup:=DBGrid1.DataSource.DataSet.Fields.Fields[0].Value;
+
+end;
+
+procedure TForm23.GetMaterials;
+begin
+   ado:=mc.sql_select('*', 'material' ,'',' order by Title ',false  );
+    while not ado.Eof do
+    begin
+        ComboBox1.Items.Add(ado.Fields[1].AsString);
+        id_materials.Add(ado.Fields[0].AsString);
+        ado.Next;
+    end;
+    ComboBox1.ItemIndex:=0;
+end;
+
+procedure TForm23.ButtonCreateClick(Sender: TObject);
+var k:integer;
+begin
+     var next_id:integer;
+      ado2:= mc.sql_select('*' , 'Request_for_supplier' , ' ' ,'  order by ID_request_sup ', false );
+      next_id:=ado2.Fields[0].AsInteger+1;
+     arr[0]:=next_id.ToString;
+     arr[1]:=id_sup.ToString;
+     arr[2]:='Создана';
+     arr[3]:= FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now);
+     arr[4]:=  id_materials[ComboBox1.ItemIndex];
+     arr[5]:=Edit1.Text;
+     mc.sql_insert('Request_for_supplier ' ,arr );
+     ShowMessage('Заявка успешно созданна') ;
+     Close;
+
+
+
+end;
+
+{$R *.dfm}
+
+end.

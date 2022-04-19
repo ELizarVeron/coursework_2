@@ -13,6 +13,10 @@ type
     Label6: TLabel;
     Label8: TLabel;
     Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label7: TLabel;
   private
     { Private declarations }
   public

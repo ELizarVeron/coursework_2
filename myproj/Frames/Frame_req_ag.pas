@@ -13,10 +13,14 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
+    LabelCost: TLabel;
     Label1: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
     procedure Panel1Click(Sender: TObject);
     //procedure DoList;
   private
@@ -24,9 +28,9 @@ type
     { Private declarations }
   public
     var Req_on_frame:  TRequest_agent;
-        mc:TMain_Class;
+        mc:TRequests;
         ado_composition:TADOQuery;
-         mc2:TMain_Class;
+         mc2:TRequests;
         ado_nameprod:TADOQuery;
          panel:TPanel;
   end;
@@ -37,7 +41,7 @@ implementation
 
 procedure TFrame9.Panel1Click(Sender: TObject);
 begin
-      RequestInfoWindow:= TForm11.Create(self);
+       RequestInfoWindow:= TForm11.Create(self);
        RequestInfoWindow.Req_on_frame:=Req_on_frame;
        RequestInfoWindow.panel:=panel;
        RequestInfoWindow.Init;

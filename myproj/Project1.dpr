@@ -18,21 +18,21 @@ uses
   Product_Class in 'Classes\Product_Class.pas',
   Nav_Frame in 'Frames\Nav_Frame.pas' {Frame7: TFrame},
   Request_Agents_Class in 'Classes\Request_Agents_Class.pas',
-  EDITAgent in 'EDITAgent.pas' {Form5},
+  EDITAgent in 'EditWindows\EDITAgent.pas' {Form5},
   Navigator in 'Navigator.pas' {Frame10: TFrame},
   HistoryPriority in 'Models\Entities\HistoryPriority.pas' {Form6},
   HistoryRelizAgent in 'Models\Entities\HistoryRelizAgent.pas' {Form7},
-  Create_RelizAgent in 'Create_RelizAgent.pas' {Form8},
-  CREATE_REQUEST in 'CREATE_REQUEST.pas' {Form9},
-  Request_Info in 'Request_Info.pas' {Form11},
-  CREATE_Agent in 'CREATE_Agent.pas' {Form12},
-  CREATE_EDIT_Supplier in 'CREATE_EDIT_Supplier.pas' {Form13},
-  CREATE_EDIT_Product in 'CREATE_EDIT_Product.pas' {Form14},
-  ChangesRequest in 'ChangesRequest.pas' {Form15},
-  AddPoints in 'AddPoints.pas' {Form16},
-  INFOAgent in 'INFOAgent.pas' {Form17},
-  INFOSupplier in 'INFOSupplier.pas' {Form19},
-  INFOProduct in 'INFOProduct.pas' {Form20},
+  Create_RelizAgent in 'CreateWindows\Create_RelizAgent.pas' {Form8},
+  CREATE_REQUEST in 'CreateWindows\CREATE_REQUEST.pas' {Form9},
+  Request_Info in 'InfoWindows\Request_Info.pas' {Form11},
+  CREATE_Agent in 'CreateWindows\CREATE_Agent.pas' {Form12},
+  CREATE_EDIT_Supplier in 'CreateWindows\CREATE_EDIT_Supplier.pas' {Form13},
+  CREATE_EDIT_Product in 'CreateWindows\CREATE_EDIT_Product.pas' {Form14},
+  ChangesRequest in 'EditWindows\ChangesRequest.pas' {Form15},
+  AddPoints in 'CreateWindows\AddPoints.pas' {Form16},
+  INFOAgent in 'InfoWindows\INFOAgent.pas' {Form17},
+  INFOSupplier in 'InfoWindows\INFOSupplier.pas' {Form19},
+  INFOProduct in 'InfoWindows\INFOProduct.pas' {Form20},
   Agents in 'Models\Entities\Agents.pas',
   Frame_agents in 'Frames\Frame_agents.pas',
   Frame_sups in 'Frames\Frame_sups.pas',
@@ -45,7 +45,14 @@ uses
   Request_Sup_Class in 'Classes\Request_Sup_Class.pas',
   Material_Class in 'Classes\Material_Class.pas',
   Frame_material in 'Frames\Frame_material.pas' {Framematerial: TFrame},
-  CREATE_REQUEST_AGENT in 'CREATE_REQUEST_AGENT.pas';
+  Create_Request_Sup in 'ForMaster\Create_Request_Sup.pas' {Form10},
+  SelectProdForAgent in 'CreateWindows\SelectProdForAgent.pas' {Form18},
+  Frame_req_sup in 'Frames\Frame_req_sup.pas',
+  Create_material in 'CreateWindows\Create_material.pas' {Form21},
+  Create_Manufacture in 'CreateWindows\Create_Manufacture.pas' {Form22},
+  Create_Req_Sup in 'CreateWindows\Create_Req_Sup.pas' {Form23},
+  EDITRequestSup in 'EditWindows\EDITRequestSup.pas' {FormEditReqSup},
+  INFOManufacture in 'InfoWindows\INFOManufacture.pas' {Form24};
 
 {$R *.res}
 
@@ -68,6 +75,12 @@ begin
   Application.CreateForm(TForm17, Form17);
   Application.CreateForm(TForm19, Form19);
   Application.CreateForm(TForm20, Form20);
+  Application.CreateForm(TForm10, Form10);
+  Application.CreateForm(TForm18, Form18);
+  Application.CreateForm(TForm21, Form21);
+  Application.CreateForm(TForm22, Form22);
+  Application.CreateForm(TForm23, Form23);
+  Application.CreateForm(TForm24, Form24);
   Application.Run;
 
 end.

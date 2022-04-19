@@ -21,7 +21,6 @@ type
         Edit1: TEdit;
         Edit2: TEdit;
         Button1: TButton;
-        CheckBox1: TCheckBox;
         Button2: TButton;
         procedure Button1Click(Sender: TObject);
         procedure Button2Click(Sender: TObject);

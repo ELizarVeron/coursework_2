@@ -9,18 +9,21 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Frame_sups, Frame_agents;
 
 type
-  TSupplier_Class = class(TMain_class)
+  TSupplier_Class = class(TRequests)
   public
   var
     class var array_of_suppliers: TObjectList<TSupplier>;
     class var  max_id: integer;
     fr: TFrame;
     constructor Create();
-   class procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
+    class procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
     function from_ado_to_array_suppliers(ado: tADOQuery): TObjectList<TSupplier>;
-         procedure create_sort(Sortirovka: TComboBox); override;
-            procedure create_filter(Filtr: TComboBox); override;
-             procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+    procedure create_sort(Sortirovka: TComboBox); override;
+     procedure create_filter(Filtr: TComboBox); override;
+     procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+     procedure GetMaterials;
+     function  from_ado_to_array_materials(ado: tADOQuery)
+  : TObjectList<TMaterial>;
   end;
 
 implementation
@@ -37,7 +40,30 @@ begin
        max_id:=array_of_suppliers[i].ID;
 
   end;
+     GetMaterials;
+end;
 
+function TSupplier_Class.from_ado_to_array_materials(
+  ado: tADOQuery): TObjectList<TMaterial>;
+begin
+    var
+    material: TMaterial;
+  var
+  array_of_materials := TObjectList<TMaterial>.Create;
+  while not ado.Eof do
+  begin
+    material := TMaterial.Create;
+    material.Article:=ado.Fields[0].AsInteger;
+     material.Title:=ado.Fields[1].AsString;
+      material.In_stock:=ado.Fields[2].AsInteger;
+       material.Cost:=ado.Fields[3].AsInteger;
+
+
+      array_of_materials.Add(material);
+
+    ado.Next;
+  end;
+  result := array_of_materials;
 end;
 
 function TSupplier_Class.from_ado_to_array_suppliers(ado: tADOQuery)
@@ -64,6 +90,34 @@ begin
   result := array_of_suppliers;
 end;
 
+
+
+
+procedure TSupplier_Class.GetMaterials;
+begin
+    var
+        i: integer;
+
+       var ado:TADOQuery;
+       ADO := TADOQuery.Create(nil);
+       var
+        str: string;
+         str:='SELECT Material.* FROM Supplier INNER JOIN (Material INNER JOIN Materials_from_supplier ON Material.Article = Materials_from_supplier.Article_material) ON Supplier.id = Materials_from_supplier.Id_supplier';
+
+      ADO.Connection := ADOCon;
+      ADO.Active := false;
+      ADO.SQL.Clear;
+      ADO.SQL.Add(str);
+      ADO.Active := true;
+
+      for i := 0 to array_of_suppliers.Count - 1 do
+      begin
+
+        array_of_suppliers[i].materials := from_ado_to_array_materials ( ADO  ) ;
+
+
+      end;
+end;
 
 procedure TSupplier_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
   sort: TComboBox);

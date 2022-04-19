@@ -1,0 +1,47 @@
+unit EDITRequestSup;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Request_supplier;
+
+type
+  TForm24 = class(TForm)
+    Label2: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+  private
+    { Private declarations }
+  public
+   var req_on_edit:  TRequest_supplier;
+   procedure Init(req: TRequest_supplier);
+  end;
+
+var
+  Form24: TForm24;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm24 }
+
+procedure TForm24.Init(req: TRequest_supplier);
+begin
+     req_on_edit:=req;
+     Label2.Caption:=req_on_edit.ID_Request.ToString;
+     Label2.Caption:=req_on_edit.Company;
+     Label2.Caption:=req_on_edit.
+     Label2.Caption:=req_on_edit.ID_Request.ToString;
+
+end;
+
+end.

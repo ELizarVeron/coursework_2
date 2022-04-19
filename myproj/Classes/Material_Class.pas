@@ -9,7 +9,7 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Frame_products;
 
 type
- TMaterial_Class = class(TMain_class)
+ TMaterial_Class = class(TRequests)
   public
 
   var
@@ -21,7 +21,7 @@ type
     function from_ado_to_array(ado: tADOQuery): TObjectList<TMaterial>;
  //   procedure create_sort(Sortirovka: TComboBox); override;
  //   procedure create_filter(Filtr: TComboBox); override;
-  //  procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
+  procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
   end;
 
 implementation
@@ -29,7 +29,7 @@ constructor TMaterial_Class.Create();
 begin
   inherited;
   array_of_materials := from_ado_to_array(sql_select(' * ', ' material ', '',
-    '', false));
+    ' order by title ', false));
 
          max_id:=0;
   for var i := 0 to array_of_materials.Count-1 do
@@ -38,6 +38,11 @@ begin
        max_id:=array_of_materials[i].Article;
 
   end;
+end;
+
+procedure TMaterial_Class.FiltrChange(edit: TEdit; Filtr, sort: TComboBox);
+begin
+
 end;
 
 function TMaterial_Class.from_ado_to_array(ado: tADOQuery)

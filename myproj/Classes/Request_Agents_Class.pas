@@ -4,19 +4,23 @@ interface
   uses    System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
  Agents, History_Of_Reliz,   Requests_agent,
-   Supplier,   Main_Class,    Agent_Class;
+   Supplier,   Main_Class,    Agent_Class, Product;
   type
-     TRequest_Agents_Class = class(TMain_class)
+     TRequest_Agents_Class = class(TRequests)
       public
       class var array_of_requests_agent: TObjectList<TRequest_Agent>;
 
            constructor Create();
            class    procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
            function from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
+
+            function from_ado_to_array_composition(ado: tADOQuery): TObjectList<TComposition_req_agent>;
+
            procedure reload;
            procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
            procedure create_sort(Sortirovka: TComboBox); override;
            procedure create_filter(Filtr: TComboBox); override;
+
      end;
 
 implementation
@@ -35,6 +39,24 @@ end;
 
   end;
 
+function TRequest_Agents_Class.from_ado_to_array_composition( ado: tADOQuery): TObjectList<TComposition_req_agent>;
+  var compos:  TObjectList<TComposition_req_agent>;
+  var comp: TComposition_req_agent;
+begin
+     compos:= TObjectList<TComposition_req_agent>.Create;
+       while not ado.Eof do
+       begin
+         comp:= TComposition_req_agent.Create;
+         comp.Articul:=ado.FieldByName('Articul_product').AsInteger;
+        // comp.Name_:= sql_select('Name_ ',' Products ','','',false).FieldByName('Name_').AsString;
+         comp.Cost:=ado.FieldByName('Cost_of_product').AsInteger;
+         comp.Count:=ado.FieldByName('Count').AsInteger;
+         compos.Add(comp);
+         ado.Next;
+       end;
+     result:=compos;
+end;
+
 function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
  begin
       var
@@ -46,7 +68,7 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
   while not ado.Eof do
   begin
     req := TRequest_Agent.Create();
-    req.ID_Request := ado.Fields[0].AsInteger;
+    req.ID_Request := ado.FieldByName('Id_request_agent').AsInteger;
     req.ID_Agent := ado.Fields[1].AsInteger;
     req.Status:=  ado.Fields[2].AsString;
     req.Date_Of_Create:=ado.Fields[3].AsDateTime;
@@ -59,6 +81,7 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
 
     req.Company:=mc.sql_select('Company', 'Agent' , 'where ID = ' + req.ID_Agent.ToString,'',false).Fields[0].AsString; //что бы узнать имя агента по id
 
+    req.Composition:= from_ado_to_array_composition(sql_select('*','Composition_of_req_ag',' where ID_request = '+req.ID_Request.ToString ,'',false ) );
 
 
 
@@ -68,6 +91,7 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
   result := array_of_requests_agent;
 
  end;
+
 
 
 procedure TRequest_Agents_Class.create_sort(Sortirovka: TComboBox);
@@ -125,8 +149,12 @@ class procedure TRequest_Agents_Class.load_frames(Panel1: TPanel; page, count_in
           Tag := 1;
           TFrame9(fr).Label1.Caption :=array_of_requests_agent[beg].Company;
           TFrame9(fr).Label4.Caption :=  DateTimeToStr(array_of_requests_agent[beg].Date_Of_Create);
-          TFrame9(fr).Label6.Caption := array_of_requests_agent[beg].Status;
+          TFrame9(fr).Label11.Caption := array_of_requests_agent[beg].Status;
           TFrame9(fr).Label8.Caption :=  array_of_requests_agent[beg].ID_Request.ToString;
+          var s:String;
+          s:=  IntToStr(array_of_requests_agent[beg].GetCost) ;
+          TFrame9(fr).LabelCost.Caption:= s;
+
            TFrame9(fr).panel:=Panel1;
           TFrame9(fr).Req_on_frame:= array_of_requests_agent[beg];
           Show;

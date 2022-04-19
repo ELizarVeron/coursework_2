@@ -1,0 +1,40 @@
+unit Frame_req_sup;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,  Request_Sup_Class ,Request_Info, Request_supplier,  EDITRequestSup;
+
+type
+  TFrame4 = class(TFrame)
+    Panel1: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label1: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    procedure FrameDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+       var Req_on_frame:  TRequest_supplier;
+         panel:TPanel;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrame4.FrameDblClick(Sender: TObject);
+var EditWindow:TForm24;
+begin
+    EditWindow:=TForm24.Create(self);
+    EditWindow.Init(Req_on_frame);
+
+end;
+
+end.

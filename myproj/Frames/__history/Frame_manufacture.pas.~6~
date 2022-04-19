@@ -1,0 +1,33 @@
+unit Frame_manufacture;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,Manufacture;
+
+type
+  TFrame_manufact = class(TFrame)
+    Panel1: TPanel;
+    Label3: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label9: TLabel;
+    lblCount: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+  private
+    { Private declarations }
+  public
+     var Man_on_frame:  TManufacture;
+
+         panel:TPanel;
+  end;
+
+implementation
+
+{$R *.dfm}
+
+end.

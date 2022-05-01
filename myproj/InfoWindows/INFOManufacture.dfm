@@ -129,7 +129,7 @@ object Form24: TForm24
     ParentFont = False
   end
   object Label12: TLabel
-    Left = 257
+    Left = 246
     Top = 134
     Width = 73
     Height = 16
@@ -144,9 +144,9 @@ object Form24: TForm24
   object LabelNeed: TLabel
     Left = 336
     Top = 112
-    Width = 84
+    Width = 5
     Height = 16
-    Caption = #1053#1077#1086#1073#1093#1086#1076#1080#1084#1086':  '
+    Caption = '-'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -155,11 +155,11 @@ object Form24: TForm24
     ParentFont = False
   end
   object LabelHave: TLabel
-    Left = 345
+    Left = 336
     Top = 134
-    Width = 73
+    Width = 5
     Height = 16
-    Caption = #1042' '#1085#1072#1083#1080#1095#1080#1080':  '
+    Caption = '-'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -174,13 +174,16 @@ object Form24: TForm24
     Height = 25
     Caption = #1047#1072#1087#1091#1089#1082' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1072
     TabOrder = 0
+    OnClick = Button1Click
   end
   object ListBox1: TListBox
     Left = 46
     Top = 112
     Width = 177
     Height = 169
+    Style = lbOwnerDrawFixed
     ItemHeight = 15
     TabOrder = 1
+    OnClick = ListBox1Click
   end
 end

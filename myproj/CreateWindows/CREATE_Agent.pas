@@ -56,7 +56,7 @@ var
   arr: array[0..12] of string;
   img:TJpegImage;
   points:TObjectList<TPoint_>;
-  mc:TRequests;
+  mc:TMain_class;
 
   img_name: string;
   ext:string;
@@ -66,7 +66,7 @@ implementation
   constructor TForm12.Create(AOwner: TComponent);
   begin
 
-           mc:=TRequests.Create;
+           mc:=TMain_class.Create;
            new_agent:= TAgent.Create;
            points:=TObjectList<TPoint_>.Create;
            inherited;

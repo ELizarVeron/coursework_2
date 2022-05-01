@@ -9,7 +9,7 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
    DateUtils,AddPoints;
 
 type
-  TAgent_Class = class(TRequests)
+  TAgent_Class = class(TMain_class)
   public
   var
    class var  max_id: integer;

@@ -113,7 +113,6 @@
             <Form>Form4</Form>
         </DCCReference>
         <DCCReference Include="Models\Entities\History_Of_Reliz.pas"/>
-        <DCCReference Include="Models\Entities\Material.pas"/>
         <DCCReference Include="Models\Entities\Product.pas"/>
         <DCCReference Include="Models\Entities\Request_supplier.pas"/>
         <DCCReference Include="Models\Entities\Requests_agent.pas"/>
@@ -241,6 +240,14 @@
             <Form>Form24</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="EditWindows\EDITProduct.pas">
+            <Form>Form25</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Models\Entities\Material.pas"/>
+        <DCCReference Include="InfoWindows\INFOManufacture2.pas">
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -262,8 +269,10 @@
                     <Source Name="MainSource">Project1.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp270.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k280.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp280.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">

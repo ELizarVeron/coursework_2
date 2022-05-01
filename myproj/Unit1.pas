@@ -55,14 +55,17 @@ begin
     begin
         var
             Form3: TForm3;
-        Form3 := TForm3.Create(nil);
+        Form3 := TForm3.Create(Application );
         Form3.Show;
     end;
     if (staff = 'Manager') then
     begin
-
-        TForm4.login:=Form1.Edit1.Text;
-        Win_Manager.Form4.Show;
+        var
+            Form4: TForm4;
+        Form4 := TForm4.Create(Application );
+        Form4.Show;
+        Form4.login:=Form1.Edit1.Text;
+        Form4.Show;
     end;
 
 

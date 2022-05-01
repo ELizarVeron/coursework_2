@@ -34,7 +34,7 @@ type
 
 var
   Form23: TForm23;
-  mc:TRequests;
+  mc:TMain_class;
   ado,ado2:TADOQuery;
   id_sup: integer;
   arr: array[0..6] of string;
@@ -46,7 +46,7 @@ begin
   inherited;
   id_materials:=  Tlist<string>.Create;
    cost_materials:= Tlist<integer>.Create;
-  mc:=TRequests.Create;
+  mc:=TMain_class.Create;
   GetMaterials;
   ReloadSups;
 

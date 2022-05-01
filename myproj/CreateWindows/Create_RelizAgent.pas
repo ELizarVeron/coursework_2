@@ -28,7 +28,7 @@ type
   public
     { Public declarations }
      constructor Create(AOwner: TComponent); override;
-      var mc:TRequests;
+      var mc:TMain_class;
        var ado:TADOQuery;
      var
       arr: array  of string;
@@ -48,7 +48,7 @@ implementation
              inherited;
 
 
-              mc:= TRequests.Create;
+              mc:= TMain_class.Create;
               ado:=mc.sql_select('article', 'products','','',false);
                 while not ado.Eof do
                   begin

@@ -82,6 +82,13 @@ implementation
 constructor TForm3.Create;
 begin
        inherited;
+  MaterClass := TMaterial_Class.Create;
+  C_mater:= MaterClass.array_of_material.Count;
+  MaterClass.load_frames(Panel_MAterials,0, C_req);
+  MaterClass.create_sort(ComboBox3);
+  MaterClass.create_filter(ComboBox4);
+  MaterClass.load_pages(Navigator_Material.Panel2,MaterClass.array_of_material.Count,0);
+
 
   ProdClass := TProduct_Class.Create;
   C_prod := ProdClass.array_of_products.Count;
@@ -90,12 +97,6 @@ begin
   ProdClass.create_filter(filter_prod);
   ProdClass.load_pages(Navigator_Production.Panel2, ProdClass.array_of_products.Count,0);
 
-   MaterClass := TMaterial_Class.Create;
-  C_mater:= MaterClass.array_of_materials.Count;
-  MaterClass.load_frames(Panel_MAterials,0, C_req);
-  MaterClass.create_sort(ComboBox3);
-  MaterClass.create_filter(ComboBox4);
-  MaterClass.load_pages(Navigator_Material.Panel2,MaterClass.array_of_materials.Count,0);
 
   ReqClass := TRequest_Sup_Class.Create;
   C_req:= ReqClass.array_of_requests_sup.Count;
@@ -189,7 +190,7 @@ begin
     if (PageControl1.ActivePage = TabMat) then
   begin
     i:= strToInt(  Navigator_Material.Label_1.Caption  ) - 1;
-    ReqClass.load_frames(Panel_materials, i, MaterClass.array_of_material.Count);
+   MaterClass.load_frames(Panel_materials, i, MaterClass.array_of_material.Count);
      Navigator_Material.Label_1.Font.Style := [fsUnderline];
    Navigator_Material.Label_2.Font.Style := [];
    Navigator_Material.Label_3.Font.Style:= [];

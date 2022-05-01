@@ -7,7 +7,7 @@ interface
    Supplier,   Main_Class,    Supplier_Class,Material_class;
 
 type
-  TRequest_Sup_Class  = class(TRequests)
+  TRequest_Sup_Class  = class(TMain_class  )
   public
     class var array_of_requests_sup: TObjectList<TRequest_Supplier>;
 
@@ -89,11 +89,11 @@ begin
     var mater: TMaterial_Class;
      mater:=TMaterial_class.Create;
 
-      for var i  := 0 to mater.array_of_materials.Count-1 do
+      for var i  := 0 to mater.array_of_material.Count-1 do
       begin
-        if (mater.array_of_materials[i].Article=article) then
+        if (mater.array_of_material[i].Article=article) then
         begin
-          req.Material:=mater.array_of_materials[i];
+          req.Material:=mater.array_of_material[i];
           break;
 
         end;

@@ -68,7 +68,7 @@ end;
 constructor TFrame3.Create(AOwner: TComponent);
 begin
   inherited;
-   mc:=TRequests.Create;
+   mc:=TMAin_class.Create;
     cheked:=true;
     if cheked  then
               CheckBox1.Enabled:=true;

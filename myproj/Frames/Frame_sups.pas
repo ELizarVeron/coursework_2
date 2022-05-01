@@ -25,10 +25,11 @@ type
     procedure N1Click(Sender: TObject);
   private
     procedure  ShowINFO;
-    procedure  AddData;
+
     var FsupplierOnFrame: TSupplier;
   public
    panel:TPanel;
+    procedure  AddData;
      property supplierOnFrame: TSupplier read FsupplierOnFrame write FsupplierOnFrame;
   end;
 

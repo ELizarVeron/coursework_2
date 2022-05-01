@@ -78,7 +78,7 @@ var
       Form5: TForm5;
       agent_on_change: TAgent;
       ext,to_change :string;
-      mc:TRequests;
+      mc:TMain_class;
       arr : array[0..8] of string;
       i:integer;
 implementation
@@ -91,7 +91,7 @@ implementation
           change_logo:=false;
           need_delete:=false;
           closed:=false;
-          mc:=TRequests.Create;
+          mc:=TMain_class.Create;
        end;
 
  procedure TForm5.Init(agent:TAgent);

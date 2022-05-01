@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls,Main_Class,JPEG, Product_Class,Product,
-  Vcl.ExtDlgs, System.Generics.Collections ;
+  Vcl.ExtDlgs, System.Generics.Collections,Material,Material_Class ;
 
 type
   TForm14 = class(TForm)
@@ -29,12 +29,8 @@ type
     Edit_standart: TEdit;
     Label10: TLabel;
     Label11: TLabel;
-    Label12: TLabel;
     Edit_selfcost: TEdit;
     Edit_mincost: TEdit;
-    Button1: TButton;
-    Button2: TButton;
-    Button_loadsert: TButton;
     Label13: TLabel;
     Button_save: TButton;
     Edit_length: TEdit;
@@ -50,31 +46,46 @@ type
     Button5: TButton;
     Label14: TLabel;
     Edit_time: TEdit;
+    ListBox1: TListBox;
+    ListBox2: TListBox;
+    Label15: TLabel;
+    Button1: TButton;
     procedure Button_saveClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
+    procedure ListBox2DblClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     procedure SaveNewInArrayOfProducts;
     procedure SaveProdInDB;
     procedure SaveMaterialsInDB;
     procedure SaveIcon;
+
+    procedure EditInArray;
+    procedure UpdateProdInDB;
+    procedure UpdateMaterialInDB;
+
+
+
    // procedure  SaveNewInArrayOfProd;
     //procedure  SaveProdInDB;
   public
          constructor Create( AOwner: TComponent);  override;
-        procedure Init(prod:TProduct);
+         procedure InitForEdit(prod:TProduct);
+         procedure InitForCreateProduct( );
         var   nothing_to_change, nothing_to_change_logo, modeEdit,need_delete:boolean;
         var  prod_after_change:TProduct;
+        var lm_of_new_product:TObjectList<TListOfMaterials>;
   end;
 
 var
   Form14: TForm14;
   new_prod: TProduct;
-  arr: array[0..15] of string;
   img:TJpegImage;
   materials:TObjectList<TMaterial>;
-  mc:TRequests;
+  mc:TMain_class;
   prod_on_change:TProduct;
   prod_after_change:TProduct;
 
@@ -86,7 +97,7 @@ implementation
   constructor TForm14.Create(AOwner: TComponent);
   begin
 
-           mc:=TRequests.Create;
+           mc:=TMain_class.Create;
            new_prod:=  TProduct.Create;
            materials:= TObjectList<TMaterial>.Create;
 
@@ -94,23 +105,68 @@ implementation
 
   end;
 
-   procedure TForm14.Init(prod:TProduct);
+   procedure TForm14.EditInArray;
+    begin
+
+        prod_on_change.Name_:= Edit_name.Text  ;
+
+    end;
+
+
+    procedure TForm14.UpdateMaterialInDB;
+    var arr: array[0..2] of string;
+    var i:integer;
+    begin
+         mc.sql_delete(' list_of_materials ' , ' Article_of_products ',  prod_on_change.Article.ToString  ) ;
+         arr[0]:=  IntToStr(prod_on_change.Article);
+         for I := 0 to ListBox2.Items.Count-1 do
+         begin
+            arr[1]:= (ListBox2.Items.Objects[i] as TListOfMaterials).Article.ToString;
+            arr[2]:= (ListBox2.Items.Objects[i] as TListOfMaterials).Count.ToString;
+            mc.sql_insert(' List_of_materials ', arr);
+         end;
+
+
+    end;
+
+    procedure TForm14.UpdateProdInDB;
+    var changes:string;
+    begin
+          changes:=changes+ ' Name_ = '+ QuotedStr( Edit_Name.Text);
+          changes:=changes+ ' ,costForAgent = '+  Edit_mincost.Text;
+          changes:=changes+ ' , SelfCost = '+ Edit_selfcost.Text;
+          changes:=changes+ ' , Standart = '+ QuotedStr(Edit_standart.Text);
+          changes:=changes+ ' , Time_ = '+ Edit_time.Text;
+          changes:=changes+ ' , Technology = '+ QuotedStr(Memo1.Text);
+          changes:=changes+ ' , length = '+ Edit_length.Text;
+          changes:=changes+ ' , height  = '+ Edit_height.Text;
+          changes:=changes+ ' , width = '+ Edit_width.Text;
+          changes:=changes+ ' , Weight_with_pack = '+ Edit_weigth_with.Text;
+          changes:=changes+ ' , Weight_without_pack = '+ Edit_weigth_without.Text;
+          mc.sql_update(' Products ' , changes , ' where Article =  ' + prod_on_change.Article.ToString  ) ;
+
+    end;
+
+procedure TForm14.InitForEdit(prod:TProduct);
+   var i:integer;
    begin
+        Label13.Caption:= 'Редактирвоание информации о продукции';
 
         prod_after_change:=  TProduct.Create;
         prod_on_change:= prod;
-        Edit_mincost.Text:=prod.CostForAgent.ToString;
-        Edit_selfcost.Text:=prod.Cost.ToString;
-        Edit_standart.Text:=prod.Standart;
-        Edit_time.Text:=prod.Time_.ToString;
-        Memo1.Text:=prod.Technology;
-        Edit_length.Text:=prod.Length.ToString;
-        Edit_height.Text:=prod.Height.ToString;
-        Edit_width.Text:=prod.Width.ToString;
-        Edit_weigth_with.Text:=prod.WeigthWith.ToString;
-        Edit_weigth_without.Text:=prod.WeightWithout.ToString;
+        Edit_name.Text:= prod_on_change.Name_;
+        Edit_mincost.Text:=prod_on_change.CostForAgent.ToString;
+        Edit_selfcost.Text:=prod_on_change.Cost.ToString;
+        Edit_standart.Text:=prod_on_change.Standart;
+        Edit_time.Text:=prod_on_change.Time_.ToString;
+        Memo1.Text:=prod_on_change.Technology;
+        Edit_length.Text:=prod_on_change.Length.ToString;
+        Edit_height.Text:=prod_on_change.Height.ToString;
+        Edit_width.Text:=prod_on_change.Width.ToString;
+        Edit_weigth_with.Text:=prod_on_change.WeigthWith.ToString;
+        Edit_weigth_without.Text:=prod_on_change.WeightWithout.ToString;
 
-        prod_on_change:=prod;
+
 
         if(prod.Logo = '') then
          Image1.Picture.LoadFromFile('icn.png')
@@ -118,9 +174,20 @@ implementation
          Image1.Picture.LoadFromFile(prod.Logo);
 
 
+          for I := 0 to  prod_on_change.list_of_materials.Count-1 do
+          begin
+            ListBox2.AddItem(prod_on_change.list_of_materials[i].Title +
+            ' '+prod_on_change.list_of_materials[i].Count.ToString+' ед. '   ,
+             prod_on_change.list_of_materials[i]) ;
+
+          end;
 
 
+          for I := 0 to  TMaterial_Class.array_of_material.Count-1 do
+          begin
+            ListBox1.AddItem(TMaterial_Class.array_of_material[i].Title, TMaterial_Class.array_of_material[i]) ;
 
+          end;
 
 
 
@@ -131,7 +198,64 @@ implementation
 
 
 
+procedure TForm14.InitForCreateProduct();
+ var i:integer;
+begin
+            for I := 0 to  TMaterial_Class.array_of_material.Count-1 do
+          begin
+            ListBox1.AddItem(TMaterial_Class.array_of_material[i].Title, TMaterial_Class.array_of_material[i]) ;
+
+          end;
+       lm_of_new_product:= TObjectList<TListOfMaterials>.Create;
+end;
+
+procedure TForm14.ListBox1DblClick(Sender: TObject);
+var scount:String;
+ var i:integer;
+ var m:TListOfMaterials;
+begin
+
+      if not InputQuery('Количетсво материала',
+        'Введите количетсво материала:', scount)
+      then exit
+      else
+      begin
+         m:= TListOfMaterials.Create;
+         m.Article:=  (ListBox1.Items.Objects[ListBox1.ItemIndex]  as TMaterial).Article;
+         m.Title:=  (ListBox1.Items.Objects[ListBox1.ItemIndex]  as TMaterial).Title;
+         m.Count:=  StrToInt( scount );
+         m.In_stock:=  (ListBox1.Items.Objects[ListBox1.ItemIndex]  as TMaterial).In_stock;
+
+         if( ListBox2.Items.Count>0) then
+         begin
+               for I := 0 to  ListBox2.Items.Count-1 do
+          begin
+            if (ListBox2.Items.Objects[i] as TListOfMaterials).Article =  m.Article  then
+
+            ListBox2.Items.Delete(i);
+          end;
+
+         end;
+
+
+          ListBox2.AddItem(
+          ListBox1.Items[ListBox1.ItemIndex]+' '+scount+' ед. ' ,  m  ) ;
+
+      end;
+
+end;
+
+procedure TForm14.ListBox2DblClick(Sender: TObject);
+begin
+
+end;
+
 {$R *.dfm}
+
+procedure TForm14.Button1Click(Sender: TObject);           // удалить материал из списка 2
+begin
+  ListBox2.DeleteSelected;
+end;
 
 procedure TForm14.Button3Click(Sender: TObject);  // удаление или отмена
 begin
@@ -176,22 +300,25 @@ end;
 
 procedure TForm14.Button_saveClick(Sender: TObject);  //сохранение
 begin
+      if(ListBox2.Items.Count = 0 ) then
+      begin
+        ShowMessage('Список материалов не может быть пустым');
+        exit;
+      end;
+
       if not (modeEdit ) then  //если режим создания
        begin
          SaveNewInArrayOfProducts;
          SaveProdInDB;
-        // SaveMaterialsInDB;
+         SaveMaterialsInDB;
          Inc(TProduct_Class.max_id);
-
-
-        Close;
-
-
 
        end
        else
        begin                    //если режим редактирования
-
+         EditInArray;
+         UpdateProdInDB;
+         UpdateMaterialInDB;
 
 
 
@@ -203,8 +330,9 @@ begin
 end;
 
 procedure TForm14.SaveNewInArrayOfProducts;
+var i:integer;
 begin
-       new_prod.Article:=(TProduct_Class.max_id +1) ;
+         new_prod.Article:=(TProduct_Class.max_id +1) ;
          new_prod.Name_:=Edit_name.Text;
          new_prod.Type_:=ComboBox_type.Text;
          new_prod.Cost:= StrToInt(Edit_selfcost.Text);
@@ -222,12 +350,19 @@ begin
          new_prod.CostForAgent:=StrToInt(Edit_mincost.Text);
 
 
-         new_prod.materials := materials;
+         for I := 0 to   ListBox2.Count-1 do
+          begin
+             lm_of_new_product.Add(ListBox2.Items.Objects[i] as TListOfMaterials  );
+
+          end;
+
+         new_prod.list_of_materials := lm_of_new_product ;
          TProduct_Class.array_of_products.Add(new_prod);
 
 end;
 
 procedure TForm14.SaveProdInDB;
+var arr: array[0..15] of string;
 begin
      arr[0]:= (TProduct_Class.max_id +1).ToString;
           arr[1]:=new_prod.Cost.ToString;
@@ -250,8 +385,20 @@ begin
 
 end;
 
+
+
 procedure TForm14.SaveMaterialsInDB;
+var arr: array[0..2] of string;
+var i:integer;
 begin
+   arr[0]:=  IntToStr(new_prod.Article);
+   for I := 0 to   new_prod.list_of_materials.Count-1 do
+          begin
+           arr[1]:=  IntToStr(new_prod.list_of_materials[i].Article);
+           arr[2]:=  IntToStr(new_prod.list_of_materials[i].Count);
+           mc.sql_insert(' List_of_materials ', arr);
+          end;
+
 
 
 end;

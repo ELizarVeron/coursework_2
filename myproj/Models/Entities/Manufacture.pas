@@ -17,12 +17,11 @@ type
   protected
   public
     property Id_production: integer read FId_production write FId_production;
-       property Name_production: string read FNameproduction write FNameproduction;
+    property Name_production: string read FNameproduction write FNameproduction;
     property Id_request_from_agent: integer read FId_request_from_agent write FId_request_from_agent;
     property ID_Manufacture: integer read FID_Manufacture write FID_Manufacture;
-  property Login_Master: string read FLogin_Master write FLogin_Master;
-
-   property Status: string read FStatus write FStatus;
+    property Login_Master: string read FLogin_Master write FLogin_Master;
+    property Status: string read FStatus write FStatus;
 
     property Count: integer read FCount write FCount;
 

@@ -2,16 +2,14 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = '7'
-  ClientHeight = 286
-  ClientWidth = 348
+  ClientHeight = 309
+  ClientWidth = 408
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 104
@@ -69,7 +67,7 @@ object Form1: TForm1
   object ComboBox1: TComboBox
     Left = 176
     Top = 67
-    Width = 153
+    Width = 169
     Height = 31
     Style = csDropDownList
     Font.Charset = ANSI_CHARSET
@@ -89,7 +87,7 @@ object Form1: TForm1
   object Edit1: TEdit
     Left = 176
     Top = 123
-    Width = 153
+    Width = 169
     Height = 31
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -103,7 +101,7 @@ object Form1: TForm1
   object Edit2: TEdit
     Left = 176
     Top = 180
-    Width = 153
+    Width = 169
     Height = 31
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -150,8 +148,7 @@ object Form1: TForm1
     Left = 40
   end
   object DataSource1: TDataSource
-    Left = 312
-    Top = 8
+    Left = 296
   end
   object ADOQuery1: TADOQuery
     Connection = ADOConnection1
@@ -159,6 +156,6 @@ object Form1: TForm1
     Parameters = <>
     SQL.Strings = (
       'SELECT *FROM AGENT')
-    Left = 184
+    Left = 8
   end
 end

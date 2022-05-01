@@ -5,8 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Product,INFOProduct, Vcl.Imaging.pngimage, Vcl.Menus;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,   Product,    INFOProduct,   Vcl.Imaging.pngimage,    Vcl.Menus                            ;
 
 type
   TFrame6 = class(TFrame)
@@ -29,15 +28,30 @@ type
   public
     productOnFrame :TProduct;
     procedure ShowInfo;
+    procedure AppData;
   end;
 
 implementation
-
+   uses CREATE_EDIT_Product;
 {$R *.dfm}
+
+procedure TFrame6.AppData;
+begin
+   Label1.Caption := productOnFrame.Article.ToString;
+     Label2.Caption := productOnFrame.Name_;
+    Label7.Caption := productOnFrame.Cost.ToString;
+end;
 
 procedure TFrame6.N1Click(Sender: TObject);
 begin
    //редакт
+     var
+        Form14: TForm14;
+        Form14 := TForm14.Create(self);
+        Form14.modeEdit:=true;
+        Form14.InitForEdit(productOnFrame);
+        Form14.ShowModal;
+        AppData;
 end;
 
 procedure TFrame6.Panel1Click(Sender: TObject);

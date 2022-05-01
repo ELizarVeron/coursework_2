@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Request_supplier,Main_class;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Request_supplier,Main_class,Product_Class;
 
 type
   TFormEditReqSup = class(TForm)
@@ -32,7 +32,8 @@ type
 
 var
   FormEditReqSup: TFormEditReqSup;
-  mc:TRequests;
+  mc:TMain_class;
+  i,j:Integer;
 implementation
 
 {$R *.dfm}
@@ -49,12 +50,26 @@ begin
      if CheckBox1.Checked=false then    exit;
      reload:=true;
      receipt:=true;
-     mc:=TRequests.Create;
+     mc:=TMain_class.Create;
      mc.sql_update('Request_for_supplier', ' Status = ' + QuotedStr('Завершена'), 'where Id_request_sup =  ' + req_on_edit.ID_Request.ToString );
 
+        for   i := 0 to    TProduct_Class.array_of_products.Count-1 do
+        begin
+            for j := 0 to   TProduct_Class.array_of_products[i].list_of_materials.Count do
+            begin
+                if(TProduct_Class.array_of_products[i].list_of_materials[j].Article =req_on_edit.Material.Article  )  then
 
+                TProduct_Class.array_of_products[i].list_of_materials[j].Count:=    TProduct_Class.array_of_products[i].list_of_materials[j].Count + req_on_edit.Count;
+
+            end;
+
+
+
+        end;
 
       SaveMaterialFromSup;
+
+
 
      ShowMessage('Сохранено');
      Close;
@@ -91,7 +106,7 @@ procedure TFormEditReqSup.SaveMaterialFromSup;
 var count_now:integer;
 var count_after:integer;
 begin
-    mc:=TRequests.Create;
+    mc:=TMain_class.Create;
     count_now:= mc.sql_select('In_stock','Material','where Article =   '+ req_on_edit.Material.Article.ToString  ,'',false ).Fields[0].AsInteger;
     count_after:=count_now+req_on_edit.Count;
     mc.sql_update('Material','In_stock = '+  count_after.ToString, ' where Article =  '+ req_on_edit.Material.Article.ToString );

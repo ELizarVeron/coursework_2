@@ -48,7 +48,7 @@ var
   new_sup: TSupplier;
   arr: array[0..7] of string;
   img:TJpegImage;
-  mc:TRequests;
+  mc:TMain_class;
    ado:TADOQuery;
   to_change,  img_name: string;
   ext:string;
@@ -77,13 +77,15 @@ begin
            SaveInDB;
 
            sup_after_change.ID:= sup_on_change.ID;
-           sup_after_change.Title:=  sup_on_change.Title;
+           sup_after_change.Title:=  Edit_name.Text;
            sup_after_change.Rate:=  sup_on_change.Rate;
            sup_after_change.INN:=  sup_on_change.INN;
-           sup_after_change.Type_:=    sup_on_change.Type_;
-           sup_after_change.Tel:=     sup_on_change.Tel;
-           sup_after_change.Email:= sup_on_change.Email;
+           sup_after_change.Type_:=  ComboBox_type.Text;
+           sup_after_change.Tel:=   Edit_tel.Text;
+           sup_after_change.Email:= Edit_email.Text;
 
+
+   //тут подкоректировать надо
 
 
 
@@ -92,7 +94,7 @@ begin
 
         SaveMaterials;
         DeleteAndSaveMaterials;
-         ShowMessage('Сохранено');
+        ShowMessage('Сохранено');
         Close;
 
 end;
@@ -126,10 +128,10 @@ constructor TForm13.Create(AOwner: TComponent);
              materialClass:= TMaterial_class.Create;
               var i:integer;
             CheckListBox1.Items.Clear;
-            for I := 0 to TMaterial_Class.array_of_materials.count-1 do
+            for I := 0 to TMaterial_Class.array_of_material.count-1 do
             begin
 
-                CheckListBox1.Items.Add( TMaterial_Class.array_of_materials[i].Title );
+                CheckListBox1.Items.Add( TMaterial_Class.array_of_material[i].Title );
 
 
             end;
@@ -245,16 +247,17 @@ begin
 
                    name:= CheckListBox1.Items[i];
 
-                 for j := 0 to TMaterial_Class.array_of_materials.Count-1 do
+                 for j := 0 to TMaterial_Class.array_of_material.Count-1 do
                  begin
-                        if (name=TMaterial_Class.array_of_materials[j].Title) then
-                        new_array_of_materials.Add(TMaterial_Class.array_of_materials[j]);
+                        if (name=TMaterial_Class.array_of_material[j].Title) then
+                        new_array_of_materials.Add(TMaterial_Class.array_of_material[j]);
 
                  end;
 
                 end;
 
             end;
+           sup_after_change.materials:=new_array_of_materials;
 end;
 
 procedure TForm13.Init(sup:TSupplier);

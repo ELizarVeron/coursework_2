@@ -103,19 +103,18 @@ end;
 
  end;
 
-  function TMain_Class.sql2(s:string):TADOQuery;
+    function TMain_Class.sql2(s:string):TADOQuery;
  begin
     var
       ADO: TADOQuery;
       ADO := TADOQuery.Create(nil);
-      var
-        str: string;
+
 
 
       ADO.Connection := ADOCon;
       ADO.Active := false;
       ADO.SQL.Clear;
-      ADO.SQL.Add(str);
+      ADO.SQL.Add(s);
       ADO.Active := true;
 
   result := ADO;
@@ -133,7 +132,7 @@ end;
     str:= 'update '+ table+ ' set ' +  column_value+  where;
     ADO.Connection := ADOCon;
     ADO.Active := false;
-    ADO.SQL.Clear;
+     ADO.SQL.Clear;
     ADO.SQL.Add(str);
     ADO.ExecSQL;
 

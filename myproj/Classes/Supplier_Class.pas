@@ -9,7 +9,7 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Frame_sups, Frame_agents;
 
 type
-  TSupplier_Class = class(TRequests)
+  TSupplier_Class = class(TMain_class)
   public
   var
     class var array_of_suppliers: TObjectList<TSupplier>;
@@ -230,6 +230,7 @@ begin
       Tag := 1;
        TFrame5(fr).panel:=Panel1;
       TFrame5(fr).supplierOnFrame :=  array_of_suppliers[beg];
+    //  TFrame5(fr).AddData;
       TFrame5(fr).Label2.Caption := array_of_suppliers[beg].Title;
       TFrame5(fr).Label4.Caption := array_of_suppliers[beg].Type_;
       TFrame5(fr).Label6.Caption := array_of_suppliers[beg].INN;

@@ -37,43 +37,43 @@ object Frame5: TFrame5
     object Label3: TLabel
       Left = 40
       Top = 28
-      Width = 22
-      Height = 13
+      Width = 23
+      Height = 15
       Caption = #1058#1080#1087':'
     end
     object Label4: TLabel
       Left = 123
       Top = 28
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Caption = 'Label4'
     end
     object Label5: TLabel
       Left = 41
       Top = 47
-      Width = 21
-      Height = 13
+      Width = 27
+      Height = 15
       Caption = #1048#1053#1053
     end
     object Label6: TLabel
       Left = 123
       Top = 47
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Caption = 'Label6'
     end
     object Label10: TLabel
       Left = 312
       Top = 9
-      Width = 45
-      Height = 13
+      Width = 47
+      Height = 15
       Caption = #1056#1077#1081#1090#1080#1085#1075':'
     end
     object Label11: TLabel
       Left = 363
       Top = 9
-      Width = 4
-      Height = 13
+      Width = 5
+      Height = 15
       Caption = '-'
     end
   end

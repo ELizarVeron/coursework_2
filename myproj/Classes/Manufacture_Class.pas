@@ -6,7 +6,7 @@ interface
  Agents, History_Of_Reliz,   Manufacture,
    Supplier,   Main_Class,    Supplier_Class;
 type
-  TManufacture_Class  = class(TRequests)
+  TManufacture_Class  = class(TMain_class)
   public
     class var array_of_manufacture: TObjectList<TManufacture>;
            constructor Create();
@@ -68,7 +68,13 @@ begin
     manufacture.Date_Of_Create:=ado.FieldByName('Date_Of_Create').AsDateTime;
     manufacture.Date_Of_Begin:= ado.FieldByName('Date_Of_Begin').AsDateTime;
     manufacture.Date_Of_End:=  ado.FieldByName('Date_Of_End').AsDateTime;
-    manufacture.Status:=  ado.FieldByName('Status').AsString;
+
+
+
+
+    manufacture.Status:= mc.sql_select('name', 'Status_manufacture' , 'where ID = ' + ado.FieldByName('Status').AsString,'',false).Fields[0].AsString;
+
+    ;
     //manufacture.Company:=mc.sql_select('Title', 'Supplier' , 'where ID = ' + req.ID_Sup.ToString,'',false).Fields[0].AsString; //что бы узнать имя по id
 
 
@@ -109,15 +115,9 @@ begin
           Name := 'FORM' + beg.ToString;
           Top := (fr.Height * i) + 10;
           Tag := 1;
-
-          TFrame_manufact(fr).Label8.Caption :=  array_of_manufacture[beg].ID_Manufacture.ToString;
-          TFrame_manufact(fr).Label4.Caption :=  DateTimeToStr(array_of_manufacture[beg].Date_Of_Create);
-          TFrame_manufact(fr).Label6.Caption := array_of_manufacture[beg].Status;
-          TFrame_manufact(fr).Label8.Caption :=  array_of_manufacture[beg].ID_Manufacture.ToString;
-          TFrame_manufact(fr).LabelCount.Caption :=  array_of_manufacture[beg].Count.ToString;
-          TFrame_manufact(fr).LabelName.Caption:=  array_of_manufacture[beg].Name_production;
            TFrame_manufact(fr).panel:=Panel1;
-          TFrame_manufact(fr).Man_on_frame:= array_of_manufacture[beg];
+           TFrame_manufact(fr).Man_on_frame:= array_of_manufacture[beg];
+            TFrame_manufact(fr).AppData;
           Show;
           Inc(beg);
           Inc(i);

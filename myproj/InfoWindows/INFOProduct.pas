@@ -5,11 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,Product,
-  Vcl.ExtDlgs, Data.DB, Data.Win.ADODB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls;
+  Vcl.ExtDlgs, Data.DB, Data.Win.ADODB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage;
 
 type
   TForm20 = class(TForm)
-    OpenPictureDialog1: TOpenPictureDialog;
     ADOTable1: TADOTable;
     DataSource1: TDataSource;
     PageControl1: TPageControl;
@@ -20,34 +20,37 @@ type
     Стандарт: TLabel;
     Label10: TLabel;
     Label3: TLabel;
-    Label12: TLabel;
-    Edit1: TEdit;
-    ComboBox1: TComboBox;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
-    Button3: TButton;
     TabSheet3: TTabSheet;
     Label8: TLabel;
     Label9: TLabel;
     Memo1: TMemo;
-    Memo2: TMemo;
-    Button1: TButton;
-    Button2: TButton;
     TabSheet2: TTabSheet;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label14: TLabel;
-    Edit5: TEdit;
-    Edit6: TEdit;
-    Edit7: TEdit;
-    Edit8: TEdit;
-    Edit9: TEdit;
     TabSheet4: TTabSheet;
     Label11: TLabel;
     Label13: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label24: TLabel;
+    Label25: TLabel;
+    ADOQuery1: TADOQuery;
+    ListBox1: TListBox;
+    Label12: TLabel;
+    Label20: TLabel;
+    ADOQuery1id_product: TIntegerField;
+    ADOQuery1date_: TDateTimeField;
+    ADOQuery1login_manager: TWideStringField;
+    ADOConnection1: TADOConnection;
     DBGrid1: TDBGrid;
   private
     FProduct:TProduct;
@@ -61,11 +64,47 @@ var
 
 implementation
 procedure TForm20.Init;
+var i:integer;
      begin
        if not(Product=nil) then
        begin
+       if not (Product.Logo='' ) then
+       Image1.Picture.LoadFromFile(Product.Logo)
+       else
+       Image1.Picture.LoadFromFile('icn.png');
 
-       
+
+       Label15.Caption:=Product.Name_;
+       Label16.Caption:=Product.Type_;
+       Label17.Caption:=Product.Standart;
+       Label18.Caption:=Product.Cost.ToString;
+       Label19.Caption:=Product.CostForAgent.ToString;
+        Label20.Caption:=Product.Time_.ToString;
+        Label21.Caption:=Product.Length.ToString;
+         Label22.Caption:= Product.Width.ToString;
+          Label23.Caption:=Product.Height.ToString;
+           Label24.Caption:=Product.WeightWithout.ToString;
+            Label25.Caption:=Product.WeigthWith.ToString;
+
+        Memo1.Text:=Product.Technology;
+
+
+
+        ADOQuery1.Active := false;
+        ADOQuery1.SQL.Clear;
+        ADOQuery1.SQL.Add(' Select * from History_of_cost where id_product =:id   ');
+        ADOQuery1.Parameters.ParamByName('id').Value:=Product.Article;
+        ADOQuery1.Active := true;
+
+         for I := 0 to  Product.list_of_materials.Count-1 do
+          begin
+            ListBox1.AddItem(Product.list_of_materials[i].Title+ ' '+
+            Product.list_of_materials[i].Count.ToString
+            +' ед. ', Product.list_of_materials[i]) ;
+
+          end;
+
+
 
      end;
 

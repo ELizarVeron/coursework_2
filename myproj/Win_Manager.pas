@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.Win.ADODB,
   Vcl.ExtCtrls, Main_Class, Agent_Class,
   Vcl.ComCtrls, Supplier_Class, Product_Class, Request_Agents_Class, Nav_Frame,
-  Navigator, Frame_req_ag,CREATE_REQUEST , CREATE_Agent, CREATE_EDIT_Product, CREATE_EDIT_Supplier;
+  Navigator, Frame_req_ag,CREATE_REQUEST , CREATE_Agent, CREATE_EDIT_Product, CREATE_EDIT_Supplier,Material_Class;
 
 type
   TForm4 = class(TForm)
@@ -94,12 +94,20 @@ var
   ADO_req:  TADOQuery;
   C_req: integer;
 
+  MaterClass: TMaterial_Class;
+  ADO_mater:  TADOQuery;
+  C_mater: integer;
+
 implementation
 
 constructor TForm4.Create;
 begin
   inherited;
   PageControl1.ActivePage := Agents;
+
+    MaterClass := TMaterial_Class.Create;
+  C_mater:= MaterClass.array_of_material.Count;
+
 
   AgentClass := TAgent_Class.Create();
   AgentClass.Panel:=Panel1;
@@ -214,9 +222,10 @@ end;
 procedure TForm4.Button4Click(Sender: TObject);      //add production
 begin
 
-          var
+        var
         Form14: TForm14;
         Form14 := TForm14.Create(self);
+        Form14.InitForCreateProduct;
         Form14.ShowModal;
         reload_prod;
 end;

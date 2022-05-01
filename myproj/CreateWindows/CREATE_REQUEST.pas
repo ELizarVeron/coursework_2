@@ -34,7 +34,7 @@ type
 var
   Form9: TForm9;
    i,id_agent:integer;
-   mc: TRequests;
+   mc: TMain_class;
    ado: TADOQuery;
    ado2:TADOQuery;
    name_agent:string;
@@ -58,7 +58,7 @@ implementation
            for I := 0 to TAgent_Class.array_of_agents.Count-1 do
            ComboBox1.Items.Add(TAgent_Class.array_of_agents[i].Name);
 
-           mc:=TRequests.Create;
+           mc:=TMain_class.Create;
            ado:=TADOQuery.Create(nil);
             if( TRequest_Agents_Class.array_of_requests_agent.Count >0) then
 

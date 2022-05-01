@@ -92,15 +92,15 @@ object Frame6: TFrame6
     object Label7: TLabel
       Left = 280
       Top = 30
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Caption = 'Label7'
     end
     object Label8: TLabel
       Left = 280
       Top = 51
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Caption = 'Label8'
     end
     object Image1: TImage
@@ -202,8 +202,8 @@ object Frame6: TFrame6
     object Label3: TLabel
       Left = 445
       Top = 9
-      Width = 4
-      Height = 13
+      Width = 5
+      Height = 15
       Caption = '-'
     end
   end

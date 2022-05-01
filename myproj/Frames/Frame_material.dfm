@@ -7,15 +7,15 @@ object Framematerial: TFramematerial
   object Label2: TLabel
     Left = 152
     Top = 17
-    Width = 31
-    Height = 13
+    Width = 34
+    Height = 15
     Caption = 'Label8'
   end
   object Label3: TLabel
     Left = 49
     Top = 17
-    Width = 73
-    Height = 13
+    Width = 83
+    Height = 15
     Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
   end
   object Panel1: TPanel
@@ -35,43 +35,43 @@ object Framematerial: TFramematerial
     object Label5: TLabel
       Left = 249
       Top = 9
-      Width = 51
-      Height = 13
+      Width = 58
+      Height = 15
       Caption = #1042' '#1085#1072#1083#1080#1095#1080#1080
     end
     object Label6: TLabel
       Left = 352
       Top = 9
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Caption = 'Label6'
     end
     object Label8: TLabel
       Left = 144
-      Top = 9
-      Width = 31
-      Height = 13
+      Top = 7
+      Width = 34
+      Height = 15
       Caption = 'Label8'
     end
     object Label1: TLabel
       Left = 41
       Top = 9
-      Width = 73
-      Height = 13
+      Width = 83
+      Height = 15
       Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
     end
     object Label4: TLabel
       Left = 144
       Top = 28
-      Width = 31
-      Height = 13
+      Width = 34
+      Height = 15
       Caption = 'Label8'
     end
     object Label7: TLabel
       Left = 41
       Top = 28
-      Width = 54
-      Height = 13
+      Width = 60
+      Height = 15
       Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
     end
   end

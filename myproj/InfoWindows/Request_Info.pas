@@ -137,12 +137,13 @@ procedure TForm11.Craete_Manufacture;
 begin
        var mc:=TMain_class.Create();
        var ado:TAdoquery;
-       ado:=mc.sql_select('Id_manufacture','Manufacture','',' order by Id_manufacture ',false);
+       ado:=mc.sql_select('Id_manufacture','Manufacture','',' order by Id_manufacture   desc ',false);
         var id_manufacture_next := ado.Fields[0].AsInteger;
 
        for i:=0 to Req_on_frame.Composition.Count-1 do
        begin
-           arr[0]:=(id_manufacture_next+1).ToString;
+           id_manufacture_next:=id_manufacture_next+1;
+           arr[0]:=(id_manufacture_next).ToString;
            arr[1]:= '-'  ;
            arr[2]:= Req_on_frame.Composition[i].Articul.ToString ;
            arr[3]:= Req_on_frame.Composition[i].Count.ToString;
@@ -153,10 +154,10 @@ begin
            arr[8]:='Созданa';
 
            mc.sql_insert('Manufacture',arr );
-           ShowMessage('Заявка на производство успешно создана!');
+
        end;
 
-
+       ShowMessage('Заявка на производство успешно создана!');
 
 
 end;
@@ -316,7 +317,7 @@ begin
 
        if  ( ado_instock.Fields[0].AsInteger < ado.Fields[2].AsInteger) then  need_job:=true;
 
-       ado2:= mc.sql_select( ' Time ' , ' Products ' , ' where Article =  ' +  ado.Fields[1].AsString , '' , false );
+       ado2:= mc.sql_select( ' Time_ ' , ' Products ' , ' where Article =  ' +  ado.Fields[1].AsString , '' , false );
        if ( ado2.Fields[0].AsInteger > max_time ) then  max_time:=ado2.Fields[0].AsInteger;
        ado.Next;
      end;

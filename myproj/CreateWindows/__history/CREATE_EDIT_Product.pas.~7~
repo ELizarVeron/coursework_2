@@ -1,0 +1,327 @@
+unit CREATE_EDIT_Product;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls,Main_Class,JPEG, Product_Class,Product,
+  Vcl.ExtDlgs, System.Generics.Collections,Material,Material_Class ;
+
+type
+  TForm14 = class(TForm)
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit_name: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Image1: TImage;
+    ComboBox_type: TComboBox;
+    TabSheet3: TTabSheet;
+    Memo1: TMemo;
+    Label8: TLabel;
+    Label9: TLabel;
+    Стандарт: TLabel;
+    Edit_standart: TEdit;
+    Label10: TLabel;
+    Label11: TLabel;
+    Edit_selfcost: TEdit;
+    Edit_mincost: TEdit;
+    Label13: TLabel;
+    Button_save: TButton;
+    Edit_length: TEdit;
+    Edit_width: TEdit;
+    Edit_height: TEdit;
+    Edit_weigth_without: TEdit;
+    Edit_weigth_with: TEdit;
+    PageControl1: TPageControl;
+    OpenPictureDialog1: TOpenPictureDialog;
+    OpenPictureDialog2: TOpenPictureDialog;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Label14: TLabel;
+    Edit_time: TEdit;
+    ListBox1: TListBox;
+    ListBox2: TListBox;
+    Label15: TLabel;
+    procedure Button_saveClick(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
+    procedure ListBox2DblClick(Sender: TObject);
+  private
+    procedure SaveNewInArrayOfProducts;
+    procedure SaveProdInDB;
+    procedure SaveMaterialsInDB;
+    procedure SaveIcon;
+   // procedure  SaveNewInArrayOfProd;
+    //procedure  SaveProdInDB;
+  public
+         constructor Create( AOwner: TComponent);  override;
+        procedure InitForEdit(prod:TProduct);
+         procedure InitForCreateProduct( );
+        var   nothing_to_change, nothing_to_change_logo, modeEdit,need_delete:boolean;
+        var  prod_after_change:TProduct;
+        var lm_of_new_product:TObjectList<TListOfMaterials>;
+  end;
+
+var
+  Form14: TForm14;
+  new_prod: TProduct;
+  img:TJpegImage;
+  materials:TObjectList<TMaterial>;
+  mc:TMain_class;
+  prod_on_change:TProduct;
+  prod_after_change:TProduct;
+
+  img_name_icon, img_name_sert: string;
+  ext:string;
+
+implementation
+
+  constructor TForm14.Create(AOwner: TComponent);
+  begin
+
+           mc:=TMain_class.Create;
+           new_prod:=  TProduct.Create;
+           materials:= TObjectList<TMaterial>.Create;
+
+           inherited;
+
+  end;
+
+   procedure TForm14.InitForEdit(prod:TProduct);
+   var i:integer;
+   begin
+
+        prod_after_change:=  TProduct.Create;
+        prod_on_change:= prod;
+        Edit_mincost.Text:=prod.CostForAgent.ToString;
+        Edit_selfcost.Text:=prod.Cost.ToString;
+        Edit_standart.Text:=prod.Standart;
+        Edit_time.Text:=prod.Time_.ToString;
+        Memo1.Text:=prod.Technology;
+        Edit_length.Text:=prod.Length.ToString;
+        Edit_height.Text:=prod.Height.ToString;
+        Edit_width.Text:=prod.Width.ToString;
+        Edit_weigth_with.Text:=prod.WeigthWith.ToString;
+        Edit_weigth_without.Text:=prod.WeightWithout.ToString;
+
+        prod_on_change:=prod;
+
+        if(prod.Logo = '') then
+         Image1.Picture.LoadFromFile('icn.png')
+          else
+         Image1.Picture.LoadFromFile(prod.Logo);
+
+
+          for I := 0 to  prod_on_change.list_of_materials.Count-1 do
+          begin
+            ListBox1.AddItem(prod_on_change.list_of_materials[i].Title, prod_on_change.list_of_materials[i]) ;
+
+          end;
+
+
+
+
+
+
+
+   end;
+
+
+
+
+
+procedure TForm14.InitForCreateProduct();
+ var i:integer;
+begin
+            for I := 0 to  TMaterial_Class.array_of_material.Count-1 do
+          begin
+            ListBox1.AddItem(TMaterial_Class.array_of_material[i].Title, TMaterial_Class.array_of_material[i]) ;
+
+          end;
+       lm_of_new_product:= TObjectList<TListOfMaterials>.Create;
+end;
+
+procedure TForm14.ListBox1DblClick(Sender: TObject);
+var scount:String;
+ var m:TListOfMaterials;
+begin
+
+      if not InputQuery('Количетсво материала',
+        'Введите количетсво материала:', scount)
+      then exit
+      else
+      begin
+         m:= TListOfMaterials.Create;
+         m.Article:=  (ListBox1.Items.Objects[ListBox1.ItemIndex]  as TMaterial).Article;
+         m.Title:=  (ListBox1.Items.Objects[ListBox1.ItemIndex]  as TMaterial).Title;
+         m.Count:=  StrToInt( scount );
+         m.In_stock:=  (ListBox1.Items.Objects[ListBox1.ItemIndex]  as TMaterial).In_stock;
+
+          ListBox2.AddItem(
+          ListBox1.Items[ListBox1.ItemIndex]+' '+scount+' ед. ' ,  m  ) ;
+
+      end;
+
+end;
+
+procedure TForm14.ListBox2DblClick(Sender: TObject);
+begin
+       ListBox2.DeleteSelected;
+end;
+
+{$R *.dfm}
+
+procedure TForm14.Button3Click(Sender: TObject);  // удаление или отмена
+begin
+       if (modeEdit = True) then
+               begin
+                 need_delete:=true;
+                // mc.sql_delete( 'Supplier' , ' Id '  ,sup_on_change.ID.ToString );
+                 ShowMessage('Удалено');
+                 Close;
+               end
+
+               else
+               begin
+                   Close;
+
+               end;
+
+end;
+
+
+
+
+procedure TForm14.Button4Click(Sender: TObject); //загрузка картинки
+begin
+   nothing_to_change_logo:=false;
+      if OpenPictureDialog1.Execute and
+   FileExists(OpenPictureDialog1.FileName) then
+   begin
+        Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
+   ext:= ExtractFileExt(OpenPictureDialog1.FileName);
+   end;
+
+end;
+
+procedure TForm14.Button5Click(Sender: TObject);    //удаление картинки
+begin
+    Image1.Picture:=nil;
+    prod_on_change.Logo:='';
+    nothing_to_change:=false;
+
+end;
+
+procedure TForm14.Button_saveClick(Sender: TObject);  //сохранение
+begin
+      if(ListBox2.Items.Count = 0 ) then
+      begin
+        ShowMessage('Список материалов не может быть пустым');
+        exit;
+      end;
+
+      if not (modeEdit ) then  //если режим создания
+       begin
+         SaveNewInArrayOfProducts;
+         SaveProdInDB;
+         SaveMaterialsInDB;
+         Inc(TProduct_Class.max_id);
+         Close;
+       end
+       else
+       begin                    //если режим редактирования
+
+
+       end;
+       ShowMessage('Сохранено');
+        Close;
+
+end;
+
+procedure TForm14.SaveNewInArrayOfProducts;
+var i:integer;
+begin
+         new_prod.Article:=(TProduct_Class.max_id +1) ;
+         new_prod.Name_:=Edit_name.Text;
+         new_prod.Type_:=ComboBox_type.Text;
+         new_prod.Cost:= StrToInt(Edit_selfcost.Text);
+         new_prod.Time_:= StrToInt(Edit_time.Text);
+         new_prod.Technology:= Memo1.Text;
+         new_prod.Logo:= img_name_icon;
+         new_prod.In_stock:=0;
+         new_prod.WeigthWith:= StrToInt(edit_weigth_with.Text);
+         new_prod.WeightWithout :=StrToInt(edit_weigth_without.Text);
+         new_prod.Height :=StrToInt(edit_height.Text);
+         new_prod.Length :=StrToInt(edit_Length.Text);
+         new_prod.Width:=StrToInt(edit_Width.Text);
+         new_prod.Standart:=edit_standart.Text;
+         new_prod.Sertificate :=img_name_sert;
+         new_prod.CostForAgent:=StrToInt(Edit_mincost.Text);
+
+
+         for I := 0 to   ListBox2.Count-1 do
+          begin
+             lm_of_new_product.Add(ListBox2.Items.Objects[i] as TListOfMaterials  );
+
+          end;
+
+         new_prod.list_of_materials := lm_of_new_product ;
+         TProduct_Class.array_of_products.Add(new_prod);
+
+end;
+
+procedure TForm14.SaveProdInDB;
+var arr: array[0..15] of string;
+begin
+     arr[0]:= (TProduct_Class.max_id +1).ToString;
+          arr[1]:=new_prod.Cost.ToString;
+           arr[2]:=new_prod.Time_.ToString;
+            arr[3]:=new_prod.In_stock.ToString;
+             arr[4]:=new_prod.Technology;
+              arr[5]:=new_prod.Name_;
+               arr[6]:=new_prod.Logo;
+                arr[7]:=new_prod.Height.ToString;
+                 arr[8]:=new_prod.Width.ToString;
+                  arr[9]:=new_prod.Length.ToString;
+                  arr[10]:=new_prod.WeigthWith.ToString;
+                  arr[11]:=new_prod.WeightWithout.ToString;
+                  arr[12]:=new_prod.Sertificate;
+                   arr[13]:=new_prod.Standart;
+                    arr[14]:=new_prod.CostForAgent.ToString;
+                        arr[15]:=new_prod.Type_;
+
+            mc.sql_insert('Products', arr);
+
+end;
+
+procedure TForm14.SaveMaterialsInDB;
+var arr: array[0..2] of string;
+var i:integer;
+begin
+   arr[0]:=  IntToStr(new_prod.Article);
+   for I := 0 to   new_prod.list_of_materials.Count-1 do
+          begin
+           arr[1]:=  IntToStr(new_prod.list_of_materials[i].Article);
+           arr[2]:=  IntToStr(new_prod.list_of_materials[i].Count);
+          end;
+
+     mc.sql_insert(' List_of_materials ', arr);
+
+end;
+procedure TForm14.SaveIcon;
+begin
+
+
+
+end;
+
+end.

@@ -28,9 +28,9 @@ type
     { Private declarations }
   public
     var Req_on_frame:  TRequest_agent;
-        mc:TRequests;
+        mc:TMain_class;
         ado_composition:TADOQuery;
-         mc2:TRequests;
+         mc2:TMain_class;
         ado_nameprod:TADOQuery;
          panel:TPanel;
   end;

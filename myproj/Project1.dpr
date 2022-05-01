@@ -7,7 +7,6 @@ uses
   Win_Master in 'Win_Master.pas' {Form3},
   Win_Manager in 'Win_Manager.pas' {Form4},
   History_Of_Reliz in 'Models\Entities\History_Of_Reliz.pas',
-  Material in 'Models\Entities\Material.pas',
   Product in 'Models\Entities\Product.pas',
   Request_supplier in 'Models\Entities\Request_supplier.pas',
   Requests_agent in 'Models\Entities\Requests_agent.pas',
@@ -52,7 +51,10 @@ uses
   Create_Manufacture in 'CreateWindows\Create_Manufacture.pas' {Form22},
   Create_Req_Sup in 'CreateWindows\Create_Req_Sup.pas' {Form23},
   EDITRequestSup in 'EditWindows\EDITRequestSup.pas' {FormEditReqSup},
-  INFOManufacture in 'InfoWindows\INFOManufacture.pas' {Form24};
+  INFOManufacture in 'InfoWindows\INFOManufacture.pas' {Form24},
+  EDITProduct in 'EditWindows\EDITProduct.pas' {Form25},
+  Material in 'Models\Entities\Material.pas',
+  INFOManufacture2 in 'InfoWindows\INFOManufacture2.pas';
 
 {$R *.res}
 
@@ -61,7 +63,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TForm4, Form4);
   Application.CreateForm(TForm5, Form5);
   Application.CreateForm(TForm6, Form6);
   Application.CreateForm(TForm7, Form7);
@@ -81,6 +82,7 @@ begin
   Application.CreateForm(TForm22, Form22);
   Application.CreateForm(TForm23, Form23);
   Application.CreateForm(TForm24, Form24);
+  Application.CreateForm(TForm25, Form25);
   Application.Run;
 
 end.

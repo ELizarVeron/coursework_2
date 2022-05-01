@@ -3,16 +3,19 @@ unit Product;
 interface
 
 uses System.Generics.Collections;
+
+
+
 type
-  TMaterial = class
+  TListOfMaterials = class
    private
     FTile: string;
-    FArticle, FCost, FIn_stock: integer;
+    FArticle, FCount, FIn_stock: integer;
   protected
   public
     property Article: integer read FArticle write FArticle;
     property Title: string read FTile write FTile;
-    property Cost: integer read FCost write FCost;
+    property Count: integer read FCount write FCount;
     property In_stock: integer read FIn_stock write FIn_stock;
   end;
 
@@ -48,14 +51,14 @@ type
            property Sertificate: string read FSertificate write FSertificate;
             property CostForAgent: integer read FCostForAgent write FCostForAgent;
     var
-    materials:TObjectList<TMaterial>;
+    list_of_materials:TObjectList<TListOfMaterials>;
 
   end;
 
 implementation
   constructor TProduct.Create;
   begin
-        materials:= TObjectList<TMaterial>.Create;
+       list_of_materials:= TObjectList<TListOfMaterials>.Create;
 
   end;
 

@@ -6,7 +6,7 @@ interface
  Agents, History_Of_Reliz,   Requests_agent,
    Supplier,   Main_Class,    Agent_Class, Product;
   type
-     TRequest_Agents_Class = class(TRequests)
+     TRequest_Agents_Class = class(TMain_class)
       public
       class var array_of_requests_agent: TObjectList<TRequest_Agent>;
 

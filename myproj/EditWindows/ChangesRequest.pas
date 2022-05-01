@@ -27,7 +27,7 @@ type
      procedure  change_status_in_db;
      procedure get_new_cost();
    var  need_reload:boolean;
-    var mc:TRequests;
+    var mc:TMain_class;
 
   end;
 
@@ -37,7 +37,7 @@ var
 implementation
    procedure TForm15.init;
    begin
-      mc:=TRequests.Create();
+      mc:=TMain_class.Create();
       get_array;
       var i:integer;
       var lbl:TLabel;

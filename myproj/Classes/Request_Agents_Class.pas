@@ -4,15 +4,16 @@ interface
   uses    System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
  Agents, History_Of_Reliz,   Requests_agent,
-   Supplier,   Main_Class,    Agent_Class, Product;
+   Supplier,   Main_Class,    Agent_Class, Product,My_f;
   type
      TRequest_Agents_Class = class(TMain_class)
       public
-      class var array_of_requests_agent: TObjectList<TRequest_Agent>;
 
-           constructor Create();
-           class    procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
-           function from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
+      class var array_of_requests_agent: TObjectList<TRequest_Agent>;
+            var mc:TMain_Class;
+            constructor Create();
+            class    procedure load_frames(Panel1: TPanel; page, count_in_bd: integer);
+            function from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
 
             function from_ado_to_array_composition(ado: tADOQuery): TObjectList<TComposition_req_agent>;
 
@@ -20,22 +21,65 @@ interface
            procedure FiltrChange(edit: TEdit; Filtr: TComboBox; sort: TComboBox);
            procedure create_sort(Sortirovka: TComboBox); override;
            procedure create_filter(Filtr: TComboBox); override;
+           procedure CheckStatus;
 
      end;
 
 implementation
 uses   Frame_req_ag ;
+procedure TRequest_Agents_Class.CheckStatus;
+ var i: integer;
+   ado:TADOQuery;
+   flag:boolean;
+    begin
+            for i  := 0 to array_of_requests_agent.Count-1  do
+       begin
+           if array_of_requests_agent[i].Status='В обработке' then
+           begin
+                 ado:=mc.sql_select('*',' manufacture ', ' Where Id_request_from_agent = ' +array_of_requests_agent[i].ID_Request.ToString,'',false   );
+
+                 while not ado.Eof do
+                 begin
+                    if ado.FieldByName('Status').AsInteger = 3 then
+                    begin
+                          flag:=true;
+                          break;
+
+                    end;
+
+
+                 ado.Next;
+                 end;
+
+
+                 if flag then
+                 begin
+                    mc.sql_update( ' request_from_agent ', ' Status = 5 ' , ' where Id_request_agent =  ' +  array_of_requests_agent[i].ID_Request.ToString);
+                    array_of_requests_agent[i].Status:='5';
+
+                 end;
+
+           end;
+
+
+
+       end;
+
+
+
+    end;
+
 constructor TRequest_Agents_Class.Create();
 begin
   inherited;
  array_of_requests_agent := from_ado_to_array_req_ag(sql_select('*', 'Request_from_agent','',' order by ID_request_agent desc ', false));
+ CheckStatus;
 end;
 
 
   procedure TRequest_Agents_Class.reload;
+
   begin
-
-
 
   end;
 
@@ -59,15 +103,17 @@ end;
 
 function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObjectList<TRequest_Agent>;
  begin
-      var
+    var
     req: TRequest_Agent;
-    var mc:TMain_Class;
+
         mc:=TMain_Class.Create;
   var
   array_of_requests_agent := TObjectList<TRequest_Agent>.Create;
   while not ado.Eof do
   begin
     req := TRequest_Agent.Create();
+
+
     req.ID_Request := ado.FieldByName('Id_request_agent').AsInteger;
     req.ID_Agent := ado.Fields[1].AsInteger;
     req.Status:=  ado.Fields[2].AsString;
@@ -75,14 +121,12 @@ function TRequest_Agents_Class.from_ado_to_array_req_ag(ado: tADOQuery): TObject
     if(req.Status = 'В ожидании оплаты'  )   then
     req.Date_Of_Confirm:=ado.Fields[7].AsDateTime;
     req.Date_Of_Begin:=ado.Fields[8].AsDateTime;
-
     req.Premayment:= ado.Fields[4].AsBoolean;
     req.Done:= ado.Fields[5].AsBoolean;
-
     req.Company:=mc.sql_select('Company', 'Agent' , 'where ID = ' + req.ID_Agent.ToString,'',false).Fields[0].AsString; //что бы узнать имя агента по id
-
     req.Composition:= from_ado_to_array_composition(sql_select('*','Composition_of_req_ag',' where ID_request = '+req.ID_Request.ToString ,'',false ) );
 
+    req.GetCost;
 
 
     array_of_requests_agent.Add(req);
@@ -100,21 +144,23 @@ begin
   Sortirovka.Items.Add(' ↑ По дате создания');
   Sortirovka.Items.Add(' ↓ По дате создания');
 
+
 end;
 
 procedure TRequest_Agents_Class.create_filter(Filtr: TComboBox);
 begin
+
+
   var
-    i: integer;
-  var
-    ado_help: tADOQuery;
+  ado_help: tADOQuery;
   ado_help := tADOQuery.Create(Filtr);
   Filtr.Items.Add('Все');
-  ado_help := sql_select(' Status ', ' Request_from_agent ', '', '', true);
+  ado_help := sql_select(' *', ' Status_request ', '', '', true);
   // ado_help.SQL.Add('Select Distinct Type_ from Agent') ;
   while not ado_help.Eof do
   begin
-    Filtr.Items.Add(ado_help.FieldByName('Status').AsString);
+
+   Filtr.Items.Add(ado_help.FieldByName('Name').AsString);
     ado_help.Next
   end;
 
@@ -147,16 +193,10 @@ class procedure TRequest_Agents_Class.load_frames(Panel1: TPanel; page, count_in
           Name := 'FORM' + beg.ToString;
           Top := (fr.Height * i) + 10;
           Tag := 1;
-          TFrame9(fr).Label1.Caption :=array_of_requests_agent[beg].Company;
-          TFrame9(fr).Label4.Caption :=  DateTimeToStr(array_of_requests_agent[beg].Date_Of_Create);
-          TFrame9(fr).Label11.Caption := array_of_requests_agent[beg].Status;
-          TFrame9(fr).Label8.Caption :=  array_of_requests_agent[beg].ID_Request.ToString;
-          var s:String;
-          s:=  IntToStr(array_of_requests_agent[beg].GetCost) ;
-          TFrame9(fr).LabelCost.Caption:= s;
 
            TFrame9(fr).panel:=Panel1;
           TFrame9(fr).Req_on_frame:= array_of_requests_agent[beg];
+           TFrame9(fr).AppData;
           Show;
           Inc(beg);
           Inc(i);
@@ -176,8 +216,8 @@ class procedure TRequest_Agents_Class.load_frames(Panel1: TPanel; page, count_in
 
 procedure TRequest_Agents_Class.FiltrChange(edit: TEdit; Filtr: TComboBox;
   sort: TComboBox);
-begin // надо создать новый sql запрос и перезагрузить фреймы
-  // потом мб надо вынести это в маин класс
+begin
+
   var
     item: string;
   var
@@ -188,23 +228,25 @@ begin // надо создать новый sql запрос и перезагр
   select := ' * ';
   from := ' Request_from_agent ';
 
-  item := Filtr.Items[Filtr.ItemIndex]; // то что пишем в фильтре
-  if (item = 'Все') or (Filtr.ItemIndex < 0) // если все или ничего
+  item := Filtr.Items[Filtr.ItemIndex];
+  if (item = 'Все') or (Filtr.ItemIndex < 0)
   then
   begin
     if (edit.Text = '') then
       where := ' '
     else
-      where := 'where ID_request_ like ' + #39 +   edit.Text + #39    ;
+      where := 'where ID_request_agent  like ' + #39 +   edit.Text + #39    ;
 
   end
 
   else // если все таки что то ввели в фильтр
   begin
+
+
     if (edit.Text = '') then
-      where := '  where Status = ' + #39 + item + #39
+      where := '  where Status = '  + My_f.Returt_NameOfStatusReq((item)).ToString
     else
-      where := ' where Status = ' + #39 + item + #39 + ' and  Company like ' +
+      where := ' where Status = '  + My_f.Returt_NameOfStatusReq( (item)).ToString   + ' and  Company like ' +
         #39 + '%' + edit.Text + '%' + #39;
   end;
 

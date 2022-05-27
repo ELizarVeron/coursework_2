@@ -22,7 +22,7 @@ type
     Label11: TLabel;
     Label12: TLabel;
     procedure Panel1Click(Sender: TObject);
-    //procedure DoList;
+    procedure AppData;
   private
    var   RequestInfoWindow: TForm11;
     { Private declarations }
@@ -38,6 +38,17 @@ type
 implementation
 
 {$R *.dfm}
+
+procedure TFrame9.AppData;
+begin
+var s:String;
+       s:=  IntToStr(Req_on_frame.Cost) ;
+       LabelCost.Caption:= s;
+       Label1.Caption :=Req_on_frame.Company;
+       Label4.Caption :=  DateTimeToStr(Req_on_frame.Date_Of_Create);
+       Label11.Caption := Req_on_frame.Status;
+       Label8.Caption :=  Req_on_frame.ID_Request.ToString;
+end;
 
 procedure TFrame9.Panel1Click(Sender: TObject);
 begin

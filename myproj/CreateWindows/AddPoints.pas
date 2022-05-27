@@ -10,8 +10,8 @@ uses
  type
   TPoint_ = class
   private
-    FCity,FStreet,FTel ,FName  : string;
-    FID,FAgentID, FIndex_, FBuilding, FFlat ,FHouse  : integer;
+    FBuilding, FFlat ,FHouse ,FCity,FStreet,FTel ,FName  : string;
+    FID,FAgentID, FIndex_ : integer;
   protected
   public
 
@@ -22,10 +22,10 @@ uses
      property Name: string read FName write FName;
     property Street: string read FStreet write FStreet;
     property Tel: string read FTel write FTel;
-    property Flat: integer read FFlat write FFlat;
-    property Building: integer read FBuilding write FBuilding;
+    property Flat: string read FFlat write FFlat;
+    property Building: string read FBuilding write FBuilding;
     property Index_: integer read FIndex_ write FIndex_;
-    property House: integer read FHouse write FHouse;
+    property House: string read FHouse write FHouse;
   end;
 
 
@@ -47,6 +47,8 @@ type
     Edit8: TEdit;
     ButtonSave: TButton;
     Label6: TLabel;
+    Label9: TLabel;
+    Edit6: TEdit;
     procedure ButtonSaveClick(Sender: TObject);
   private
     { Private declarations }
@@ -69,13 +71,14 @@ implementation
  begin
       var point:= TPoint_.Create;
 
-      point.FName:=Edit1.Text;
-      point.FCity:=Edit2.Text;
-      point.FStreet:=Edit3.Text;
-      point.House:=strtoint( Edit4.Text );
-      point.Building:=strtoint( Edit5.Text );
-      point.FIndex_:=strtoint( Edit7.Text );
-      point.FTel:=Edit8.Text;
+      point.Name:=Edit1.Text;
+      point.City:=Edit2.Text;
+      point.Street:=Edit3.Text;
+      point.House:= ( Edit4.Text );
+      point.Building:= ( Edit5.Text );
+      point.Index_:=strtoint( Edit7.Text );
+      point.Flat := ( Edit6.Text );
+      point.Tel:=Edit8.Text;
       result:=point;
 
  end;

@@ -43,6 +43,9 @@ implementation
 
 procedure TForm24.Button1Click(Sender: TObject);  //запуск производства
 var FORM26: TForm26;
+var count_now:integer;
+var count_after:integer;
+var i:integer;
 begin
 
 
@@ -51,6 +54,14 @@ begin
      FORM26.Init(manufacture);
      var s:=   '  Status = '+'2' + ' , Date_Of_Begin = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
      mc.sql_update(' manufacture ', s, 'where id_manufacture =  ' + manufacture.ID_Manufacture.ToString );
+
+     for i:=0 to product.list_of_materials.Count-1 do
+       begin
+           count_now:=product.list_of_materials[i].In_stock;
+           count_after:=count_now - product.list_of_materials[i].Count;
+            mc.sql_update('Material','In_stock = '+  count_after.ToString, ' where Article =  '+ product.list_of_materials[i].Article.ToString )  ;
+
+       end;
 
 
 

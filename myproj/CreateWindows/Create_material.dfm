@@ -2,16 +2,14 @@ object Form21: TForm21
   Left = 0
   Top = 0
   Caption = 'Form21'
-  ClientHeight = 519
-  ClientWidth = 573
+  ClientHeight = 270
+  ClientWidth = 425
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 48
@@ -47,11 +45,12 @@ object Form21: TForm21
     Height = 21
     TabOrder = 0
   end
-  object Edit_Inn: TEdit
+  object Edit_Cost: TEdit
     Left = 147
     Top = 109
     Width = 155
     Height = 21
+    NumbersOnly = True
     TabOrder = 1
   end
   object Button1: TButton
@@ -61,6 +60,7 @@ object Form21: TForm21
     Height = 25
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     TabOrder = 2
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 46
@@ -71,11 +71,31 @@ object Form21: TForm21
     TabOrder = 3
   end
   object Edit1: TEdit
-    Left = 56
-    Top = 280
+    Left = 168
+    Top = 224
     Width = 121
     Height = 21
     TabOrder = 4
     Text = 'Edit1'
+  end
+  object ADOQuery1: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 352
+    Top = 40
+  end
+  object ADOConnection1: TADOConnection
+    ConnectionString = 
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\'#1050#1091#1088#1089#1086#1074#1072#1103'\1111.md' +
+      'b;Persist Security Info=False'
+    LoginPrompt = False
+    Provider = 'Microsoft.Jet.OLEDB.4.0'
+    Left = 352
+    Top = 104
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOQuery1
+    Left = 352
+    Top = 160
   end
 end

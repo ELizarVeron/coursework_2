@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Data.DB,
   Data.Win.ADODB, Frame_agents, Vcl.ExtCtrls, Vcl.Imaging.jpeg,
   BD_Manager, Agents, Navigator,Main_Class,Product_Class,Supplier_Class,
-  Request_Sup_Class,Material_Class,Frame_manufacture,Manufacture_Class,Create_manufacture,Create_Req_Sup;
+  Request_Sup_Class,Material_Class,Frame_manufacture,Manufacture_Class,Create_manufacture,Create_Req_Sup,Create_material;
 type
   TForm3 = class(TForm)
     PageControl1: TPageControl;
@@ -23,24 +23,25 @@ type
     Panel_request_sup: TPanel;
     Panel_production: TPanel;
     PanelUpMan: TPanel;
-    Edit_Agent: TEdit;
+    Edit_Man: TEdit;
     Sort_man: TComboBox;
     Filtr_man: TComboBox;
     Button1: TButton;
     PanelUpReqSup: TPanel;
-    Edit1: TEdit;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
+    Edit_req: TEdit;
+    Sort_req: TComboBox;
+    Filtr_req: TComboBox;
     ButtonAddRequest: TButton;
     PanelUpProd: TPanel;
     Edit_Prod: TEdit;
     Sort_Prod: TComboBox;
     Filter_prod: TComboBox;
     PanelUpMat: TPanel;
-    Edit2: TEdit;
-    ComboBox3: TComboBox;
+    Edit_mat: TEdit;
+    Sort_mat: TComboBox;
     Navigator_Material: TFrame10;
-    ComboBox4: TComboBox;
+    Filtr_mat: TComboBox;
+    Button2: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
       procedure reload_req();
       procedure reload_prod();
@@ -51,6 +52,9 @@ type
     procedure NavigatorFrameLabel_3Click(Sender: TObject);
     procedure NavigatorFrameLabel_4Click(Sender: TObject);
     procedure ButtonAddRequestClick(Sender: TObject);
+    procedure EditsChange(Sender: TObject);
+    procedure PageControl1Change(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -85,8 +89,8 @@ begin
   MaterClass := TMaterial_Class.Create;
   C_mater:= MaterClass.array_of_material.Count;
   MaterClass.load_frames(Panel_MAterials,0, C_req);
-  MaterClass.create_sort(ComboBox3);
-  MaterClass.create_filter(ComboBox4);
+  MaterClass.create_sort(Sort_mat);
+  MaterClass.create_filter(Filtr_mat);
   MaterClass.load_pages(Navigator_Material.Panel2,MaterClass.array_of_material.Count,0);
 
 
@@ -101,8 +105,8 @@ begin
   ReqClass := TRequest_Sup_Class.Create;
   C_req:= ReqClass.array_of_requests_sup.Count;
   ReqClass.load_frames(Panel_request_sup,0, C_req);
-  ReqClass.create_sort(ComboBox1);
-  ReqClass.create_filter(ComboBox2);
+  ReqClass.create_sort(Sort_req);
+  ReqClass.create_filter(Filtr_req);
   ReqClass.load_pages(Navigator_Req.Panel2, ReqClass.array_of_requests_sup.Count,0);
 
 
@@ -124,6 +128,13 @@ end;
 
 
 
+procedure TForm3.Button2Click(Sender: TObject);      //добавление материала
+var CM: TForm21;
+begin
+     CM:=TForm21.Create(self);
+     CM.ShowModal;
+end;
+
 procedure TForm3.ButtonAddRequestClick(Sender: TObject);
 var CreateReqSup:TForm23;
 begin
@@ -131,6 +142,37 @@ begin
     CreateReqSup.ShowModal;
     reload_req;
 end;
+
+procedure TForm3.EditsChange(Sender: TObject);
+begin
+  if (PageControl1.ActivePage = TabReq) then
+     begin
+         ReqClass.FiltrChange(Edit_Req, Filtr_Req, Sort_Req);
+         ReqClass.load_frames(Panel_request_sup, 0, ReqClass.array_of_requests_sup.Count);
+         ReqClass.load_pages(Navigator_Req.Panel2, ReqClass.array_of_requests_sup.Count, 0);
+     end;
+     if (PageControl1.ActivePage = TabMat) then
+  begin
+        MaterClass.FiltrChange(Edit_mat, Filtr_mat, Sort_mat);
+        MaterClass.load_frames(Panel_MAterials, 0, MaterClass.array_of_material.Count);
+        MaterClass.load_pages(Navigator_Material.Panel2,  MaterClass.array_of_material.Count, 0);
+  end;
+  if (PageControl1.ActivePage = TabProd) then
+  begin
+         ProdClass.FiltrChange(Edit_prod, Filter_prod,Sort_prod);
+         ProdClass.load_frames(Panel_Production, 0, ProdClass.array_of_products.Count);
+         ProdClass.load_pages( Navigator_Production.Panel2, ProdClass.array_of_products.Count, 0);
+  end;
+  if (PageControl1.ActivePage = TabMan) then
+  begin
+         ManClass.FiltrChange(Edit_Man, Filtr_Man, Sort_Man);
+         ManClass.load_frames(Panel_manufacture, 0, ManClass.array_of_manufacture.Count);
+         ManClass.load_pages(Navigator_Manufacture.Panel2, ManClass.array_of_manufacture.Count, 0);
+  end;
+
+end;
+
+
 
 procedure TForm3.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -391,6 +433,19 @@ begin
       (strToInt(Navigator_Material.Label_4.Caption) * MaterClass.on_page);
     nx := MaterClass.change_pages_r( Navigator_Material.Panel2, x);
     MaterClass.load_frames(Panel_materials, nx - 1, MaterClass.array_of_material.Count);
+  end;
+
+end;
+
+procedure TForm3.PageControl1Change(Sender: TObject);
+begin
+  if(PageControl1.ActivePageIndex=3 )  then
+  begin
+   MaterClass := TMaterial_Class.Create;
+  C_mater:= MaterClass.array_of_material.Count;
+  MaterClass.load_frames(Panel_MAterials,0, C_req);
+
+
   end;
 
 end;

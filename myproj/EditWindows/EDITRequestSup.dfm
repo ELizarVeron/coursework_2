@@ -2,7 +2,7 @@ object FormEditReqSup: TFormEditReqSup
   Left = 0
   Top = 0
   Caption = 'FormEditReqSup'
-  ClientHeight = 257
+  ClientHeight = 245
   ClientWidth = 299
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET

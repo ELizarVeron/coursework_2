@@ -36,8 +36,8 @@ type
   public
        constructor Create( AOwner: TComponent);  override;
         procedure Init(sup:TSupplier);
-        procedure SaveMaterials;
-        procedure DeleteAndSaveMaterials;
+        procedure SaveMaterials(sup:TSupplier);
+        procedure DeleteAndSaveMaterials(sup:TSupplier);
         var   nothing_to_change, modeEdit,need_delete:boolean;
         var  sup_after_change:TSupplier;
         var arr2: array[0..1] of string;
@@ -65,11 +65,13 @@ begin
 
        if not (modeEdit ) then  //если режим создания
        begin
+         new_sup:= TSupplier.Create;
          SaveNewInArrayOfSup;
          SaveInDB;
          Inc(TSupplier_Class.max_id);
 
-
+          SaveMaterials(new_sup);
+           DeleteAndSaveMaterials(new_sup);
        end
        else
        begin                    //если режим редактирования
@@ -86,14 +88,14 @@ begin
 
 
    //тут подкоректировать надо
-
-
+             SaveMaterials(sup_on_change);
+              DeleteAndSaveMaterials(sup_on_change);
 
        end;
 
 
-        SaveMaterials;
-        DeleteAndSaveMaterials;
+
+
         ShowMessage('Сохранено');
         Close;
 
@@ -138,11 +140,12 @@ constructor TForm13.Create(AOwner: TComponent);
 
 
   end;
-  procedure TForm13.DeleteAndSaveMaterials;
+  procedure TForm13.DeleteAndSaveMaterials(sup:TSupplier);
 begin
-     mc.sql_delete('Materials_from_supplier', 'id_supplier' , sup_on_change.ID.ToString ) ;
+
+     mc.sql_delete('Materials_from_supplier', 'id_supplier' , sup.ID.ToString ) ;
      var i:integer;
-      arr2[0]:= sup_on_change.ID.ToString;
+      arr2[0]:= sup.ID.ToString;
      for I := 0 to new_array_of_materials.Count-1 do
      begin
            arr2[1]:= new_array_of_materials[i].Article.ToString;
@@ -234,7 +237,7 @@ procedure TForm13.SaveNewInArrayOfSup;
 
 
 
-  procedure TForm13.SaveMaterials;
+  procedure TForm13.SaveMaterials(sup:TSupplier);
 begin
 
             new_array_of_materials:=TObjectList<TMaterial>.Create;
@@ -257,7 +260,7 @@ begin
                 end;
 
             end;
-           sup_after_change.materials:=new_array_of_materials;
+           sup.materials:=new_array_of_materials;
 end;
 
 procedure TForm13.Init(sup:TSupplier);

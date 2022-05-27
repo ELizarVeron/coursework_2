@@ -49,7 +49,7 @@ procedure TFrame_manufact.Panel1DblClick(Sender: TObject);
 var WInfoManufacture: TForm24;
 var WInfoManufacture2: TForm26;
 begin
-        if( Man_on_frame.Status ='Создано' ) then
+        if( Man_on_frame.Status ='Создана' ) then
         begin
 
         WInfoManufacture:=TForm24.Create(self);
@@ -69,7 +69,7 @@ begin
 
         end
         else
-             if( Man_on_frame.Status ='Завершено' ) then
+             if( Man_on_frame.Status ='Завершена' ) then
         begin
 
         WInfoManufacture2:=TForm26.Create(self);

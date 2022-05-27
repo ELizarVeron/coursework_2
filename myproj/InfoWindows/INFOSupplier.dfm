@@ -1,7 +1,7 @@
 object Form19: TForm19
   Left = 0
   Top = 0
-  Caption = 'Form19'
+  Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1077
   ClientHeight = 415
   ClientWidth = 599
   Color = clBtnFace
@@ -10,9 +10,7 @@ object Form19: TForm19
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnClose = FormClose
-  PixelsPerInch = 96
   TextHeight = 13
   object Label5: TLabel
     Left = 28
@@ -137,12 +135,20 @@ object Form19: TForm19
     TabOrder = 3
     Text = '-'
   end
+  object ListBox1: TListBox
+    Left = 366
+    Top = 70
+    Width = 211
+    Height = 294
+    ItemHeight = 13
+    TabOrder = 4
+  end
   object DBGrid1: TDBGrid
     Left = 20
     Top = 244
     Width = 301
     Height = 120
-    TabOrder = 4
+    TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -170,13 +176,5 @@ object Form19: TForm19
         Width = 80
         Visible = True
       end>
-  end
-  object ListBox1: TListBox
-    Left = 366
-    Top = 70
-    Width = 211
-    Height = 294
-    ItemHeight = 13
-    TabOrder = 5
   end
 end

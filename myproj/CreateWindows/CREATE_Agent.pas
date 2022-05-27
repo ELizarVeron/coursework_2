@@ -66,11 +66,12 @@ implementation
   constructor TForm12.Create(AOwner: TComponent);
   begin
 
+
            mc:=TMain_class.Create;
            new_agent:= TAgent.Create;
            points:=TObjectList<TPoint_>.Create;
            inherited;
-
+              Image1.Picture:=nil;
   end;
 
   procedure TForm12.Button2Click(Sender: TObject);     //доьабвить точку продаж
@@ -80,15 +81,17 @@ begin
        Wap.ShowModal;
        var point: TPoint_;
        point:=Wap.point;
-       points.Add(point);
+         //  if not ( point  = nil ) then
+           // points.Add(point);
 
-        if not ( points = nil ) then
+        if not ( point = nil ) then
              begin
              points.Add(point);
-             ListBox1.Items.Add( '"'+ point.Name + '" ' + point.City + ' ' + point.Street + ' ' + Inttostr(point.House) + ' ' + Inttostr(point.Flat)   );
-
-             end;
-
+             ListBox1.Items.Add( '"'+ point.Name + '" ' + point.City + ' ' + point.Street + ' ' +  (point.House) + ' ' +  (point.Flat)   );
+              Button3.Enabled:=true;
+             end
+             else
+              Button3.Enabled:=false;
 end;
 
 procedure TForm12.Button3Click(Sender: TObject);   //удалить точку
@@ -104,11 +107,15 @@ begin
         begin
 
             if points[i].Name=s then
+            begin
             points.Delete(i);
+            ListBox1.DeleteSelected;
             exit;
+            end;
+
 
         end;
-        ListBox1.DeleteSelected;
+
 
 
 
@@ -144,12 +151,12 @@ begin
              arr2[0]:=new_agent.ID_.ToString;
              arr2[1]:=new_agent.points[i].City;
              arr2[2]:=new_agent.points[i].Street;
-             arr2[3]:=new_agent.points[i].Flat.ToString;
-             arr2[4]:=new_agent.points[i].Building.ToString;
+             arr2[3]:=new_agent.points[i].Flat ;
+             arr2[4]:=new_agent.points[i].Building ;
              arr2[5]:=new_agent.points[i].Index_.ToString;
              arr2[6]:=new_agent.points[i].Tel;
              arr2[7]:=new_agent.points[i].Name;
-             arr2[8]:=new_agent.points[i].House.ToString;
+             arr2[8]:=new_agent.points[i].House  ;
 
 
 
@@ -158,11 +165,6 @@ begin
 
 
         end;
-
-
-
-
-
 
 end;
 
@@ -216,36 +218,36 @@ procedure TForm12.SaveInArrayOfAgents;
 
    procedure TForm12.SaveIcon;
   begin
-            img_name:=  'img_agent' + (TAgent_Class.max_id +1).ToString+ext;
-            var MyFolder:= 'images\';
-            var Path,FileName: String;
-
-          Path:=ExtractFilePath(ParamStr(0))+MyFolder;
-          if ForceDirectories(Path) then
-          begin
-          img_name:=Path+img_name;
-
-          end;
-   Image1.Picture.SaveToFile(img_name);
-     if  (Image1.Picture.Graphic = nil ) then
+       if  (Image1.Picture.Graphic = nil ) then
       begin
          new_agent.Logo:='icn.png';
       end
       else
       begin
-          new_agent.Logo:=img_name;
-      end;
+         img_name:=  'img_agent' + (TAgent_Class.max_id +1).ToString+ext;
+        var MyFolder:= 'images\';
+        var Path,FileName: String;
+        Path:=ExtractFilePath(ParamStr(0))+MyFolder;
+        if ForceDirectories(Path) then
+        begin
+            img_name:=Path+img_name;
 
+        end;
+            new_agent.Logo:=img_name;
+        end;
+
+      Image1.Picture.SaveToFile(img_name);
   end;
 
 
 procedure TForm12.Button1Click(Sender: TObject);    //сохранение
 begin
+        SaveIcon;
         SaveInArrayOfAgents;
         SaveInDB;
         Inc(TAgent_Class.max_id);
         SavePointsInDB;
-
+        ShowMessage('Сохранено');
         Close;
 
 

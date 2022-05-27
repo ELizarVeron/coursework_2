@@ -4,7 +4,7 @@ interface
  uses    System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
  Agents, History_Of_Reliz,   Manufacture,
-   Supplier,   Main_Class,    Supplier_Class;
+   Supplier,   Main_Class,    Supplier_Class,My_f;
 type
   TManufacture_Class  = class(TMain_class)
   public
@@ -32,19 +32,72 @@ end;
 procedure TManufacture_Class.create_filter(Filtr: TComboBox);
 begin
 
-
+    Filtr.Items.Add('Все');
+    Filtr.Items.Add('Создана');
+    Filtr.Items.Add('В процессе');
+    Filtr.Items.Add('Завершена');
 end;
 
 procedure TManufacture_Class.create_sort(Sortirovka: TComboBox);
 begin
    Sortirovka.Items.Add(' ↑ По дате создания');
   Sortirovka.Items.Add(' ↓ По дате создания');
+   Sortirovka.Items.Add(' ↑ По количеству единиц');
+  Sortirovka.Items.Add(' ↓ По количеству единиц');
+
 
 end;
 
 procedure TManufacture_Class.FiltrChange(edit: TEdit; Filtr, sort: TComboBox);
 begin
+       var
+    item: string;
+  var
+    sql,  where, like, order: string;
+  var
+  distinct: boolean;
+  distinct := false;
 
+  sql := ' manufacture inner join Products on manufacture.id_production = products.Article ';
+
+  item := Filtr.Items[Filtr.ItemIndex]; // то что пишем в фильтре
+  if (item = 'Все') or (Filtr.ItemIndex < 0) // если все или ничего
+  then
+  begin
+    if (edit.Text = '') then
+      where := ' '
+    else
+      where := 'where products.Name_ like ' + #39 + '%' + edit.Text + '%' + #39;
+
+  end
+
+  else // если все таки что то ввели в фильтр
+  begin
+    if (edit.Text = '') then
+      where := '  where status = ' + My_f.Return_IDOfStatusMan(item).ToString
+    else
+      where := ' where status = ' +  My_f.Return_IDOfStatusMan(item).ToString   + ' and   products.Name_ like ' +
+        #39 + '%' + edit.Text + '%' + #39;
+  end;
+
+  order := ' order by ';
+  case sort.ItemIndex of
+    0:
+      order := order + 'Manufacture.Date_of_Create asc';
+    1:
+      order := order + 'Manufacture.Date_of_Create desc';
+    2:
+      order := order + 'Manufacture.Count asc';
+    3:
+      order := order + 'Manufacture.Count desc';
+
+
+  end;
+  if sort.ItemIndex < 0 then
+    order := '';
+
+  array_of_manufacture := from_ado_to_array_manufacture(sql_select('*', sql, where,
+   order, false));
 end;
 
 function TManufacture_Class.from_ado_to_array_manufacture(

@@ -47,7 +47,6 @@ type
     Panel6: TPanel;
     procedure  Edit1Change(Sender: TObject);
     procedure  SortirovkaChange(Sender: TObject);
-    procedure  FiltrChange(Sender: TObject);
     procedure NavigatorFrameRightLabelClick(Sender: TObject);
     procedure NavigatorFrameLeftLabelClick(Sender: TObject);
     procedure NavigatorFrameLabel_1Click(Sender: TObject);
@@ -213,7 +212,9 @@ end;
 procedure TForm4.Button3Click(Sender: TObject);    //создание заявки
  begin
      var
+
         Form9: TForm9;
+        AgentClass := TAgent_Class.Create();
         Form9 := TForm9.Create(self);
         Form9.ShowModal;
         reload_req;
@@ -235,59 +236,32 @@ begin
 
       if (PageControl1.ActivePage = Agents) then
      begin
-         AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
-         AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
+           AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
+
          AgentClass.load_pages(Navigator_Agent_Frame.Panel2, AgentClass.array_of_agents.Count, 0);
+         AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
      end;
      if (PageControl1.ActivePage = Requests) then
   begin
-        ReqClass.FiltrChange(Edit_Req, Filter_Req, Sort_Req);
+      ReqClass.FiltrChange(Edit_Req, Filter_Req, Sort_Req);
         ReqClass.load_frames(Panel6, 0, ReqClass.array_of_requests_agent.Count);
         ReqClass.load_pages(Navigator_Request_Frame.Panel2, ReqClass.array_of_requests_agent.Count, 0);
   end;
   if (PageControl1.ActivePage = Suppliers) then
   begin
-         SupClass.FiltrChange(Edit_Sup, Filter_Sup, Sort_Sup);
+          SupClass.FiltrChange(Edit_Sup, Filter_Sup, Sort_Sup);
          SupClass.load_frames(Panel3, 0, SupClass.array_of_suppliers.Count);
          SupClass.load_pages( Navigator_Supplier_Frame.Panel2, SupClass.array_of_suppliers.Count, 0); // SupClass.
   end;
   if (PageControl1.ActivePage = Productions) then
   begin
-         ProdClass.FiltrChange(Edit_Prod, Filter_Prod, Sort_Prod);
+     ProdClass.FiltrChange(Edit_Prod, Filter_Prod, Sort_Prod);
          ProdClass.load_frames(Panel7, 0, ProdClass.array_of_products.Count);
          ProdClass.load_pages(Navigator_Production_Frame.Panel2, ProdClass.array_of_products.Count, 0);
   end;
 
 
 end;
-
-procedure TForm4.FiltrChange(Sender: TObject);
-begin
-     if (PageControl1.ActivePage = Agents) then
-     begin
-         AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
-         AgentClass.load_pages(Navigator_Agent_Frame.Panel2, C_agent, 0);
-     end;
-     if (PageControl1.ActivePage = Requests) then
-  begin
-        ReqClass.FiltrChange(Edit_Req, Filter_Req, Filter_Req);
-        ReqClass.load_pages(Navigator_Request_Frame.Panel2, ReqClass.array_of_requests_agent.Count, 0);
-  end;
-  if (PageControl1.ActivePage = Suppliers) then
-  begin
-         SupClass.FiltrChange(Edit_Sup, Filter_Sup, Sort_Sup);
-         SupClass.load_pages( Navigator_Supplier_Frame.Panel2, SupClass.array_of_suppliers.Count, 0);
-  end;
-  if (PageControl1.ActivePage = Productions) then
-  begin
-         ProdClass.FiltrChange(Edit_Prod, Filter_Prod, Sort_Prod);
-         ProdClass.load_pages(Navigator_Production_Frame.Panel2, ProdClass.array_of_products.Count, 0);
-  end;
-
-end;
-
-
-
 
 procedure TForm4.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

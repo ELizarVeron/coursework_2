@@ -2,9 +2,8 @@ object Form3: TForm3
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'Form3'
-  ClientHeight = 738
-  ClientWidth = 606
+  ClientHeight = 702
+  ClientWidth = 598
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,25 +15,41 @@ object Form3: TForm3
   object PageControl1: TPageControl
     Left = 0
     Top = 0
-    Width = 606
-    Height = 738
-    ActivePage = TabMan
+    Width = 598
+    Height = 702
+    ActivePage = TabReq
     Align = alClient
     DoubleBuffered = True
     HotTrack = True
     ParentDoubleBuffered = False
     TabOrder = 0
+    OnChange = PageControl1Change
+    ExplicitWidth = 594
     object TabMan: TTabSheet
       Caption = #1055#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1086
       inline Navigator_Manufacture: TFrame10
-        Left = 224
-        Top = 568
-        Width = 220
-        Height = 72
+        Left = 177
+        Top = 631
+        Width = 160
+        Height = 42
+        Color = clGray
+        ParentBackground = False
+        ParentColor = False
         TabOrder = 0
-        ExplicitLeft = 224
-        ExplicitTop = 568
+        ExplicitLeft = 177
+        ExplicitTop = 631
+        ExplicitWidth = 160
+        ExplicitHeight = 42
         inherited Panel2: TPanel
+          Left = 0
+          Top = 0
+          Width = 160
+          Height = 42
+          Align = alClient
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 160
+          ExplicitHeight = 42
           inherited LeftLabel: TLabel
             OnClick = NavigatorFrameLeftLabelClick
           end
@@ -62,31 +77,32 @@ object Form3: TForm3
         end
       end
       object Panel_manufacture: TPanel
-        Left = 16
-        Top = 64
-        Width = 575
-        Height = 498
+        Left = 3
+        Top = 38
+        Width = 630
+        Height = 587
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clSilver
         ParentBackground = False
         TabOrder = 1
       end
       object PanelUpMan: TPanel
         Left = 3
         Top = 0
-        Width = 566
+        Width = 630
         Height = 41
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 2
-        object Edit_Agent: TEdit
-          Left = 0
+        object Edit_Man: TEdit
+          Left = 4
           Top = 11
           Width = 140
           Height = 21
           TabOrder = 0
           TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = EditsChange
         end
         object Sort_man: TComboBox
           Left = 150
@@ -95,6 +111,7 @@ object Form3: TForm3
           Height = 21
           TabOrder = 1
           TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          OnChange = EditsChange
         end
         object Filtr_man: TComboBox
           Left = 300
@@ -105,14 +122,16 @@ object Form3: TForm3
           ShowHint = False
           TabOrder = 2
           TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          OnChange = EditsChange
         end
         object Button1: TButton
-          Left = 450
+          Left = 454
           Top = 11
           Width = 115
           Height = 21
           Caption = #1044#1086#1072#1073#1074#1080#1090#1100
           TabOrder = 3
+          Visible = False
         end
       end
     end
@@ -121,23 +140,37 @@ object Form3: TForm3
       ImageIndex = 1
       object Panel_request_sup: TPanel
         Left = 3
-        Top = 50
-        Width = 591
-        Height = 506
+        Top = 41
+        Width = 630
+        Height = 584
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clSilver
         ParentBackground = False
         TabOrder = 0
       end
       inline Navigator_Req: TFrame10
-        Left = 232
-        Top = 571
-        Width = 220
-        Height = 72
+        Left = 177
+        Top = 631
+        Width = 161
+        Height = 42
+        Color = clAppWorkSpace
+        ParentBackground = False
+        ParentColor = False
         TabOrder = 1
-        ExplicitLeft = 232
-        ExplicitTop = 571
+        ExplicitLeft = 177
+        ExplicitTop = 631
+        ExplicitWidth = 161
+        ExplicitHeight = 42
         inherited Panel2: TPanel
+          Left = 0
+          Top = 0
+          Width = 161
+          Height = 42
+          Align = alClient
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 161
+          ExplicitHeight = 42
           inherited LeftLabel: TLabel
             OnClick = NavigatorFrameLeftLabelClick
           end
@@ -157,8 +190,10 @@ object Form3: TForm3
             OnClick = NavigatorFrameRightLabelClick
           end
           inherited line: TLabel
+            Top = 27
             Width = 16
             Height = 13
+            ExplicitTop = 27
             ExplicitWidth = 16
             ExplicitHeight = 13
           end
@@ -167,29 +202,31 @@ object Form3: TForm3
       object PanelUpReqSup: TPanel
         Left = 3
         Top = 3
-        Width = 566
+        Width = 630
         Height = 41
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 2
-        object Edit1: TEdit
+        object Edit_req: TEdit
           Left = 0
           Top = 11
           Width = 140
           Height = 21
           TabOrder = 0
           TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = EditsChange
         end
-        object ComboBox1: TComboBox
+        object Sort_req: TComboBox
           Left = 150
           Top = 11
           Width = 140
           Height = 21
           TabOrder = 1
           TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          OnChange = EditsChange
         end
-        object ComboBox2: TComboBox
+        object Filtr_req: TComboBox
           Left = 300
           Top = 11
           Width = 140
@@ -198,6 +235,7 @@ object Form3: TForm3
           ShowHint = False
           TabOrder = 2
           TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          OnChange = EditsChange
         end
         object ButtonAddRequest: TButton
           Left = 446
@@ -214,14 +252,26 @@ object Form3: TForm3
       Caption = #1055#1088#1086#1076#1091#1082#1094#1080#1103
       ImageIndex = 3
       inline Navigator_Production: TFrame10
-        Left = 184
-        Top = 568
-        Width = 220
-        Height = 72
+        Left = 177
+        Top = 631
+        Width = 161
+        Height = 41
+        Color = clActiveBorder
+        ParentBackground = False
+        ParentColor = False
         TabOrder = 0
-        ExplicitLeft = 184
-        ExplicitTop = 568
+        ExplicitLeft = 177
+        ExplicitTop = 631
+        ExplicitWidth = 161
+        ExplicitHeight = 41
         inherited Panel2: TPanel
+          Left = 0
+          Top = 0
+          Width = 161
+          Align = alClient
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 161
           inherited LeftLabel: TLabel
             OnClick = NavigatorFrameLeftLabelClick
           end
@@ -249,22 +299,22 @@ object Form3: TForm3
         end
       end
       object Panel_production: TPanel
-        Left = 0
-        Top = 83
-        Width = 568
-        Height = 482
+        Left = 1
+        Top = 38
+        Width = 630
+        Height = 524
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clSilver
         ParentBackground = False
         TabOrder = 1
       end
       object PanelUpProd: TPanel
         Left = 3
         Top = 0
-        Width = 566
+        Width = 630
         Height = 41
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 2
         object Edit_Prod: TEdit
@@ -274,6 +324,7 @@ object Form3: TForm3
           Height = 21
           TabOrder = 0
           TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = EditsChange
         end
         object Sort_Prod: TComboBox
           Left = 150
@@ -282,6 +333,7 @@ object Form3: TForm3
           Height = 21
           TabOrder = 1
           TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          OnChange = EditsChange
         end
         object Filter_prod: TComboBox
           Left = 300
@@ -292,6 +344,8 @@ object Form3: TForm3
           ShowHint = False
           TabOrder = 2
           TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          Visible = False
+          OnChange = EditsChange
         end
       end
     end
@@ -300,40 +354,43 @@ object Form3: TForm3
       ImageIndex = 2
       object Panel_MAterials: TPanel
         Left = 3
-        Top = 55
-        Width = 566
-        Height = 466
+        Top = 41
+        Width = 630
+        Height = 480
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clSilver
         ParentBackground = False
         TabOrder = 0
       end
       object PanelUpMat: TPanel
-        Left = 11
-        Top = 8
-        Width = 566
+        Left = 3
+        Top = 3
+        Width = 630
         Height = 41
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clGradientActiveCaption
         ParentBackground = False
         TabOrder = 1
-        object Edit2: TEdit
+        object Edit_mat: TEdit
           Left = 0
           Top = 11
           Width = 140
           Height = 21
           TabOrder = 0
           TextHint = #1042#1074#1077#1076#1080#1090#1077' '#1076#1083#1103' '#1087#1086#1080#1089#1082#1072'...'
+          OnChange = EditsChange
         end
-        object ComboBox3: TComboBox
+        object Sort_mat: TComboBox
           Left = 150
           Top = 11
           Width = 140
           Height = 21
           TabOrder = 1
           TextHint = #1057#1086#1088#1090#1080#1088#1086#1074#1082#1072'...'
+          Visible = False
+          OnChange = EditsChange
         end
-        object ComboBox4: TComboBox
+        object Filtr_mat: TComboBox
           Left = 300
           Top = 11
           Width = 140
@@ -342,17 +399,42 @@ object Form3: TForm3
           ShowHint = False
           TabOrder = 2
           TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          Visible = False
+          OnChange = EditsChange
+        end
+        object Button2: TButton
+          Left = 446
+          Top = 7
+          Width = 131
+          Height = 25
+          Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+          TabOrder = 3
+          OnClick = Button2Click
         end
       end
       inline Navigator_Material: TFrame10
-        Left = 192
-        Top = 571
-        Width = 220
-        Height = 72
+        Left = 177
+        Top = 631
+        Width = 161
+        Height = 38
+        Color = clActiveBorder
+        ParentBackground = False
+        ParentColor = False
         TabOrder = 2
-        ExplicitLeft = 192
-        ExplicitTop = 571
+        ExplicitLeft = 177
+        ExplicitTop = 631
+        ExplicitWidth = 161
+        ExplicitHeight = 38
         inherited Panel2: TPanel
+          Left = 0
+          Top = 0
+          Width = 161
+          Height = 38
+          Align = alClient
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 161
+          ExplicitHeight = 38
           inherited LeftLabel: TLabel
             OnClick = NavigatorFrameLeftLabelClick
           end

@@ -1,14 +1,14 @@
 object Frame_manufact: TFrame_manufact
   Left = 0
   Top = 0
-  Width = 468
+  Width = 580
   Height = 106
   TabOrder = 0
   object Panel1: TPanel
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 462
+    Width = 574
     Height = 100
     Align = alClient
     BevelEdges = []

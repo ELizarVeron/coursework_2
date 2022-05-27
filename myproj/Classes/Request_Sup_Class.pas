@@ -4,7 +4,7 @@ interface
  uses    System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
   Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
  Agents, History_Of_Reliz,   Request_supplier,
-   Supplier,   Main_Class,    Supplier_Class,Material_class;
+   Supplier,   Main_Class,    Supplier_Class,Material_class,My_f;
 
 type
   TRequest_Sup_Class  = class(TMain_class  )
@@ -36,18 +36,10 @@ end;
 
 procedure TRequest_Sup_Class.create_filter(Filtr: TComboBox);
 begin
-   var
-    i: integer;
-  var
-  ado_help: tADOQuery;
-  ado_help := tADOQuery.Create(Filtr);
   Filtr.Items.Add('Все');
-  ado_help := sql_select(' Status ', ' Request_for_supplier ', '', '', true);
-  while not ado_help.Eof do
-  begin
-    Filtr.Items.Add(ado_help.FieldByName('Status').AsString);
-    ado_help.Next
-  end;
+    Filtr.Items.Add('Создана');
+   // Filtr.Items.Add('В процессе');
+    Filtr.Items.Add('Завершена');
 
 
 end;
@@ -56,11 +48,60 @@ procedure TRequest_Sup_Class.create_sort(Sortirovka: TComboBox);
 begin
     Sortirovka.Items.Add(' ↑ По дате создания');
   Sortirovka.Items.Add(' ↓ По дате создания');
+   Sortirovka.Items.Add(' ↑ По колиеству');
+  Sortirovka.Items.Add(' ↓ По количеству');
 
 end;
 
 procedure TRequest_Sup_Class.FiltrChange(edit: TEdit; Filtr, sort: TComboBox);
 begin
+      var
+    item: string;
+  var
+    sql,  where, like, order: string;
+  var
+  distinct: boolean;
+  distinct := false;
+
+  sql := ' Request_for_supplier inner join Supplier on  Request_for_supplier.Id_sup = Supplier.id  ';
+
+  item := Filtr.Items[Filtr.ItemIndex]; // то что пишем в фильтре
+  if (item = 'Все') or (Filtr.ItemIndex < 0) // если все или ничего
+  then
+  begin
+    if (edit.Text = '') then
+      where := ' '
+    else
+      where := 'where Supplier.Title like ' + #39 + '%' + edit.Text + '%' + #39;
+
+  end
+
+  else // если все таки что то ввели в фильтр
+  begin
+    if (edit.Text = '') then
+      where := '  where    status =  ' + My_f.Return_IDOfStatusMan(item).ToString
+    else
+      where := ' where status = ' + My_f.Return_IDOfStatusMan(item).ToString + ' and  Supplier.Title like ' +
+        #39 + '%' + edit.Text + '%' + #39;
+  end;
+
+  order := ' order by ';
+  case sort.ItemIndex of
+    0:
+      order := order + 'Request_for_supplier.DataOfCreate asc';
+    1:
+      order := order + 'Request_for_supplier.DataOfCreate desc';
+    2:
+      order := order + 'Request_for_supplier.count asc';
+    3:
+      order := order + 'Request_for_supplier.count desc';
+
+  end;
+  if sort.ItemIndex < 0 then
+    order := '';
+
+  array_of_requests_sup := from_ado_to_array_req_sup(sql_select(' * ', sql, where,
+  order, false));
 
 end;
 
@@ -78,11 +119,11 @@ begin
     req := TRequest_supplier.Create();
     req.ID_Request := ado.Fields[0].AsInteger;
     req.ID_Sup := ado.Fields[1].AsInteger;
-    req.Status:=  ado.Fields[2].AsString;
+
     req.Date_Of_Create:=ado.Fields[3].AsDateTime;
     req.Count:=ado.FieldByName('Count').AsInteger;
 
-
+   req.Status:= mc.sql_select('name', 'Status_manufacture' , 'where ID = ' + ado.FieldByName('Status').AsString,'',false).Fields[0].AsString;
 
     req.Company:=mc.sql_select('Title', 'Supplier' , 'where ID = ' + req.ID_Sup.ToString,'',false).Fields[0].AsString; //что бы узнать имя по id
     var article := ado.FieldByName('Article_material').AsInteger;
@@ -137,12 +178,9 @@ begin
           Name := 'FORM' + beg.ToString;
           Top := (fr.Height * i) + 10;
           Tag := 1;
-          TFrame4(fr).Label1.Caption :=array_of_requests_sup[beg].Company;
-          TFrame4(fr).Label4.Caption :=  DateTimeToStr(array_of_requests_sup[beg].Date_Of_Create);
-          TFrame4(fr).Label6.Caption := array_of_requests_sup[beg].Status;
-          TFrame4(fr).Label8.Caption :=  array_of_requests_sup[beg].ID_Request.ToString;
-           TFrame4(fr).panel:=Panel1;
+          TFrame4(fr).panel:=Panel1;
           TFrame4(fr).Req_on_frame:= array_of_requests_sup[beg];
+          TFrame4(fr).Appdata;
           Show;
           Inc(beg);
           Inc(i);

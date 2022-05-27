@@ -224,10 +224,6 @@
             <Form>Form21</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="CreateWindows\Create_Manufacture.pas">
-            <Form>Form22</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="CreateWindows\Create_Req_Sup.pas">
             <Form>Form23</Form>
             <FormType>dfm</FormType>
@@ -238,10 +234,6 @@
         </DCCReference>
         <DCCReference Include="InfoWindows\INFOManufacture.pas">
             <Form>Form24</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="EditWindows\EDITProduct.pas">
-            <Form>Form25</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Models\Entities\Material.pas"/>

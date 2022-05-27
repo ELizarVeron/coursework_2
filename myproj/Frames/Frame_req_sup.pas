@@ -17,10 +17,13 @@ type
     Label1: TLabel;
     Label7: TLabel;
     Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
     procedure FrameDblClick(Sender: TObject);
   private
     { Private declarations }
   public
+  procedure Appdata;
        var Req_on_frame:  TRequest_supplier;
          panel:TPanel;
   end;
@@ -28,6 +31,15 @@ type
 implementation
 
 {$R *.dfm}
+
+procedure TFrame4.Appdata;
+begin
+   Label1.Caption :=Req_on_frame.Company;
+         Label4.Caption :=  DateTimeToStr(Req_on_frame.Date_Of_Create);
+         Label6.Caption := Req_on_frame.Status;
+         Label8.Caption :=  Req_on_frame.ID_Request.ToString;
+         Label10.Caption:= Req_on_frame.Material.Title;
+end;
 
 procedure TFrame4.FrameDblClick(Sender: TObject);
 var EditWindow:TFormEditReqSup;

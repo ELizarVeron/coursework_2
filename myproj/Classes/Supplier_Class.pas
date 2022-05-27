@@ -12,6 +12,7 @@ type
   TSupplier_Class = class(TMain_class)
   public
   var
+
     class var array_of_suppliers: TObjectList<TSupplier>;
     class var  max_id: integer;
     fr: TFrame;

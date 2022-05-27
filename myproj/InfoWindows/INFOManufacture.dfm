@@ -1,9 +1,9 @@
 object Form24: TForm24
   Left = 0
   Top = 0
-  Caption = 'Form24'
-  ClientHeight = 365
-  ClientWidth = 543
+  Caption = #1047#1072#1103#1074#1082#1072' '#1085#1072' '#1087#1088#1086#1080#1079#1074#1086#1076#1089#1090#1074#1086
+  ClientHeight = 367
+  ClientWidth = 538
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -25,7 +25,7 @@ object Form24: TForm24
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 52
+    Left = 46
     Top = 10
     Width = 62
     Height = 16

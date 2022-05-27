@@ -30,9 +30,6 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Label14: TLabel;
-    TabSheet4: TTabSheet;
-    Label11: TLabel;
-    Label13: TLabel;
     Label15: TLabel;
     Label16: TLabel;
     Label17: TLabel;
@@ -51,7 +48,6 @@ type
     ADOQuery1date_: TDateTimeField;
     ADOQuery1login_manager: TWideStringField;
     ADOConnection1: TADOConnection;
-    DBGrid1: TDBGrid;
   private
     FProduct:TProduct;
   public
@@ -90,7 +86,7 @@ var i:integer;
 
 
 
-        ADOQuery1.Active := false;
+       { ADOQuery1.Active := false;
         ADOQuery1.SQL.Clear;
         ADOQuery1.SQL.Add(' Select * from History_of_cost where id_product =:id   ');
         ADOQuery1.Parameters.ParamByName('id').Value:=Product.Article;
@@ -98,14 +94,12 @@ var i:integer;
 
          for I := 0 to  Product.list_of_materials.Count-1 do
           begin
-            ListBox1.AddItem(Product.list_of_materials[i].Title+ ' '+
-            Product.list_of_materials[i].Count.ToString
-            +' ед. ', Product.list_of_materials[i]) ;
+            ListBox1.AddItem(Product.list_of_materials[i].Title+ ' '+Product.list_of_materials[i].Count.ToString  +' ед. ', Product.list_of_materials[i]) ;
 
           end;
 
 
-
+   }
      end;
 
     end;

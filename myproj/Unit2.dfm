@@ -1,87 +1,85 @@
 object Form2: TForm2
   Left = 0
   Top = 51
-  Caption = 'Form2'
-  ClientHeight = 429
-  ClientWidth = 362
+  Caption = #1056#1077#1075#1080#1089#1090#1088#1072#1094#1080#1103
+  ClientHeight = 379
+  ClientWidth = 365
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poDesigned
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 90
+    Left = 50
     Top = 25
-    Width = 174
-    Height = 40
+    Width = 91
+    Height = 19
     Caption = #1056#1077#1075#1080#1089#1090#1088#1072#1094#1080#1103
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
-    Font.Height = -29
-    Font.Name = 'Comic Sans MS'
+    Font.Height = -16
+    Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 56
-    Top = 112
-    Width = 106
-    Height = 25
+    Left = 50
+    Top = 78
+    Width = 66
+    Height = 16
     Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 103
-    Top = 168
-    Width = 69
-    Height = 25
+    Left = 50
+    Top = 134
+    Width = 43
+    Height = 16
     Caption = #1051#1086#1075#1080#1085'*'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 90
-    Top = 223
-    Width = 82
-    Height = 25
+    Left = 50
+    Top = 191
+    Width = 51
+    Height = 16
     Caption = #1055#1072#1088#1086#1083#1100'*'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 16
-    Top = 279
-    Width = 156
-    Height = 25
+    Left = 50
+    Top = 247
+    Width = 96
+    Height = 16
     Caption = #1055#1086#1074#1090#1086#1088' '#1087#1072#1088#1086#1083#1103'*'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label6: TLabel
     Left = 178
-    Top = 328
+    Top = 274
     Width = 128
     Height = 14
     Caption = #1055#1072#1088#1086#1083#1080' '#1085#1077' '#1089#1086#1074#1087#1072#1076#1072#1102#1090'.'
@@ -95,14 +93,14 @@ object Form2: TForm2
   end
   object ComboBox1: TComboBox
     Left = 178
-    Top = 107
+    Top = 75
     Width = 153
-    Height = 37
+    Height = 24
     Style = csDropDownList
-    Font.Charset = RUSSIAN_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
-    Font.Name = 'Comic Sans MS'
+    Font.Height = -13
+    Font.Name = 'Tahoma'
     Font.Style = []
     ItemIndex = 0
     ParentFont = False
@@ -114,25 +112,25 @@ object Form2: TForm2
   end
   object Edit1: TEdit
     Left = 178
-    Top = 163
+    Top = 131
     Width = 153
-    Height = 37
-    Font.Charset = RUSSIAN_CHARSET
+    Height = 24
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
-    Font.Name = 'Comic Sans MS'
+    Font.Height = -13
+    Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
     TabOrder = 1
   end
   object Edit2: TEdit
     Left = 178
-    Top = 220
+    Top = 188
     Width = 153
-    Height = 33
+    Height = 24
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -140,22 +138,22 @@ object Form2: TForm2
     TabOrder = 2
   end
   object Button1: TButton
-    Left = 103
-    Top = 360
+    Left = 178
+    Top = 304
     Width = 153
-    Height = 41
+    Height = 33
     Caption = #1047#1072#1088#1077#1075#1080#1089#1090#1088#1080#1088#1086#1074#1072#1090#1100#1089#1103
     TabOrder = 3
     OnClick = Button1Click
   end
   object Edit3: TEdit
     Left = 178
-    Top = 276
+    Top = 244
     Width = 153
-    Height = 33
+    Height = 24
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -163,7 +161,8 @@ object Form2: TForm2
     TabOrder = 4
   end
   object DataSource1: TDataSource
-    Left = 16
+    Left = 8
+    Top = 376
   end
   object ADOConnection1: TADOConnection
     ConnectionString = 
@@ -172,8 +171,8 @@ object Form2: TForm2
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
-    Left = 16
-    Top = 56
+    Left = 24
+    Top = 384
   end
   object ADOQuery1: TADOQuery
     ConnectionString = 
@@ -183,7 +182,7 @@ object Form2: TForm2
     Parameters = <>
     SQL.Strings = (
       'Select * From Users')
-    Left = 16
-    Top = 112
+    Left = 8
+    Top = 320
   end
 end

@@ -1,10 +1,11 @@
 object Form26: TForm26
   Left = 0
   Top = 0
-  Caption = 'Form26'
+  Caption = #1055#1088#1086#1080#1079#1074#1086#1089#1090#1074#1086
   ClientHeight = 173
   ClientWidth = 600
   Color = clBtnFace
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -25,7 +26,7 @@ object Form26: TForm26
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 52
+    Left = 46
     Top = 10
     Width = 62
     Height = 16
@@ -118,9 +119,8 @@ object Form26: TForm26
   object Label4: TLabel
     Left = 262
     Top = 80
-    Width = 64
+    Width = 4
     Height = 16
-    Caption = #1090#1091#1090' '#1090#1072#1081#1084#1077#1088
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -136,5 +136,11 @@ object Form26: TForm26
     Caption = #1047#1072#1074#1077#1088#1096#1080#1090#1100
     TabOrder = 0
     OnClick = Button1Click
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    Left = 488
+    Top = 88
   end
 end

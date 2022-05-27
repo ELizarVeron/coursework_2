@@ -1,17 +1,15 @@
 object Form16: TForm16
   Left = 0
   Top = 0
-  Caption = 'Form16'
-  ClientHeight = 461
-  ClientWidth = 439
+  Caption = #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077
+  ClientHeight = 485
+  ClientWidth = 430
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 56
@@ -80,7 +78,7 @@ object Form16: TForm16
   end
   object Label7: TLabel
     Left = 56
-    Top = 295
+    Top = 335
     Width = 41
     Height = 14
     Caption = #1048#1085#1076#1077#1082#1089
@@ -93,7 +91,7 @@ object Form16: TForm16
   end
   object Label8: TLabel
     Left = 56
-    Top = 335
+    Top = 375
     Width = 53
     Height = 14
     Caption = #1058#1077#1083#1077#1092#1086#1085
@@ -113,6 +111,19 @@ object Form16: TForm16
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label9: TLabel
+    Left = 56
+    Top = 295
+    Width = 32
+    Height = 14
+    Caption = #1054#1092#1080#1089
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -154,25 +165,32 @@ object Form16: TForm16
   end
   object Edit7: TEdit
     Left = 264
-    Top = 293
+    Top = 333
     Width = 121
     Height = 21
     TabOrder = 5
   end
   object Edit8: TEdit
     Left = 264
-    Top = 333
+    Top = 373
     Width = 121
     Height = 21
     TabOrder = 6
   end
   object ButtonSave: TButton
     Left = 264
-    Top = 384
+    Top = 424
     Width = 121
     Height = 25
     Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
     TabOrder = 7
     OnClick = ButtonSaveClick
+  end
+  object Edit6: TEdit
+    Left = 264
+    Top = 293
+    Width = 121
+    Height = 21
+    TabOrder = 8
   end
 end

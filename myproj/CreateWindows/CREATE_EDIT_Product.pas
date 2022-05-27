@@ -12,7 +12,6 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     Label1: TLabel;
-    Label2: TLabel;
     Edit_name: TEdit;
     Label3: TLabel;
     Label4: TLabel;
@@ -20,7 +19,6 @@ type
     Label6: TLabel;
     Label7: TLabel;
     Image1: TImage;
-    ComboBox_type: TComboBox;
     TabSheet3: TTabSheet;
     Memo1: TMemo;
     Label8: TLabel;
@@ -50,6 +48,7 @@ type
     ListBox2: TListBox;
     Label15: TLabel;
     Button1: TButton;
+    Label2: TLabel;
     procedure Button_saveClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -57,7 +56,7 @@ type
     procedure ListBox1DblClick(Sender: TObject);
     procedure ListBox2DblClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-  private
+    private
     procedure SaveNewInArrayOfProducts;
     procedure SaveProdInDB;
     procedure SaveMaterialsInDB;
@@ -106,9 +105,36 @@ implementation
   end;
 
    procedure TForm14.EditInArray;
+   var i:integer;
     begin
 
         prod_on_change.Name_:= Edit_name.Text  ;
+
+         prod_on_change.Type_:='Игрушка';
+         prod_on_change.Cost:= StrToInt(Edit_selfcost.Text);
+         prod_on_change.Time_:= StrToInt(Edit_time.Text);
+         prod_on_change.Technology:= Memo1.Text;
+         prod_on_change.Logo:= img_name_icon;
+         prod_on_change.In_stock:=0;
+         prod_on_change.WeigthWith:= StrToInt(edit_weigth_with.Text);
+         prod_on_change.WeightWithout :=StrToInt(edit_weigth_without.Text);
+         prod_on_change.Height :=StrToInt(edit_height.Text);
+         prod_on_change.Length :=StrToInt(edit_Length.Text);
+         prod_on_change.Width:=StrToInt(edit_Width.Text);
+         prod_on_change.Standart:=edit_standart.Text;
+         prod_on_change.Sertificate :=img_name_sert;
+
+         prod_on_change.CostForAgent:=StrToInt(Edit_mincost.Text);
+
+         prod_on_change.list_of_materials.Clear;
+         for I := 0 to   ListBox2.Count-1 do
+          begin
+             prod_on_change.list_of_materials.Add(ListBox2.Items.Objects[i] as TListOfMaterials  );
+
+          end;
+
+
+       //  TProduct_Class.array_of_products.Add(new_prod);
 
     end;
 
@@ -134,6 +160,7 @@ implementation
     begin
           changes:=changes+ ' Name_ = '+ QuotedStr( Edit_Name.Text);
           changes:=changes+ ' ,costForAgent = '+  Edit_mincost.Text;
+          changes:=changes+ ' ,img = '+ QuotedStr(img_name_icon);
           changes:=changes+ ' , SelfCost = '+ Edit_selfcost.Text;
           changes:=changes+ ' , Standart = '+ QuotedStr(Edit_standart.Text);
           changes:=changes+ ' , Time_ = '+ Edit_time.Text;
@@ -285,7 +312,8 @@ begin
    FileExists(OpenPictureDialog1.FileName) then
    begin
         Image1.Picture.LoadFromFile(OpenPictureDialog1.FileName);
-   ext:= ExtractFileExt(OpenPictureDialog1.FileName);
+        ext:= ExtractFileExt(OpenPictureDialog1.FileName);
+
    end;
 
 end;
@@ -308,14 +336,17 @@ begin
 
       if not (modeEdit ) then  //если режим создания
        begin
+         SaveIcon;
          SaveNewInArrayOfProducts;
          SaveProdInDB;
          SaveMaterialsInDB;
+
          Inc(TProduct_Class.max_id);
 
        end
        else
        begin                    //если режим редактирования
+          SaveIcon;
          EditInArray;
          UpdateProdInDB;
          UpdateMaterialInDB;
@@ -334,7 +365,7 @@ var i:integer;
 begin
          new_prod.Article:=(TProduct_Class.max_id +1) ;
          new_prod.Name_:=Edit_name.Text;
-         new_prod.Type_:=ComboBox_type.Text;
+         new_prod.Type_:='Игрушка';
          new_prod.Cost:= StrToInt(Edit_selfcost.Text);
          new_prod.Time_:= StrToInt(Edit_time.Text);
          new_prod.Technology:= Memo1.Text;
@@ -406,6 +437,31 @@ procedure TForm14.SaveIcon;
 begin
 
 
+     if  (Image1.Picture.Graphic = nil ) then
+      begin
+        // agent_after_change.Logo:='icn.png';
+        img_name_icon:= 'icn.png';
+
+      end
+      else
+      begin
+           ext:=ExtractFileExt(OpenPictureDialog1.FileName);
+
+           img_name_icon:=  'img_prod' + (prod_on_change.Article ).ToString+ext;
+
+
+           var MyFolder:= 'images\';
+           var Path,FileName: String;
+            Path:=ExtractFilePath(ParamStr(0))+MyFolder;
+            if ForceDirectories(Path) then
+            begin
+            img_name_icon:=Path+img_name_icon;
+
+            end;
+
+           Image1.Picture.SaveToFile(img_name_icon);
+
+      end;
 
 end;
 

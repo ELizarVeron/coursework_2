@@ -1,9 +1,9 @@
 ﻿object Form20: TForm20
   Left = 0
   Top = 0
-  Caption = 'Form20'
-  ClientHeight = 527
-  ClientWidth = 761
+  Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086' '#1087#1088#1086#1076#1091#1082#1090#1077
+  ClientHeight = 429
+  ClientWidth = 487
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,11 +12,12 @@
   Font.Style = []
   TextHeight = 13
   object PageControl1: TPageControl
-    Left = 24
-    Top = 24
-    Width = 441
-    Height = 433
-    ActivePage = TabSheet4
+    Left = 0
+    Top = 0
+    Width = 487
+    Height = 429
+    ActivePage = TabSheet1
+    Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1054#1089#1085#1086#1074#1085#1072#1103' '#1080#1085#1092#1086#1088#1084#1072#1094#1080#1103
@@ -129,6 +130,7 @@
           494989ED1DC438073234C6C7C7D39C39732831315178F9C2C51A0CC45A5454A4
           EC0460BC0B761244454529099BADE45F058C502FFB5689C70000000049454E44
           AE426082}
+        Stretch = True
       end
       object Стандарт: TLabel
         Left = 200
@@ -308,60 +310,6 @@
         Width = 82
         Height = 13
         Caption = #1042#1077#1089' '#1089' '#1091#1087#1072#1082#1086#1074#1082#1086#1081
-      end
-    end
-    object TabSheet4: TTabSheet
-      Caption = #1048#1089#1090#1086#1088#1080#1103' '#1089#1090#1086#1080#1084#1086#1089#1090#1080
-      ImageIndex = 3
-      object Label11: TLabel
-        Left = 13
-        Top = 24
-        Width = 178
-        Height = 14
-        Caption = #1048#1089#1090#1086#1088#1080#1103' '#1080#1079#1084#1077#1085#1077#1085#1080#1103' '#1089#1090#1086#1080#1084#1086#1089#1090#1080
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label13: TLabel
-        Left = 80
-        Top = 116
-        Width = 182
-        Height = 13
-        Caption = #1059#1087#1089'...'#1047#1076#1077#1089#1100' '#1087#1086#1082#1072' '#1077#1097#1077' '#1085#1080#1095#1077#1075#1086' '#1085#1077#1090'...'
-      end
-      object DBGrid1: TDBGrid
-        Left = 13
-        Top = 64
-        Width = 396
-        Height = 297
-        DataSource = DataSource1
-        DrawingStyle = gdsGradient
-        TabOrder = 0
-        TitleFont.Charset = DEFAULT_CHARSET
-        TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'Tahoma'
-        TitleFont.Style = []
-        Columns = <
-          item
-            Expanded = False
-            FieldName = 'id_product'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'date_'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'login_manager'
-            Visible = True
-          end>
       end
     end
   end

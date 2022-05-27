@@ -37,9 +37,14 @@ implementation
 
 procedure TFrame6.AppData;
 begin
-   Label1.Caption := productOnFrame.Article.ToString;
+ if (productOnFrame.Logo = '') then
+
+      Image1.Picture.Graphic.LoadFromFile('icn.png')
+      else
+      Image1.Picture.Graphic.LoadFromFile(productOnFrame.Logo);
+      Label1.Caption := productOnFrame.Article.ToString;
      Label2.Caption := productOnFrame.Name_;
-    Label7.Caption := productOnFrame.Cost.ToString;
+    Label7.Caption := productOnFrame.CostForAgent.ToString;
 end;
 
 procedure TFrame6.N1Click(Sender: TObject);

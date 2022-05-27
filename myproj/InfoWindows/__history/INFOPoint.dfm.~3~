@@ -1,0 +1,211 @@
+object Form22: TForm22
+  Left = 0
+  Top = 0
+  Caption = 'Form22'
+  ClientHeight = 499
+  ClientWidth = 458
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object Label1: TLabel
+    Left = 56
+    Top = 95
+    Width = 176
+    Height = 14
+    Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077' '#1090#1086#1088#1075#1086#1074#1086#1081' '#1090#1086#1095#1082#1080
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 56
+    Top = 135
+    Width = 34
+    Height = 14
+    Caption = #1043#1086#1088#1086#1076
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 56
+    Top = 175
+    Width = 34
+    Height = 14
+    Caption = #1059#1083#1080#1094#1072
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 56
+    Top = 215
+    Width = 23
+    Height = 14
+    Caption = #1044#1086#1084
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 56
+    Top = 255
+    Width = 40
+    Height = 14
+    Caption = #1050#1086#1088#1087#1091#1089
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 56
+    Top = 335
+    Width = 41
+    Height = 14
+    Caption = #1048#1085#1076#1077#1082#1089
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 56
+    Top = 375
+    Width = 53
+    Height = 14
+    Caption = #1058#1077#1083#1077#1092#1086#1085
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 56
+    Top = 40
+    Width = 123
+    Height = 16
+    Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086' '#1090#1086#1095#1082#1077
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label9: TLabel
+    Left = 56
+    Top = 295
+    Width = 32
+    Height = 14
+    Caption = #1054#1092#1080#1089
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Edit1: TEdit
+    Left = 264
+    Top = 21
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object Edit2: TEdit
+    Left = 264
+    Top = 133
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 1
+  end
+  object Edit3: TEdit
+    Left = 264
+    Top = 173
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 2
+  end
+  object Edit4: TEdit
+    Left = 264
+    Top = 213
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 3
+  end
+  object Edit5: TEdit
+    Left = 264
+    Top = 253
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 4
+  end
+  object Edit7: TEdit
+    Left = 264
+    Top = 333
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 5
+  end
+  object Edit8: TEdit
+    Left = 264
+    Top = 373
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 6
+  end
+  object ButtonSave: TButton
+    Left = 264
+    Top = 424
+    Width = 121
+    Height = 25
+    Caption = #1042#1099#1093#1086#1076
+    TabOrder = 7
+  end
+  object Edit6: TEdit
+    Left = 264
+    Top = 293
+    Width = 121
+    Height = 23
+    Enabled = False
+    ReadOnly = True
+    TabOrder = 8
+  end
+end

@@ -2,7 +2,7 @@ object Frame6: TFrame6
   AlignWithMargins = True
   Left = 0
   Top = 0
-  Width = 563
+  Width = 580
   Height = 96
   Color = clHighlightText
   ParentBackground = False
@@ -12,7 +12,7 @@ object Frame6: TFrame6
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 557
+    Width = 574
     Height = 90
     Align = alClient
     BevelEdges = []
@@ -88,6 +88,7 @@ object Frame6: TFrame6
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      Visible = False
     end
     object Label7: TLabel
       Left = 280
@@ -102,6 +103,7 @@ object Frame6: TFrame6
       Width = 34
       Height = 15
       Caption = 'Label8'
+      Visible = False
     end
     object Image1: TImage
       Left = -2
@@ -205,6 +207,7 @@ object Frame6: TFrame6
       Width = 5
       Height = 15
       Caption = '-'
+      Visible = False
     end
   end
   object PopupMenu1: TPopupMenu

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Request_supplier,Main_class,Product_Class;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Request_supplier,Main_class,Product_Class, Material_class;
 
 type
   TFormEditReqSup = class(TForm)
@@ -51,11 +51,11 @@ begin
      reload:=true;
      receipt:=true;
      mc:=TMain_class.Create;
-     mc.sql_update('Request_for_supplier', ' Status = ' + QuotedStr('Завершена'), 'where Id_request_sup =  ' + req_on_edit.ID_Request.ToString );
+     mc.sql_update('Request_for_supplier', ' Status = ' + QuotedStr('3'), 'where Id_request_sup =  ' + req_on_edit.ID_Request.ToString );
 
         for   i := 0 to    TProduct_Class.array_of_products.Count-1 do
         begin
-            for j := 0 to   TProduct_Class.array_of_products[i].list_of_materials.Count do
+            for j := 0 to   TProduct_Class.array_of_products[i].list_of_materials.Count-1 do
             begin
                 if(TProduct_Class.array_of_products[i].list_of_materials[j].Article =req_on_edit.Material.Article  )  then
 

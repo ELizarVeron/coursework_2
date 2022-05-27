@@ -1,8 +1,8 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'Form5'
-  ClientHeight = 562
+  Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077
+  ClientHeight = 520
   ClientWidth = 654
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,12 +14,12 @@ object Form5: TForm5
   object Label1: TLabel
     Left = 56
     Top = 32
-    Width = 315
-    Height = 25
+    Width = 237
+    Height = 19
     Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1076#1072#1085#1085#1099#1093' '#1072#1075#1077#1085#1090#1072':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -21
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -27,12 +27,12 @@ object Form5: TForm5
   object Label2: TLabel
     Left = 294
     Top = 181
-    Width = 84
-    Height = 23
+    Width = 56
+    Height = 16
     Caption = #1044#1080#1088#1077#1082#1090#1086#1088
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -40,12 +40,12 @@ object Form5: TForm5
   object Label3: TLabel
     Left = 294
     Top = 144
-    Width = 33
-    Height = 23
+    Width = 22
+    Height = 16
     Caption = #1058#1080#1087
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -53,12 +53,12 @@ object Form5: TForm5
   object Label4: TLabel
     Left = 294
     Top = 275
-    Width = 77
-    Height = 23
+    Width = 53
+    Height = 16
     Caption = #1058#1077#1083#1077#1092#1086#1085
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -66,26 +66,25 @@ object Form5: TForm5
   object Label5: TLabel
     Left = 294
     Top = 320
-    Width = 52
-    Height = 23
+    Width = 36
+    Height = 16
     Caption = 'E-mail'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    OnClick = Label5Click
   end
   object Label6: TLabel
     Left = 294
     Top = 230
-    Width = 52
-    Height = 23
+    Width = 35
+    Height = 16
     Caption = #1040#1076#1088#1077#1089
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -93,12 +92,12 @@ object Form5: TForm5
   object Label7: TLabel
     Left = 294
     Top = 104
-    Width = 129
-    Height = 23
+    Width = 86
+    Height = 16
     Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -106,12 +105,12 @@ object Form5: TForm5
   object Label8: TLabel
     Left = 294
     Top = 368
-    Width = 39
-    Height = 23
+    Width = 24
+    Height = 16
     Caption = #1048#1053#1053
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -119,12 +118,12 @@ object Form5: TForm5
   object Label9: TLabel
     Left = 296
     Top = 408
-    Width = 37
-    Height = 23
+    Width = 23
+    Height = 16
     Caption = #1050#1055#1055
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -298,6 +297,7 @@ object Form5: TForm5
     Height = 110
     ItemHeight = 13
     TabOrder = 12
+    OnDblClick = ListBox1DblClick
   end
   object Button3: TButton
     Left = 31

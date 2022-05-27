@@ -38,12 +38,12 @@ type
     Button6: TButton;
     OpenPictureDialog1: TOpenPictureDialog;
     procedure Button1Click(Sender: TObject);
-    procedure Label5Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
       procedure Button3Click(Sender: TObject);
     procedure Button5Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
+    procedure ListBox1DblClick(Sender: TObject);
   private
     FName, FType_: string;
     FPriority, FSale, FTel, FSUMMA, FCount_s_year, FId, FDiscount: integer;
@@ -115,7 +115,10 @@ implementation
                begin
                    for var  i:= 0 to agent_on_change.points.Count-1 do
                 begin
-                        ListBox1.Items.Add( '"'+ agent_on_change.points[i].Name + '" ' + agent_on_change.points[i].City + ' ' + agent_on_change.points[i].Street + ' ' + Inttostr(agent_on_change.points[i].House) + ' ' + Inttostr(agent_on_change.points[i].Flat)   );
+                       var s:string;
+                       s:= '"'+ agent_on_change.points[i].Name + '" ' + agent_on_change.points[i].City + ' ' + agent_on_change.points[i].Street + ' ' +  (agent_on_change.points[i].House) + ' ' +  (agent_on_change.points[i].Flat) ;
+                       ListBox1.Items.AddObject(s,agent_on_change.points[i]);
+                       //ListBox1.Items.Add( '"'+ agent_on_change.points[i].Name + '" ' + agent_on_change.points[i].City + ' ' + agent_on_change.points[i].Street + ' ' +  (agent_on_change.points[i].House) + ' ' +  (agent_on_change.points[i].Flat)   );
 
                 end;
                end;
@@ -157,7 +160,7 @@ implementation
              end;
 
              DeleteAllPointsDB(agent_after_change.Id_);
-             SaveALLInDB(agent_after_change);
+             SaveALLInDB(agent_on_change);
 
               ShowMessage('Сохранено');
               Close;
@@ -165,7 +168,7 @@ implementation
 
 procedure TForm5.SaveALLInDB(agent:TAgent);
 begin
-UpdateAgentDB(agent);
+UpdateAgentDB(agent_on_change);
 SavePointsDB(agent.ID_, agent_after_change.points);
 end;
 
@@ -208,8 +211,9 @@ function TForm5.SaveIconInComp;        //сохраняет иконку в комп и возвращает ее
              if not ( point = nil ) then
              begin
              points.Add(point);
-             ListBox1.Items.Add( '"'+ point.Name + '" ' + point.City + ' ' + point.Street + ' ' + Inttostr(point.House) + ' ' + Inttostr(point.Flat)   );
-
+             var s:string;
+             s:= '"'+ point.Name + '" ' +  point.City + ' ' + point.Street + ' ' + point.House + ' ' +  point.Flat  ;
+                       ListBox1.Items.AddObject(s,agent_on_change.points[i]);
              end;
 
 
@@ -225,12 +229,12 @@ function TForm5.SaveIconInComp;        //сохраняет иконку в комп и возвращает ее
                        arr[0]:=id_agent.ToString;
                        arr[1]:=points[i].City;
                        arr[2]:=points[i].Street;
-                       arr[3]:=points[i].Flat.ToString;
-                       arr[4]:=points[i].Building.ToString;
+                       arr[3]:=points[i].Flat ;
+                       arr[4]:=points[i].Building ;
                        arr[5]:=points[i].Index_.ToString;
                        arr[6]:=points[i].Tel;
                        arr[7]:=points[i].Name;
-                       arr[8]:=points[i].House.ToString;
+                       arr[8]:=points[i].House ;
                        mc.sql_insert('points', arr );
 
                   end;
@@ -371,19 +375,20 @@ end;
 
                  if  (change_logo)  then
                  begin
-
+                        change:=true;
                         if (to_change='') then  to_change:= ' Logo = '+#39 + agent_after_change.Logo + #39  else  to_change:=to_change+' , Logo = '+#39 + agent.Logo + #39;
 
 
                  end;
-                 if  change   then
+                  if (change) then
+
                  mc.sql_update('agent',to_change, ' where Id = ' +   agent.ID_.ToString );
  end;
 
-procedure TForm5.Label5Click(Sender: TObject);
+procedure TForm5.ListBox1DblClick(Sender: TObject);
 begin
-  end;
 
+end;
 
 {$R *.dfm}
 

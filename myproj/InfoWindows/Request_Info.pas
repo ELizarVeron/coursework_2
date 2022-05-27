@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Vcl.StdCtrls,DateUtils , Request_Agents_Class,Requests_agent,  Data.Win.ADODB, Main_Class,ChangesRequest;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Vcl.StdCtrls,DateUtils , Request_Agents_Class,Requests_agent,  Data.Win.ADODB, Main_Class,ChangesRequest ,Product_Class;
 
 type
   TForm11 = class(TForm)
@@ -15,9 +15,6 @@ type
     Label5: TLabel;
     Label_Status: TLabel;
     Label4: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
     Label_Red: TLabel;
     Button_Changes: TButton;
     Button_Delete: TButton;
@@ -26,11 +23,10 @@ type
     CheckBox1: TCheckBox;
     Label_ForTimer: TLabel;
     Button_Delivery: TButton;
-    Label6: TLabel;
-    Label10: TLabel;
-    Label11: TLabel;
+    Label_SummaPred: TLabel;
     Label12: TLabel;
     Label13: TLabel;
+    pr: TLabel;
     procedure Button_DeleteClick(Sender: TObject);
     procedure Button_ChangesClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -133,7 +129,7 @@ end;
 
 procedure TForm11.Craete_Manufacture;
   var arr: array[0..8] of string;
-  var i:integer;
+  var i,j,id,s:integer;
 begin
        var mc:=TMain_class.Create();
        var ado:TAdoquery;
@@ -145,13 +141,24 @@ begin
            id_manufacture_next:=id_manufacture_next+1;
            arr[0]:=(id_manufacture_next).ToString;
            arr[1]:= '-'  ;
-           arr[2]:= Req_on_frame.Composition[i].Articul.ToString ;
-           arr[3]:= Req_on_frame.Composition[i].Count.ToString;
+           arr[2]:=Req_on_frame.Composition[i].Articul.ToString ;
+
+           id:=Req_on_frame.Composition[i].Articul;
+           for j := 0 to TProduct_Class.array_of_products.Count-1   do
+           begin
+            if id = TProduct_Class.array_of_products[j].Article then
+            s:= TProduct_Class.array_of_products[j].In_stock;
+
+
+           end;
+
+
+           arr[3]:=(Req_on_frame.Composition[i].Count -s). ToString;
            arr[4]:=Req_on_frame.ID_Request.ToString;
            arr[5]:=Date.Now.ToString;
            arr[6]:=FormatDateTime('dd.mm.yyyy hh:nn:ss ', EncodeDateTime(1999, 2, 9, 1, 2, 3,4));
            arr[7]:=FormatDateTime('dd.mm.yyyy hh:nn:ss ', EncodeDateTime(1999, 2, 9, 1, 2, 3,4));
-           arr[8]:='Созданa';
+           arr[8]:='1';
 
            mc.sql_insert('Manufacture',arr );
 
@@ -179,15 +186,12 @@ begin
              mc.sql_update( 'Request_from_agent ' ,  s , ' where ID_request_agent =  ' +  Req_on_frame.ID_Request.ToString);
              Req_on_frame.Status:= '3';
 
-
         end
         else
         begin
              var s:=   ' Prepayment =  TRUE , Status = '+  '6' + ' , DateOfBegin = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
              mc.sql_update( 'Request_from_agent ' ,  s , ' where ID_request_agent =  ' +  Req_on_frame.ID_Request.ToString);           //
              Req_on_frame.Status:='В ожидании отправления';
-
-
 
         end;
 
@@ -199,7 +203,8 @@ begin
      Label2.Caption:= DateTimeToStr( Req_on_frame.Date_Of_Create);
      Label4.Caption:=Req_on_frame.Company;
      Label_Status.Caption:=Req_on_frame.Status;
-
+     Label13.Caption:=Req_on_frame.Cost.ToString;
+     Label_SummaPred.Caption:=  Label_SummaPred.Caption + ' ' + ( Req_on_frame.Cost  div 8).ToString;
      if Req_on_frame.Status= 'Создана'  then
       begin
             Label_Red.Caption:='Согласуйте состав заявки с агентом';
@@ -213,7 +218,7 @@ begin
 
        else  if Req_on_frame.Status= 'В ожидании оплаты' then
       begin
-           Label_Status.Caption:='В ожидании оплаты';
+            Label_Status.Caption:='В ожидании оплаты';
             Label_Red.Visible:=false;
             Button_Changes.Visible:=false;
             Button_Delete.Visible:=false;
@@ -234,7 +239,7 @@ begin
                    CheckBox1.Visible:=false;
                   Label_Time.Visible:=false;
               Label_ForTimer.Visible:=false;
-              label8.Caption:='Да';
+              Pr.Visible:=true;
 
             end
       else if Req_on_frame.Status= 'В работе'  then
@@ -246,7 +251,7 @@ begin
             CheckBox1.Visible:=false;
              Label_Time.Visible:=false;
               Label_ForTimer.Visible:=false;
-              label8.Caption:='Да';
+             Pr.Visible:=true;
 
             timer_for_prepayment:=false;
             Timer1.Enabled:=true;
@@ -279,7 +284,18 @@ begin
             Label_ForTimer.Visible:=false;
 
       end
-        else
+        else if Req_on_frame.Status= 'Готова'  then
+      begin
+            Label_Status.Caption:='Готова';
+            Label_Red.Visible:=false;
+            Button_Changes.Visible:=false;
+            Button_Delete.Visible:=false;
+            CheckBox1.Visible:=false;
+            Label_Time.Visible:=false;
+            Label_ForTimer.Visible:=false;
+
+      end
+       else
       begin
             Label_Status.Caption:='ERROR';
             Label_Red.Visible:=false;
@@ -292,8 +308,8 @@ begin
       end;
 
       if( Req_on_frame.Premayment )  then
-      Label8.Caption:= 'Да'
-      else  Label8.Caption:= 'Нет'  ;
+      Pr.Visible:=true
+      else   Pr.Visible:=false;
       Do_List;
 
 
@@ -348,7 +364,7 @@ begin
      if ( ado_composition.IsEmpty) then
      begin
           ListBox1.Visible:=false;
-          label9.Caption:='тут пока еще ничего нет...';
+         // label9.Caption:='тут пока еще ничего нет...';
 
      end
 

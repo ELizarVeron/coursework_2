@@ -11,9 +11,7 @@ type
   TForm9 = class(TForm)
     Label3: TLabel;
     ComboBox1: TComboBox;
-    Label1: TLabel;
     Label2: TLabel;
-    Label8: TLabel;
     Label9: TLabel;
     Label10: TLabel;
     Button2: TButton;

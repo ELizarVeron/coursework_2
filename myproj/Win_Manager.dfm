@@ -2,7 +2,6 @@ object Form4: TForm4
   Left = 2
   Top = 2
   BorderStyle = bsSingle
-  Caption = '\'
   ClientHeight = 785
   ClientWidth = 599
   Color = clBtnFace
@@ -19,7 +18,7 @@ object Form4: TForm4
     Top = 8
     Width = 889
     Height = 777
-    ActivePage = Productions
+    ActivePage = Suppliers
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -282,6 +281,8 @@ object Form4: TForm4
         Width = 566
         Height = 41
         BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 0
         object Edit_Req: TEdit
           Left = 0
@@ -386,6 +387,8 @@ object Form4: TForm4
         Width = 563
         Height = 624
         BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
         TabOrder = 2
       end
     end
@@ -434,6 +437,7 @@ object Form4: TForm4
           ShowHint = False
           TabOrder = 2
           TextHint = #1060#1080#1083#1100#1090#1088#1072#1094#1080#1103'...'
+          Visible = False
           OnChange = Edit1Change
         end
         object Button4: TButton

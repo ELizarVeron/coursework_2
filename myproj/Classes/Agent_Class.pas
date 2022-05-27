@@ -12,6 +12,7 @@ type
   TAgent_Class = class(TMain_class)
   public
   var
+   class var on_page:integer;
    class var  max_id: integer;
    class var array_of_agents: TObjectList<TAgent>;
      Panel:TPanel;
@@ -39,7 +40,7 @@ implementation
 constructor TAgent_Class.Create();
 begin
   inherited;
-
+   on_page:=6;
   array_of_agents := from_ado_to_array_agents(sql_select(' * ', ' agent ', '',
     ' order by company ', false));
     max_id:=0;
@@ -183,12 +184,12 @@ begin
     point.AgentID:=ado.Fields[0].AsInteger;
      point.City:=ado.Fields[1].AsString;
       point.Street:=ado.Fields[2].AsString;
-       point.Flat:=ado.Fields[3].AsInteger;
-        point.Building:=ado.Fields[4].AsInteger;
+       point.Flat:=ado.Fields[3].AsString;
+        point.Building:=ado.Fields[4].AsString;
          point.Index_:=ado.Fields[5].AsInteger;
           point.Tel:=ado.Fields[6].AsString;
            point.Name:=ado.Fields[7].AsString;
-            point.House:=ado.Fields[8].AsInteger;
+            point.House:=ado.Fields[8].AsString;
       array_of_points.Add(point);
 
     ado.Next;
@@ -221,7 +222,6 @@ begin
     end
     else
     begin
-
       for j := 0 to array_of_agents[i].history_of_reliz.Count - 1 do
       begin
         k := DaysBetween(Date, array_of_agents[i].history_of_reliz[j].Date);
@@ -348,6 +348,7 @@ begin
 end;
 
 class procedure TAgent_Class.load_frames(Panel1: TPanel; page, count_in_bd: integer);
+
 begin
   var
     i, beg, en: integer;

@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtDlgs, Vcl.StdCtrls, Vcl.ExtCtrls, Agents;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtDlgs, Vcl.StdCtrls, Vcl.ExtCtrls, Agents  ,ADDPoints   ;
 
 type
   TForm17 = class(TForm)
@@ -35,6 +35,7 @@ type
     Edit_Count: TEdit;
     Edit_Sale: TEdit;
     Edit_Priority: TEdit;
+    procedure ListBox1DblClick(Sender: TObject);
   private
    FAgent: TAgent;
   public
@@ -46,6 +47,7 @@ var
   Form17: TForm17;
 
 implementation
+
      procedure TForm17.Init;
      begin
        if not(agent=nil) then
@@ -70,10 +72,12 @@ implementation
 
                if (agent.points.Count>0) then
                begin
-                   for var  i:= 0 to agent.points.Count-1 do
+                var s:string;
+                for var  i:= 0 to agent.points.Count-1 do
                 begin
-                        ListBox1.Items.Add( '"'+ agent.points[i].Name + '" ' + agent.points[i].City + ' ' + agent.points[i].Street + ' ' + Inttostr(agent.points[i].House) + ' ' + Inttostr(agent.points[i].Flat)   );
 
+                       s:= '"'+ agent.points[i].Name + '" ' + agent.points[i].City + ' ' + agent.points[i].Street + ' ' +  (agent.points[i].House) + ' ' +  (agent.points[i].Flat) ;
+                       ListBox1.Items.AddObject(s,agent.points[i]);
                 end;
 
                end;
@@ -86,5 +90,16 @@ implementation
 
 
 {$R *.dfm}
+
+procedure TForm17.ListBox1DblClick(Sender: TObject);
+
+//point:TPoint_;
+begin
+  // point:=  ListBox1.Items.Objects [ ListBox1.ItemIndex ]    as TPoint_;
+ //  IP := TForm22.Create(self);
+ //  IP.Init( point ) ;
+  // IP.Show;
+
+end;
 
 end.

@@ -1,9 +1,9 @@
 ﻿object Form14: TForm14
   Left = 0
   Top = 0
-  Caption = 'Form14'
-  ClientHeight = 599
-  ClientWidth = 535
+  Caption = #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077' '#1087#1088#1086#1076#1091#1082#1094#1080#1080
+  ClientHeight = 516
+  ClientWidth = 509
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,8 +12,8 @@
   Font.Style = []
   TextHeight = 13
   object Label13: TLabel
-    Left = 152
-    Top = 24
+    Left = 139
+    Top = 16
     Width = 204
     Height = 18
     Caption = #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077' '#1085#1086#1074#1086#1081' '#1087#1088#1086#1076#1091#1082#1094#1080#1080
@@ -25,11 +25,11 @@
     ParentFont = False
   end
   object PageControl1: TPageControl
-    Left = 32
-    Top = 72
-    Width = 441
+    Left = 8
+    Top = 48
+    Width = 489
     Height = 425
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = #1054#1089#1085#1086#1074#1085#1072#1103' '#1080#1085#1092#1086#1088#1084#1072#1094#1080#1103
@@ -39,13 +39,6 @@
         Width = 73
         Height = 13
         Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-      end
-      object Label2: TLabel
-        Left = 200
-        Top = 51
-        Width = 18
-        Height = 13
-        Caption = #1058#1080#1087
       end
       object Image1: TImage
         Left = 14
@@ -1185,8 +1178,8 @@
         Stretch = True
       end
       object Стандарт: TLabel
-        Left = 200
-        Top = 80
+        Left = 223
+        Top = 75
         Width = 50
         Height = 13
         Caption = #1057#1090#1072#1085#1076#1072#1088#1090
@@ -1212,6 +1205,13 @@
         Height = 13
         Caption = #1042#1088#1077#1084#1103' '#1085#1072' '#1080#1079#1075#1086#1090#1086#1074#1083#1077#1085#1080#1077
       end
+      object Label2: TLabel
+        Left = 255
+        Top = 51
+        Width = 18
+        Height = 13
+        Caption = #1058#1080#1087
+      end
       object Edit_name: TEdit
         Left = 296
         Top = 21
@@ -1220,20 +1220,12 @@
         TabOrder = 0
         Text = 'Edit_name'
       end
-      object ComboBox_type: TComboBox
+      object Edit_standart: TEdit
         Left = 296
-        Top = 53
+        Top = 72
         Width = 121
         Height = 21
         TabOrder = 1
-        Text = 'ComboBox_type'
-      end
-      object Edit_standart: TEdit
-        Left = 296
-        Top = 80
-        Width = 121
-        Height = 21
-        TabOrder = 2
         Text = '7'
       end
       object Edit_selfcost: TEdit
@@ -1242,7 +1234,7 @@
         Width = 121
         Height = 21
         NumbersOnly = True
-        TabOrder = 3
+        TabOrder = 2
         Text = '7'
       end
       object Edit_mincost: TEdit
@@ -1251,7 +1243,7 @@
         Width = 121
         Height = 21
         NumbersOnly = True
-        TabOrder = 4
+        TabOrder = 3
         Text = '7'
       end
       object Button4: TButton
@@ -1260,7 +1252,7 @@
         Width = 83
         Height = 25
         Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100
-        TabOrder = 5
+        TabOrder = 4
         OnClick = Button4Click
       end
       object Button5: TButton
@@ -1269,7 +1261,7 @@
         Width = 82
         Height = 25
         Caption = #1059#1076#1072#1083#1080#1090#1100
-        TabOrder = 6
+        TabOrder = 5
         OnClick = Button5Click
       end
       object Edit_time: TEdit
@@ -1278,7 +1270,7 @@
         Width = 121
         Height = 21
         NumbersOnly = True
-        TabOrder = 7
+        TabOrder = 6
         Text = '77'
       end
     end
@@ -1443,8 +1435,8 @@
     end
   end
   object Button_save: TButton
-    Left = 308
-    Top = 527
+    Left = 332
+    Top = 479
     Width = 161
     Height = 25
     Caption = #1057#1086#1093#1088#1072#1085#1077#1085#1080#1077
@@ -1452,8 +1444,8 @@
     OnClick = Button_saveClick
   end
   object Button3: TButton
-    Left = 125
-    Top = 527
+    Left = 149
+    Top = 479
     Width = 161
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072

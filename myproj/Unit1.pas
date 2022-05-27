@@ -54,16 +54,15 @@ begin
     if (staff = 'Master') then
     begin
         var
-            Form3: TForm3;
+        Form3: TForm3;
         Form3 := TForm3.Create(Application );
         Form3.Show;
     end;
     if (staff = 'Manager') then
     begin
         var
-            Form4: TForm4;
+        Form4: TForm4;
         Form4 := TForm4.Create(Application );
-        Form4.Show;
         Form4.login:=Form1.Edit1.Text;
         Form4.Show;
     end;

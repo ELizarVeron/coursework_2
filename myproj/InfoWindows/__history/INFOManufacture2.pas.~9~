@@ -1,0 +1,93 @@
+unit INFOManufacture2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Manufacture, Product_Class , Product, Material_Class, Main_Class;
+
+type
+  TForm26 = class(TForm)
+    LabelData: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    LabelProd: TLabel;
+    LabelCount: TLabel;
+    Label9: TLabel;
+    LabelId: TLabel;
+    Button1: TButton;
+    Label3: TLabel;
+    Label4: TLabel;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    procedure Init(man:TManufacture);
+      procedure InitDone(man:TManufacture);
+  end;
+
+var
+  Form26: TForm26;
+  manufacture :TManufacture;
+  i:integer;
+  mc:TMain_Class;
+implementation
+
+{$R *.dfm}
+
+{ TForm26 }
+
+procedure TForm26.Button1Click(Sender: TObject);
+ var    lpText,lpCaption : PChar;
+        Tip ,res: integer;
+
+begin
+          lpText := 'Подтвердите завершение производства';
+          lpCaption := 'Предупреждение';
+          Tip := MB_YESNO;
+
+         with Application do
+        begin
+
+          res:=  MessageBox(lpText, lpCaption, Tip) ;
+
+         end;
+
+        if (res = 6 )then    //da
+        begin
+
+             var s:=   '  Status = '+'3' + ' , Date_Of_End = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
+             mc.sql_update(' manufacture ', s, 'where id_manufacture =  ' + manufacture.ID_Manufacture.ToString );
+             manufacture.Status:='Завершено';
+             Close;
+
+        end
+
+
+
+
+end;
+procedure TForm26.Init(man: TManufacture);
+begin
+     mc:=TMain_class.Create( );
+     manufacture:=man;
+     LabelData.Caption:=DateToStr( man.Date_Of_Create);
+     LabelProd.Caption:=man.Name_production;
+     LabelCount.Caption:=man.Count.ToString;
+     LabelId.Caption:=man.ID_Manufacture.ToString;
+
+
+end;
+procedure TForm26.InitDone(man: TManufacture);
+begin
+
+     manufacture:=man;
+     LabelData.Caption:=DateToStr( man.Date_Of_Create);
+     LabelProd.Caption:=man.Name_production;
+     LabelCount.Caption:=man.Count.ToString;
+     LabelId.Caption:=man.ID_Manufacture.ToString;
+     Button1.Visible:=false;
+
+end;
+
+end.

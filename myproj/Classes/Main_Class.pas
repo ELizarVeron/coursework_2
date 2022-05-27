@@ -10,8 +10,8 @@ uses System.Generics.Collections, Data.Win.ADODB, System.SysUtils, Vcl.Controls,
 type
   TMain_class = class
 
-  public const
-    on_page = 5;
+  public class var
+   const on_page = 6;
     constructor Create();
 
   var

@@ -20,6 +20,7 @@ type
     DBGrid1: TDBGrid;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure ButtonCreateClick(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
@@ -108,7 +109,7 @@ begin
       next_id:=ado2.Fields[0].AsInteger+1;
      arr[0]:=next_id.ToString;
      arr[1]:=id_sup.ToString;
-     arr[2]:='Создана';
+     arr[2]:='1';
      arr[3]:= FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now);
      arr[4]:=  id_materials[ComboBox1.ItemIndex];
      arr[5]:=Edit1.Text;

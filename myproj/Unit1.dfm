@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = '7'
-  ClientHeight = 309
-  ClientWidth = 408
+  Caption = #1040#1074#1090#1086#1088#1080#1079#1072#1094#1080#1103
+  ClientHeight = 277
+  ClientWidth = 370
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,20 +20,20 @@ object Form1: TForm1
     Caption = #1040#1074#1090#1086#1088#1080#1079#1072#1094#1080#1103
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label2: TLabel
     Left = 40
-    Top = 72
-    Width = 97
-    Height = 23
+    Top = 70
+    Width = 66
+    Height = 16
     Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -41,12 +41,12 @@ object Form1: TForm1
   object Label3: TLabel
     Left = 40
     Top = 128
-    Width = 53
-    Height = 23
+    Width = 35
+    Height = 16
     Caption = #1051#1086#1075#1080#1085
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -54,12 +54,12 @@ object Form1: TForm1
   object Label4: TLabel
     Left = 40
     Top = 183
-    Width = 65
-    Height = 23
+    Width = 43
+    Height = 16
     Caption = #1055#1072#1088#1086#1083#1100
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -68,11 +68,11 @@ object Form1: TForm1
     Left = 176
     Top = 67
     Width = 169
-    Height = 31
+    Height = 24
     Style = csDropDownList
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ItemIndex = 1
@@ -88,10 +88,10 @@ object Form1: TForm1
     Left = 176
     Top = 123
     Width = 169
-    Height = 31
+    Height = 24
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -102,10 +102,10 @@ object Form1: TForm1
     Left = 176
     Top = 180
     Width = 169
-    Height = 31
+    Height = 24
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -19
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -114,17 +114,17 @@ object Form1: TForm1
     Text = 'sssssss'
   end
   object Button1: TButton
-    Left = 176
-    Top = 224
-    Width = 145
+    Left = 216
+    Top = 232
+    Width = 129
     Height = 25
-    Caption = #1042#1086#1081#1090#1080
+    Caption = #1042#1093#1086#1076
     TabOrder = 3
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 32
-    Top = 224
+    Left = 40
+    Top = 232
     Width = 129
     Height = 25
     Caption = #1056#1077#1075#1080#1089#1090#1088#1072#1094#1080#1103

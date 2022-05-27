@@ -17,9 +17,9 @@ type
     Edit_inn: TEdit;
     Edit_rate: TEdit;
     Label12: TLabel;
-    DBGrid1: TDBGrid;
     Label1: TLabel;
     ListBox1: TListBox;
+    DBGrid1: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
      FSup:TSupplier;

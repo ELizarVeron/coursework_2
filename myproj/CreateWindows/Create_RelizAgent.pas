@@ -87,7 +87,7 @@ begin
 
         end;
 
- // ShowMessage('Запись сохранена');
+   ShowMessage('Запись сохранена');
           tbl.Requery();
    //tbl.Active:=false;
 

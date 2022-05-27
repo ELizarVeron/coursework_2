@@ -1,40 +1,38 @@
 object Form17: TForm17
   Left = 0
   Top = 0
-  Caption = 'Form17'
-  ClientHeight = 626
-  ClientWidth = 628
+  Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086#1073' '#1072#1075#1077#1085#1090#1077
+  ClientHeight = 529
+  ClientWidth = 607
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  PixelsPerInch = 96
   TextHeight = 13
   object Label2: TLabel
-    Left = 276
-    Top = 102
-    Width = 65
-    Height = 18
+    Left = 292
+    Top = 107
+    Width = 56
+    Height = 16
     Caption = #1044#1080#1088#1077#1082#1090#1086#1088
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 274
-    Top = 65
-    Width = 26
-    Height = 18
+    Left = 292
+    Top = 75
+    Width = 22
+    Height = 21
     Caption = #1058#1080#1087
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -42,12 +40,12 @@ object Form17: TForm17
   object Label4: TLabel
     Left = 36
     Top = 244
-    Width = 31
-    Height = 18
+    Width = 26
+    Height = 16
     Caption = #1058#1077#1083'.'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -55,12 +53,12 @@ object Form17: TForm17
   object Label5: TLabel
     Left = 36
     Top = 281
-    Width = 38
-    Height = 18
+    Width = 36
+    Height = 16
     Caption = 'E-mail'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -68,51 +66,51 @@ object Form17: TForm17
   object Label6: TLabel
     Left = 36
     Top = 210
-    Width = 40
-    Height = 18
+    Width = 35
+    Height = 16
     Caption = #1040#1076#1088#1077#1089
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label7: TLabel
-    Left = 274
-    Top = 33
-    Width = 100
-    Height = 18
+    Left = 292
+    Top = 43
+    Width = 86
+    Height = 16
     Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label8: TLabel
-    Left = 38
-    Top = 321
-    Width = 30
-    Height = 18
+    Left = 366
+    Top = 201
+    Width = 24
+    Height = 16
     Caption = #1048#1053#1053
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label9: TLabel
-    Left = 38
-    Top = 361
-    Width = 29
-    Height = 18
+    Left = 366
+    Top = 241
+    Width = 23
+    Height = 16
     Caption = #1050#1055#1055
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
@@ -126,8 +124,8 @@ object Form17: TForm17
     Stretch = True
   end
   object Label11: TLabel
-    Left = 348
-    Top = 417
+    Left = 324
+    Top = 329
     Width = 72
     Height = 13
     Caption = #1058#1086#1095#1082#1080' '#1087#1088#1086#1076#1072#1078
@@ -146,8 +144,8 @@ object Form17: TForm17
     ParentFont = False
   end
   object Label12: TLabel
-    Left = 38
-    Top = 416
+    Left = 37
+    Top = 328
     Width = 173
     Height = 14
     Caption = #1044#1086#1087#1086#1083#1085#1080#1090#1077#1083#1100#1085#1072#1103' '#1080#1085#1092#1086#1088#1084#1072#1094#1080#1103
@@ -159,51 +157,52 @@ object Form17: TForm17
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 36
-    Top = 492
-    Width = 47
-    Height = 18
+    Left = 35
+    Top = 404
+    Width = 41
+    Height = 16
     Caption = #1057#1082#1080#1076#1082#1072
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label13: TLabel
-    Left = 38
-    Top = 529
-    Width = 74
-    Height = 18
+    Left = 37
+    Top = 441
+    Width = 62
+    Height = 16
     Caption = #1055#1088#1080#1086#1088#1080#1090#1077#1090
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object Label14: TLabel
-    Left = 36
-    Top = 450
-    Width = 137
-    Height = 18
+    Left = 35
+    Top = 362
+    Width = 117
+    Height = 16
     Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1087#1088#1086#1076#1072#1078
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -15
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
   end
   object ListBox1: TListBox
-    Left = 348
-    Top = 450
+    Left = 324
+    Top = 362
     Width = 197
     Height = 97
     ItemHeight = 13
     TabOrder = 0
+    OnDblClick = ListBox1DblClick
   end
   object Edit_Name: TEdit
     Left = 408
@@ -223,7 +222,7 @@ object Form17: TForm17
   end
   object Edit_Type: TEdit
     Left = 408
-    Top = 65
+    Top = 72
     Width = 137
     Height = 21
     BorderStyle = bsNone
@@ -239,7 +238,7 @@ object Form17: TForm17
   end
   object Edit_Boss: TEdit
     Left = 408
-    Top = 99
+    Top = 102
     Width = 137
     Height = 21
     BorderStyle = bsNone
@@ -302,8 +301,8 @@ object Form17: TForm17
     Text = '-'
   end
   object Edit_INN: TEdit
-    Left = 112
-    Top = 318
+    Left = 440
+    Top = 198
     Width = 121
     Height = 21
     BorderStyle = bsNone
@@ -318,8 +317,8 @@ object Form17: TForm17
     Text = '-'
   end
   object Edit_LPP: TEdit
-    Left = 112
-    Top = 358
+    Left = 440
+    Top = 238
     Width = 121
     Height = 21
     BorderStyle = bsNone
@@ -334,8 +333,8 @@ object Form17: TForm17
     Text = '-'
   end
   object Edit_Count: TEdit
-    Left = 205
-    Top = 450
+    Left = 204
+    Top = 362
     Width = 60
     Height = 21
     BorderStyle = bsNone
@@ -350,8 +349,8 @@ object Form17: TForm17
     Text = '-'
   end
   object Edit_Sale: TEdit
-    Left = 205
-    Top = 489
+    Left = 204
+    Top = 401
     Width = 60
     Height = 21
     BorderStyle = bsNone
@@ -366,8 +365,8 @@ object Form17: TForm17
     Text = '-'
   end
   object Edit_Priority: TEdit
-    Left = 205
-    Top = 526
+    Left = 204
+    Top = 438
     Width = 60
     Height = 21
     BorderStyle = bsNone

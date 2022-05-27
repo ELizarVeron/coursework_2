@@ -26,7 +26,7 @@ type
   TRequest_agent = class
   private
     FStatus, FCompany: string;
-    FID_Request, FID_Agent: integer;
+    FID_Request, FID_Agent, FCost: integer;
     FDate_Of_Create: TDateTime;
     FDate_Of_Confirm: TDateTime;
     FDate_Of_Begin: TDateTime;
@@ -36,7 +36,7 @@ type
   protected
   public
     constructor Create;
-    function GetCost:integer;
+    procedure GetCost;
     property ID_Agent: integer read FID_Agent write FID_Agent;
     property ID_Request: integer read FID_Request write FID_Request;
     property Company: string read FCompany write FCompany;
@@ -48,6 +48,9 @@ type
     property Date_Of_Begin: TDateTime read FDate_Of_Begin write FDate_Of_Begin;
     property Premayment: boolean read FPremayment write FPremayment;
     property Done: boolean read FDone write FDone;
+
+     property Cost: integer read FCost write FCost;
+
   var
      Composition: TObjectList<TComposition_req_agent>;
 
@@ -60,21 +63,23 @@ implementation
 constructor TRequest_agent.Create;
 begin
      Composition:= TObjectList<TComposition_req_agent>.Create;
+  //  Cost:=GetCost;
 end;
 
-function TRequest_agent.GetCost: integer;
+procedure TRequest_agent.GetCost  ;
 var i,sum:integer;  
 begin
        sum:=0;
       try
           for  i:= 0 to Composition.Count-1 do
           begin
-              sum:= sum+Composition[i].Cost*Composition[i].Count; 
+              sum:= sum+Composition[i].Cost*Composition[i].Count;
           end;
       except              
              ShowMessage('Composition is empty!!');
       end;
-     result:=sum;
+
+     Cost:=sum;
 
 end;
 

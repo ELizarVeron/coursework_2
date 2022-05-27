@@ -39,6 +39,7 @@ object Frame3: TFrame3
     PopupMenu = PopupMenu1
     TabOrder = 0
     OnDblClick = Panel1DblClick
+    ExplicitLeft = 0
     object Label1: TLabel
       Left = 83
       Top = 8
@@ -80,8 +81,8 @@ object Frame3: TFrame3
       ParentFont = False
     end
     object Label4: TLabel
-      Left = 83
-      Top = 28
+      Left = 323
+      Top = 30
       Width = 68
       Height = 11
       Caption = '- '#1087#1088#1086#1076#1072#1078' '#1079#1072' '#1075#1086#1076
@@ -91,9 +92,10 @@ object Frame3: TFrame3
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      Visible = False
     end
     object Label5: TLabel
-      Left = 83
+      Left = 323
       Top = 47
       Width = 62
       Height = 11
@@ -107,7 +109,7 @@ object Frame3: TFrame3
       Visible = False
     end
     object Label6: TLabel
-      Left = 176
+      Left = 83
       Top = 47
       Width = 77
       Height = 11
@@ -120,7 +122,7 @@ object Frame3: TFrame3
       ParentFont = False
     end
     object Label7: TLabel
-      Left = 259
+      Left = 166
       Top = 44
       Width = 14
       Height = 14
@@ -234,7 +236,7 @@ object Frame3: TFrame3
       OnClick = Image1Click
     end
     object Label8: TLabel
-      Left = 176
+      Left = 83
       Top = 28
       Width = 132
       Height = 13

@@ -1,7 +1,7 @@
 object Framematerial: TFramematerial
   Left = 0
   Top = 0
-  Width = 451
+  Width = 580
   Height = 70
   TabOrder = 0
   object Label2: TLabel
@@ -22,7 +22,7 @@ object Framematerial: TFramematerial
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 445
+    Width = 574
     Height = 64
     Align = alClient
     BevelEdges = []
@@ -32,6 +32,7 @@ object Framematerial: TFramematerial
     Color = clHighlightText
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 445
     object Label5: TLabel
       Left = 249
       Top = 9

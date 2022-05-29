@@ -30,33 +30,27 @@ uses   Frame_req_ag ;
 procedure TRequest_Agents_Class.CheckStatus;
  var i: integer;
    ado:TADOQuery;
-   flag:boolean;
+   have_in_process:boolean;
     begin
             for i  := 0 to array_of_requests_agent.Count-1  do
        begin
+                 have_in_process:=false;
            if array_of_requests_agent[i].Status='В обработке' then
            begin
                  ado:=mc.sql_select('*',' manufacture ', ' Where Id_request_from_agent = ' +array_of_requests_agent[i].ID_Request.ToString,'',false   );
 
                  while not ado.Eof do
                  begin
-                    if ado.FieldByName('Status').AsInteger = 3 then
+                    if not( ado.FieldByName('Status').AsInteger = 3 ) then
                     begin
-                          flag:=true;
-                          break;
-
+                          have_in_process:=true;
                     end;
-
-
                  ado.Next;
                  end;
-
-
-                 if flag then
+                 if not have_in_process then   //если все готово
                  begin
                     mc.sql_update( ' request_from_agent ', ' Status = 5 ' , ' where Id_request_agent =  ' +  array_of_requests_agent[i].ID_Request.ToString);
                     array_of_requests_agent[i].Status:='5';
-
                  end;
 
            end;
@@ -73,7 +67,7 @@ constructor TRequest_Agents_Class.Create();
 begin
   inherited;
  array_of_requests_agent := from_ado_to_array_req_ag(sql_select('*', 'Request_from_agent','',' order by ID_request_agent desc ', false));
- CheckStatus;
+  CheckStatus;
 end;
 
 

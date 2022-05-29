@@ -11,7 +11,7 @@ type
   TMain_class = class
 
   public class var
-   const on_page = 6;
+   const on_page = 5;
     constructor Create();
 
   var
@@ -52,7 +52,7 @@ begin
   ADOCon.LoginPrompt := false;
   ADOCon.Provider := 'Microsoft.Jet.OLEDB.4.0';
   ADOCon.ConnectionString :=
-    'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Курсовая\1111.mdb;Persist Security Info=False;';
+  'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Курсовая\1111.mdb;Persist Security Info=False;';
 
 end;
 

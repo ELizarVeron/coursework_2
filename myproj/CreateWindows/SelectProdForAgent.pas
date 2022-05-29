@@ -243,6 +243,8 @@ begin
 end;
 
 function TForm18.save_request_in_db(arr:array  of string;agent_id:integer;new:boolean):integer;
+ var ado:TADOQuery;
+ i:integer;
 begin
      var mc:TMain_class;
      mc:=TMain_class.Create();
@@ -260,6 +262,8 @@ begin
      else arr[6]:='false';
      arr[7]:=FormatDateTime('dd.mm.yyyy hh:nn:ss ', EncodeDateTime(1999, 2, 9, 1, 2, 3,4));
      arr[8]:=FormatDateTime('dd.mm.yyyy hh:nn:ss ', EncodeDateTime(1999, 2, 9, 1, 2, 3,4));
+
+
      mc.sql_insert(' Request_from_agent ' ,arr );
 
      //надо ещ в масив сохранить
@@ -281,12 +285,12 @@ end;
       begin
           arr2[0]:=next_id.ToString;
           var  article:integer;
-          var ado:TADOQuery;
+             var ado:TADOQuery;
            ado:= mc.sql_select(' article, CostForAgent ', ' Products ' , 'where Name_ =  ' + QuotedStr( v_list[i][0]) , ' ' , false );
-          arr2[1]:=ado.Fields[0].AsString;
-          arr2[2]:= (StrToInt( v_list[i][1] )+ StrToInt(v_list[i][2])).ToString;
+           arr2[1]:=ado.Fields[0].AsString;
+           arr2[2]:= (StrToInt( v_list[i][1] )+ StrToInt(v_list[i][2])).ToString;
 
-          arr2[3]:= IntToStr(ado.FieldByName('CostForAgent').AsInteger);
+            arr2[3]:= IntToStr(ado.FieldByName('CostForAgent').AsInteger);
             mc.sql_insert('Composition_of_req_ag ' ,arr2 );
       end;
 

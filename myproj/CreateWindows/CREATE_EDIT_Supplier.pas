@@ -163,6 +163,7 @@ procedure TForm13.SaveNewInArrayOfSup;
          new_sup.Tel  :=Edit_tel.Text;
          new_sup.Email:=Edit_email.Text;
          new_sup.Logo:= img_name;
+         new_sup.INN:=edit_inn.Text;
 
          TSupplier_Class.array_of_suppliers.Add(new_sup);
 

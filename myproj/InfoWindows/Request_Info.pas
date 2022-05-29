@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Vcl.StdCtrls,DateUtils , Request_Agents_Class,Requests_agent,  Data.Win.ADODB, Main_Class,ChangesRequest ,Product_Class;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  Vcl.ExtCtrls, Vcl.StdCtrls,DateUtils , Request_Agents_Class,Requests_agent,  Data.Win.ADODB, Main_Class,ChangesRequest ,Product_Class, Agent_Class;
 
 type
   TForm11 = class(TForm)
@@ -198,13 +198,27 @@ begin
 end;
 
 procedure TForm11.Init;
+var
+j:integer;
 begin
 
      Label2.Caption:= DateTimeToStr( Req_on_frame.Date_Of_Create);
      Label4.Caption:=Req_on_frame.Company;
      Label_Status.Caption:=Req_on_frame.Status;
      Label13.Caption:=Req_on_frame.Cost.ToString;
-     Label_SummaPred.Caption:=  Label_SummaPred.Caption + ' ' + ( Req_on_frame.Cost  div 8).ToString;
+
+     for j := 0 to Agent_class.TAgent_Class.array_of_agents.Count-1 do
+       begin
+       if Agent_class.TAgent_Class.array_of_agents[j].ID_ =Req_on_frame.ID_Agent  then
+
+         //disc:=   Agent_class.TAgent_Class.array_of_agents[j].Discount;
+
+
+
+       end;
+
+
+     Label_SummaPred.Caption:= Label_SummaPred.Caption +  (   (Req_on_frame.Cost div 10) ).ToString;
      if Req_on_frame.Status= 'Создана'  then
       begin
             Label_Red.Caption:='Согласуйте состав заявки с агентом';

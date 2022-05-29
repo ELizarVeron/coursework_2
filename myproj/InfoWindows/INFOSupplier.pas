@@ -16,10 +16,8 @@ type
     Edit_type: TEdit;
     Edit_inn: TEdit;
     Edit_rate: TEdit;
-    Label12: TLabel;
     Label1: TLabel;
     ListBox1: TListBox;
-    DBGrid1: TDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
      FSup:TSupplier;
@@ -42,10 +40,11 @@ procedure TForm19.Init;
               Edit_rate.Text:=sup.Rate.ToString;
               ListBox1.Clear;
                var i:integer;
+               var title:string;
                for I := 0 to  sup.materials.Count-1 do
             begin
-                name:= sup.materials.Items[i].Title;
-                ListBox1.Items.Add(name);
+                title:= sup.materials.Items[i].Title;
+                ListBox1.Items.Add(title);
 
             end;
 

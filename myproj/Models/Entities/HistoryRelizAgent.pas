@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.StdCtrls, Data.Win.ADODB, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Menus, Create_RelizAgent,
-  Vcl.ComCtrls, Vcl.DBCGrids;
+  Vcl.ComCtrls, Vcl.DBCGrids, Agent_Class;
 
 type
   TForm7 = class(TForm)
@@ -61,6 +61,10 @@ begin
 // ADOTable1.Active:=false;
  //ADOTable1.Active:=true;
    ADOtable1.Requery();
+    ADOTable1.Active:=false;
+   ADOTable1.Active:=true;
+    DBGrid1.Visible:=true;
+
 end;
 
 procedure TForm7.Button2Click(Sender: TObject);    //удаление

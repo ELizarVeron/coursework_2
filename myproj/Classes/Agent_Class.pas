@@ -40,7 +40,7 @@ implementation
 constructor TAgent_Class.Create();
 begin
   inherited;
-   on_page:=6;
+   on_page:=5;
   array_of_agents := from_ado_to_array_agents(sql_select(' * ', ' agent ', '',
     ' order by company ', false));
     max_id:=0;

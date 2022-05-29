@@ -96,7 +96,7 @@ implementation
 
  procedure TForm5.Init(agent:TAgent);
         begin
-             agent_on_change:=agent;
+              agent_on_change:=agent;
               Edit1.Text:=agent.Name;
               Edit2.Text:=agent.Type_;
               Edit3.Text:=agent.Boss;
@@ -161,7 +161,6 @@ implementation
 
              DeleteAllPointsDB(agent_after_change.Id_);
              SaveALLInDB(agent_on_change);
-
               ShowMessage('Сохранено');
               Close;
           end;
@@ -213,7 +212,7 @@ function TForm5.SaveIconInComp;        //сохраняет иконку в комп и возвращает ее
              points.Add(point);
              var s:string;
              s:= '"'+ point.Name + '" ' +  point.City + ' ' + point.Street + ' ' + point.House + ' ' +  point.Flat  ;
-                       ListBox1.Items.AddObject(s,agent_on_change.points[i]);
+                       ListBox1.Items.AddObject(s,agent_after_change.points[i]);
              end;
 
 

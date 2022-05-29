@@ -2,8 +2,8 @@ object Form19: TForm19
   Left = 0
   Top = 0
   Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1077
-  ClientHeight = 415
-  ClientWidth = 599
+  ClientHeight = 211
+  ClientWidth = 637
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -51,22 +51,9 @@ object Form19: TForm19
     Font.Style = []
     ParentFont = False
   end
-  object Label12: TLabel
-    Left = 30
-    Top = 208
-    Width = 103
-    Height = 14
-    Caption = #1048#1089#1090#1086#1088#1080#1103' '#1087#1086#1089#1090#1072#1074#1086#1082
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
   object Label1: TLabel
-    Left = 366
-    Top = 40
+    Left = 350
+    Top = 19
     Width = 133
     Height = 13
     Caption = #1055#1086#1089#1090#1072#1074#1083#1103#1077#1084#1099#1077' '#1084#1072#1090#1077#1088#1080#1072#1083#1099
@@ -136,45 +123,11 @@ object Form19: TForm19
     Text = '-'
   end
   object ListBox1: TListBox
-    Left = 366
-    Top = 70
+    Left = 350
+    Top = 38
     Width = 211
-    Height = 294
+    Height = 133
     ItemHeight = 13
     TabOrder = 4
-  end
-  object DBGrid1: TDBGrid
-    Left = 20
-    Top = 244
-    Width = 301
-    Height = 120
-    TabOrder = 5
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
-    Columns = <
-      item
-        Expanded = False
-        FieldName = 'Data'
-        Title.Caption = #1044#1072#1090#1072
-        Width = 84
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Material'
-        Title.Caption = #1052#1072#1090#1077#1088#1080#1072#1083
-        Width = 100
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'Count'
-        Title.Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1077#1076'.'
-        Width = 80
-        Visible = True
-      end>
   end
 end

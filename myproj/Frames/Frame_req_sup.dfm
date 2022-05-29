@@ -2,7 +2,7 @@ object Frame4: TFrame4
   Left = 0
   Top = 0
   Width = 580
-  Height = 81
+  Height = 97
   TabOrder = 0
   OnDblClick = FrameDblClick
   object Panel1: TPanel
@@ -10,7 +10,7 @@ object Frame4: TFrame4
     Left = 3
     Top = 3
     Width = 574
-    Height = 75
+    Height = 91
     Align = alClient
     BevelEdges = []
     BevelOuter = bvNone
@@ -20,18 +20,18 @@ object Frame4: TFrame4
     ParentBackground = False
     TabOrder = 0
     OnDblClick = FrameDblClick
-    ExplicitWidth = 572
+    ExplicitHeight = 75
     object Label2: TLabel
       Tag = 1
       Left = 41
       Top = 7
-      Width = 65
-      Height = 14
+      Width = 66
+      Height = 15
       Caption = #1055#1086#1089#1090#1072#1074#1097#1080#1082':'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = 'Tahoma'
+      Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
     end
@@ -50,15 +50,21 @@ object Frame4: TFrame4
       Caption = 'Label4'
     end
     object Label5: TLabel
-      Left = 67
-      Top = 47
+      Left = 65
+      Top = 55
       Width = 39
       Height = 15
       Caption = #1057#1090#1072#1090#1091#1089':'
+      Font.Charset = RUSSIAN_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
     object Label6: TLabel
       Left = 139
-      Top = 47
+      Top = 55
       Width = 34
       Height = 15
       Caption = 'Label6'
@@ -86,23 +92,23 @@ object Frame4: TFrame4
     end
     object Label9: TLabel
       Tag = 1
-      Left = 49
-      Top = 27
-      Width = 59
-      Height = 14
+      Left = 47
+      Top = 32
+      Width = 58
+      Height = 15
       Caption = #1052#1072#1090#1077#1088#1080#1072#1083':'
-      Font.Charset = DEFAULT_CHARSET
+      Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = 'Tahoma'
+      Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
     end
     object Label10: TLabel
       Left = 139
-      Top = 28
+      Top = 32
       Width = 34
-      Height = 15
+      Height = 14
       Caption = 'Label1'
     end
   end

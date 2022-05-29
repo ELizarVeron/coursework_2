@@ -2,8 +2,8 @@ object Form4: TForm4
   Left = 2
   Top = 2
   BorderStyle = bsSingle
-  ClientHeight = 785
-  ClientWidth = 599
+  ClientHeight = 643
+  ClientWidth = 609
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -32,10 +32,16 @@ object Form4: TForm4
         Left = 3
         Top = 49
         Width = 563
-        Height = 624
+        Height = 568
         BevelOuter = bvNone
-        Color = clWhite
+        Color = clGradientActiveCaption
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
         ParentBackground = False
+        ParentFont = False
         TabOrder = 0
       end
       object Panel9: TPanel
@@ -88,7 +94,7 @@ object Form4: TForm4
       end
       inline Navigator_Agent_Frame: TFrame10
         Left = 168
-        Top = 672
+        Top = 550
         Width = 185
         Height = 41
         Color = clWhite
@@ -96,7 +102,7 @@ object Form4: TForm4
         ParentColor = False
         TabOrder = 2
         ExplicitLeft = 168
-        ExplicitTop = 672
+        ExplicitTop = 550
         ExplicitWidth = 185
         ExplicitHeight = 41
         inherited Panel2: TPanel
@@ -111,24 +117,64 @@ object Form4: TForm4
           ExplicitTop = 0
           ExplicitWidth = 185
           inherited LeftLabel: TLabel
-            Top = 7
+            Left = 16
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLeftLabelClick
-            ExplicitTop = 7
+            ExplicitLeft = 16
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited Label_1: TLabel
+            Left = 40
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_1Click
+            ExplicitLeft = 40
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_2: TLabel
+            Left = 64
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_2Click
+            ExplicitLeft = 64
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_3: TLabel
+            Left = 88
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_3Click
+            ExplicitLeft = 88
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_4: TLabel
+            Left = 112
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_4Click
+            ExplicitLeft = 112
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited RightLabel: TLabel
+            Left = 130
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameRightLabelClick
+            ExplicitLeft = 130
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited no_line: TLabel
             Left = 142
@@ -164,11 +210,17 @@ object Form4: TForm4
       ParentFont = False
       OnContextPopup = SuppliersContextPopup
       object Panel3: TPanel
-        Left = 3
+        Left = 0
         Top = 49
         Width = 563
-        Height = 624
+        Height = 568
         BevelOuter = bvNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
         TabOrder = 0
       end
       object Panel4: TPanel
@@ -219,7 +271,7 @@ object Form4: TForm4
       end
       inline Navigator_Supplier_Frame: TFrame10
         Left = 168
-        Top = 672
+        Top = 550
         Width = 185
         Height = 41
         Color = clWhite
@@ -227,7 +279,7 @@ object Form4: TForm4
         ParentColor = False
         TabOrder = 2
         ExplicitLeft = 168
-        ExplicitTop = 672
+        ExplicitTop = 550
         ExplicitWidth = 185
         ExplicitHeight = 41
         inherited Panel2: TPanel
@@ -242,22 +294,64 @@ object Form4: TForm4
           ExplicitTop = 0
           ExplicitWidth = 185
           inherited LeftLabel: TLabel
+            Left = 16
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLeftLabelClick
+            ExplicitLeft = 16
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited Label_1: TLabel
+            Left = 40
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_1Click
+            ExplicitLeft = 40
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_2: TLabel
+            Left = 64
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_2Click
+            ExplicitLeft = 64
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_3: TLabel
+            Left = 88
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_3Click
+            ExplicitLeft = 88
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_4: TLabel
+            Left = 112
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_4Click
+            ExplicitLeft = 112
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited RightLabel: TLabel
+            Left = 130
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameRightLabelClick
+            ExplicitLeft = 130
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited line: TLabel
             Width = 16
@@ -325,7 +419,7 @@ object Form4: TForm4
       end
       inline Navigator_Request_Frame: TFrame10
         Left = 168
-        Top = 672
+        Top = 550
         Width = 185
         Height = 41
         Color = clWhite
@@ -333,7 +427,7 @@ object Form4: TForm4
         ParentColor = False
         TabOrder = 1
         ExplicitLeft = 168
-        ExplicitTop = 672
+        ExplicitTop = 550
         ExplicitWidth = 185
         ExplicitHeight = 41
         inherited Panel2: TPanel
@@ -342,28 +436,73 @@ object Form4: TForm4
           Width = 185
           Align = alClient
           BevelOuter = bvNone
+          Font.Height = -19
+          Font.Name = 'Tahoma'
+          ParentFont = False
           ExplicitLeft = 0
           ExplicitTop = 0
           ExplicitWidth = 185
           inherited LeftLabel: TLabel
+            Left = 16
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLeftLabelClick
+            ExplicitLeft = 16
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited Label_1: TLabel
+            Left = 40
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_1Click
+            ExplicitLeft = 40
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_2: TLabel
+            Left = 64
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_2Click
+            ExplicitLeft = 64
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_3: TLabel
+            Left = 88
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_3Click
+            ExplicitLeft = 88
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_4: TLabel
+            Left = 112
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_4Click
+            ExplicitLeft = 112
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited RightLabel: TLabel
+            Left = 130
             Top = 7
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameRightLabelClick
+            ExplicitLeft = 130
             ExplicitTop = 7
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited line: TLabel
             Left = 142
@@ -385,7 +524,7 @@ object Form4: TForm4
         Left = 3
         Top = 49
         Width = 563
-        Height = 624
+        Height = 480
         BevelOuter = bvNone
         Color = clWhite
         ParentBackground = False
@@ -397,9 +536,9 @@ object Form4: TForm4
       ImageIndex = 3
       object Panel7: TPanel
         Left = 3
-        Top = 50
+        Top = 49
         Width = 563
-        Height = 624
+        Height = 568
         BevelOuter = bvNone
         TabOrder = 0
       end
@@ -452,7 +591,7 @@ object Form4: TForm4
       end
       inline Navigator_Production_Frame: TFrame10
         Left = 168
-        Top = 672
+        Top = 550
         Width = 185
         Height = 41
         Color = clWhite
@@ -460,7 +599,7 @@ object Form4: TForm4
         ParentColor = False
         TabOrder = 2
         ExplicitLeft = 168
-        ExplicitTop = 672
+        ExplicitTop = 550
         ExplicitWidth = 185
         ExplicitHeight = 41
         inherited Panel2: TPanel
@@ -473,22 +612,64 @@ object Form4: TForm4
           ExplicitTop = 0
           ExplicitWidth = 185
           inherited LeftLabel: TLabel
+            Left = 16
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLeftLabelClick
+            ExplicitLeft = 16
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited Label_1: TLabel
+            Left = 40
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_1Click
+            ExplicitLeft = 40
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_2: TLabel
+            Left = 64
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_2Click
+            ExplicitLeft = 64
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_3: TLabel
+            Left = 88
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_3Click
+            ExplicitLeft = 88
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited Label_4: TLabel
+            Left = 112
+            Width = 10
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameLabel_4Click
+            ExplicitLeft = 112
+            ExplicitWidth = 10
+            ExplicitHeight = 23
           end
           inherited RightLabel: TLabel
+            Left = 130
+            Width = 14
+            Height = 23
+            Font.Height = -19
             OnClick = NavigatorFrameRightLabelClick
+            ExplicitLeft = 130
+            ExplicitWidth = 14
+            ExplicitHeight = 23
           end
           inherited line: TLabel
             Width = 16

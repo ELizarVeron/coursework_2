@@ -15,7 +15,6 @@ type
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
     Label1: TLabel;
-    Label2: TLabel;
     Image1: TImage;
     Стандарт: TLabel;
     Label10: TLabel;
@@ -31,7 +30,6 @@ type
     Label7: TLabel;
     Label14: TLabel;
     Label15: TLabel;
-    Label16: TLabel;
     Label17: TLabel;
     Label18: TLabel;
     Label19: TLabel;
@@ -71,7 +69,7 @@ var i:integer;
 
 
        Label15.Caption:=Product.Name_;
-       Label16.Caption:=Product.Type_;
+
        Label17.Caption:=Product.Standart;
        Label18.Caption:=Product.Cost.ToString;
        Label19.Caption:=Product.CostForAgent.ToString;
@@ -84,22 +82,12 @@ var i:integer;
 
         Memo1.Text:=Product.Technology;
 
+        for I := 0 to Product.list_of_materials.Count-1 do
+        begin
+        ListBox1.Items.Add( Product.list_of_materials[i].Title + ' ' + Product.list_of_materials[i].Count.ToString);
 
+        end;
 
-       { ADOQuery1.Active := false;
-        ADOQuery1.SQL.Clear;
-        ADOQuery1.SQL.Add(' Select * from History_of_cost where id_product =:id   ');
-        ADOQuery1.Parameters.ParamByName('id').Value:=Product.Article;
-        ADOQuery1.Active := true;
-
-         for I := 0 to  Product.list_of_materials.Count-1 do
-          begin
-            ListBox1.AddItem(Product.list_of_materials[i].Title+ ' '+Product.list_of_materials[i].Count.ToString  +' ед. ', Product.list_of_materials[i]) ;
-
-          end;
-
-
-   }
      end;
 
     end;

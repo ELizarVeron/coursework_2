@@ -103,8 +103,7 @@ constructor TForm4.Create;
 begin
   inherited;
   PageControl1.ActivePage := Agents;
-
-    MaterClass := TMaterial_Class.Create;
+  MaterClass := TMaterial_Class.Create;
   C_mater:= MaterClass.array_of_material.Count;
 
 
@@ -236,8 +235,7 @@ begin
 
       if (PageControl1.ActivePage = Agents) then
      begin
-           AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
-
+         AgentClass.FiltrChange(Edit_Agent, Filtr_Agent, Sort_Agent);
          AgentClass.load_pages(Navigator_Agent_Frame.Panel2, AgentClass.array_of_agents.Count, 0);
          AgentClass.load_frames(Panel1, 0, AgentClass.array_of_agents.Count);
      end;
@@ -319,8 +317,8 @@ begin
     i:= strToInt( Navigator_Production_Frame.Label_1.Caption) - 1;
     ProdClass.load_frames(Panel7, i, ProdClass.array_of_products.Count);
     Navigator_Production_Frame.Label_1.Font.Style := [fsUnderline];
-   Navigator_Production_Frame.Label_2.Font.Style := [];
-   Navigator_Production_Frame.Label_3.Font.Style:= [];
+    Navigator_Production_Frame.Label_2.Font.Style := [];
+    Navigator_Production_Frame.Label_3.Font.Style:= [];
     Navigator_Production_Frame.Label_4.Font.Style := [];
   end;
   if (PageControl1.ActivePage = Suppliers) then

@@ -92,7 +92,7 @@ begin
 
     for   i := 0 to  array_of_products.Count-1 do
   begin
-          ado:=sql2('SELECT Material.Article, Material.Title,  Material.In_stock, List_of_materials.Count FROM products INNER JOIN (list_of_materials INNER JOIN material ON List_of_materials.Article_of_material = Material.Article)'+ ' ON products.Article = List_of_materials.Article_of_products where products.Article = 1');
+          ado:=sql2('SELECT Material.Article, Material.Title,  Material.In_stock, List_of_materials.Count FROM products INNER JOIN (list_of_materials INNER JOIN material ON List_of_materials.Article_of_material = Material.Article)'+ ' ON products.Article = List_of_materials.Article_of_products where products.Article = ' + array_of_products[i].Article.ToString);
       while not ado.Eof do
       begin
           lm:=TListOfMaterials.Create;

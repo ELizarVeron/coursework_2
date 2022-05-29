@@ -16,7 +16,7 @@
     Top = 0
     Width = 487
     Height = 429
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -27,13 +27,6 @@
         Width = 73
         Height = 13
         Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-      end
-      object Label2: TLabel
-        Left = 200
-        Top = 51
-        Width = 18
-        Height = 13
-        Caption = #1058#1080#1087
       end
       object Image1: TImage
         Left = 24
@@ -134,7 +127,7 @@
       end
       object Стандарт: TLabel
         Left = 200
-        Top = 80
+        Top = 56
         Width = 50
         Height = 13
         Caption = #1057#1090#1072#1085#1076#1072#1088#1090
@@ -160,16 +153,9 @@
         Height = 13
         Caption = 'Label15'
       end
-      object Label16: TLabel
-        Left = 296
-        Top = 51
-        Width = 37
-        Height = 13
-        Caption = 'Label15'
-      end
       object Label17: TLabel
         Left = 296
-        Top = 80
+        Top = 56
         Width = 37
         Height = 13
         Caption = 'Label15'

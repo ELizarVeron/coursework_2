@@ -48,7 +48,6 @@ type
     ListBox2: TListBox;
     Label15: TLabel;
     Button1: TButton;
-    Label2: TLabel;
     procedure Button_saveClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
@@ -74,7 +73,7 @@ type
          constructor Create( AOwner: TComponent);  override;
          procedure InitForEdit(prod:TProduct);
          procedure InitForCreateProduct( );
-        var   nothing_to_change, nothing_to_change_logo, modeEdit,need_delete:boolean;
+        var   need_change_foto, nothing_to_change_logo, modeEdit,need_delete:boolean;
         var  prod_after_change:TProduct;
         var lm_of_new_product:TObjectList<TListOfMaterials>;
   end;
@@ -126,10 +125,10 @@ implementation
 
          prod_on_change.CostForAgent:=StrToInt(Edit_mincost.Text);
 
-         prod_on_change.list_of_materials.Clear;
+         prod_on_change.list_of_materials.Count :=0;
          for I := 0 to   ListBox2.Count-1 do
           begin
-             prod_on_change.list_of_materials.Add(ListBox2.Items.Objects[i] as TListOfMaterials  );
+           //  prod_on_change.list_of_materials.Add(ListBox2.Items.Objects[i] as TListOfMaterials  );
 
           end;
 
@@ -307,7 +306,7 @@ end;
 
 procedure TForm14.Button4Click(Sender: TObject); //загрузка картинки
 begin
-   nothing_to_change_logo:=false;
+  need_change_foto:=true;
       if OpenPictureDialog1.Execute and
    FileExists(OpenPictureDialog1.FileName) then
    begin
@@ -322,7 +321,7 @@ procedure TForm14.Button5Click(Sender: TObject);    //удаление картинки
 begin
     Image1.Picture:=nil;
     prod_on_change.Logo:='';
-    nothing_to_change:=false;
+    need_change_foto:=true;
 
 end;
 
@@ -336,7 +335,7 @@ begin
 
       if not (modeEdit ) then  //если режим создания
        begin
-         SaveIcon;
+        SaveIcon;
          SaveNewInArrayOfProducts;
          SaveProdInDB;
          SaveMaterialsInDB;
@@ -346,7 +345,7 @@ begin
        end
        else
        begin                    //если режим редактирования
-          SaveIcon;
+         if   (need_change_foto) then  SaveIcon;
          EditInArray;
          UpdateProdInDB;
          UpdateMaterialInDB;
@@ -401,16 +400,17 @@ begin
             arr[3]:=new_prod.In_stock.ToString;
              arr[4]:=new_prod.Technology;
               arr[5]:=new_prod.Name_;
-               arr[6]:=new_prod.Logo;
-                arr[7]:=new_prod.Height.ToString;
-                 arr[8]:=new_prod.Width.ToString;
-                  arr[9]:=new_prod.Length.ToString;
-                  arr[10]:=new_prod.WeigthWith.ToString;
-                  arr[11]:=new_prod.WeightWithout.ToString;
-                  arr[12]:=new_prod.Sertificate;
-                   arr[13]:=new_prod.Standart;
-                    arr[14]:=new_prod.CostForAgent.ToString;
-                        arr[15]:=new_prod.Type_;
+
+                arr[6]:=new_prod.Height.ToString;
+                 arr[7]:=new_prod.Width.ToString;
+                  arr[8]:=new_prod.Length.ToString;
+                  arr[9]:=new_prod.WeigthWith.ToString;
+                  arr[10]:=new_prod.WeightWithout.ToString;
+                  arr[11]:=new_prod.Sertificate;
+                   arr[12]:=new_prod.Standart;
+                    arr[13]:=new_prod.CostForAgent.ToString;
+                        arr[14]:=new_prod.Type_;
+                         arr[15]:=new_prod.Logo;
 
             mc.sql_insert('Products', arr);
 
@@ -445,9 +445,10 @@ begin
       end
       else
       begin
-           ext:=ExtractFileExt(OpenPictureDialog1.FileName);
+         //  ext:=ExtractFileExt(OpenPictureDialog1.FileName);
 
-           img_name_icon:=  'img_prod' + (prod_on_change.Article ).ToString+ext;
+         img_name_icon:=  'img_prod' + (prod_on_change.Article ).ToString+'.png'    ;
+
 
 
            var MyFolder:= 'images\';

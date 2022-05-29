@@ -13,6 +13,7 @@ type
   public
 
   var
+
   class var  array_of_material: TObjectList<TMaterial>;
     class var  max_id: integer;
     fr: TFrame;
@@ -39,11 +40,19 @@ begin
        max_id:=array_of_material[i].Article;
 
   end;
+
+
+
 end;
 
 procedure TMaterial_Class.FiltrChange(edit: TEdit; Filtr, sort: TComboBox);
+
 begin
 
+       array_of_material :=
+        from_ado_to_array(
+         sql2 (' Select * from Material  where Title like ' + #39 + '%' + edit.Text + '%' + #39)
+         ) ;
 end;
 
 function TMaterial_Class.from_ado_to_array(ado: tADOQuery)

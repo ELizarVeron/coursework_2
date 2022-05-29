@@ -2,14 +2,14 @@ object Frame_manufact: TFrame_manufact
   Left = 0
   Top = 0
   Width = 580
-  Height = 106
+  Height = 97
   TabOrder = 0
   object Panel1: TPanel
     AlignWithMargins = True
     Left = 3
     Top = 3
     Width = 574
-    Height = 100
+    Height = 91
     Align = alClient
     BevelEdges = []
     BevelOuter = bvNone
@@ -19,6 +19,7 @@ object Frame_manufact: TFrame_manufact
     ParentBackground = False
     TabOrder = 0
     OnDblClick = Panel1DblClick
+    ExplicitHeight = 100
     object Label3: TLabel
       Left = 256
       Top = 9

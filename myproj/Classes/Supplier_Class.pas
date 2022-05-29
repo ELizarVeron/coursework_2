@@ -103,7 +103,7 @@ begin
        ADO := TADOQuery.Create(nil);
        var
         str: string;
-         str:='SELECT Material.* FROM Supplier INNER JOIN (Material INNER JOIN Materials_from_supplier ON Material.Article = Materials_from_supplier.Article_material) ON Supplier.id = Materials_from_supplier.Id_supplier';
+        str:='SELECT Material.* FROM Supplier INNER JOIN (Material INNER JOIN Materials_from_supplier ON Material.Article = Materials_from_supplier.Article_material) ON Supplier.id = Materials_from_supplier.Id_supplier';
 
       ADO.Connection := ADOCon;
       ADO.Active := false;

@@ -3,7 +3,7 @@ unit INFOManufacture2;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Data.Win.ADODB,Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,Manufacture, Product_Class , Product, Material_Class, Main_Class ,DateUtils,
   Vcl.ExtCtrls;
 
@@ -41,13 +41,15 @@ implementation
 { TForm26 }
 
 procedure TForm26.Button1Click(Sender: TObject);
- var    lpText,lpCaption : PChar;
-        Tip ,res: integer;
-
-begin
-          lpText := 'Подтвердите завершение производства';
-          lpCaption := 'Предупреждение';
-          Tip := MB_YESNO;
+ var
+       ADOCon: TADOConnection;
+       ADO: TADOQuery;
+       lpText,lpCaption : PChar;
+       Tip ,res: integer;
+  begin
+        lpText := 'Подтвердите завершение производства';
+        lpCaption := 'Предупреждение';
+        Tip := MB_YESNO;
 
          with Application do
         begin
@@ -58,10 +60,35 @@ begin
 
         if (res = 6 )then    //da
         begin
+              ADOCon := TADOConnection.Create(nil);
+              ADOCon.LoginPrompt := false;
+              ADOCon.Provider := 'Microsoft.Jet.OLEDB.4.0';
+              ADOCon.ConnectionString :=
+              'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Курсовая\1111.mdb;Persist Security Info=False;';
+             ADO := TADOQuery.Create(self);
+             ADO.Connection := ADOCon;
+             ADO.Active := false;
+             ADO.SQL.Clear;
+             ADO.SQL.Add(' Select * from Manufacture where Id_request_from_agent =  ' + manufacture.Id_request_from_agent.ToString +
+             ' and ( Status = 1 or Status = 2 ) ' );
+             ADO.Active := true;
+
+             if(ADO.IsEmpty ) then
+             begin
+             ADO.Active := false;
+             ADO.SQL.Clear;
+             ADO.SQL.Add(' Update request_from_agent set Status = 5 where Id_request_agent =    ' + manufacture.Id_request_from_agent.ToString );
+
+             ADO.ExecSQL;
+
+
+             end;
+
+
 
              var s:=   '  Status = '+'3' + ' , Date_Of_End = ' + QuotedStr( FormatDateTime('dd.mm.yyyy hh:nn:ss ', Now)) ;
              mc.sql_update(' manufacture ', s, 'where id_manufacture =  ' + manufacture.ID_Manufacture.ToString );
-             manufacture.Status:='Завершено';
+             manufacture.Status:='Завершена';
              Close;
 
         end
